@@ -1,0 +1,41 @@
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
+.main-content {
+  margin-top: 80px;
+  min-height: calc(100vh - 200px); }
+  .main-content .homepage-wrapper {
+    background-image: url(attr(data-bg));
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; }
+
+.page-footer {
+  margin-top: 40px;
+  height: 80px; }
+  .page-footer p {
+    margin-top: 20px; }
+
+.offscreen {
+  clip-path: inset(100%);
+  clip: rect(1px 1px 1px 1px);
+  /* IE 6/7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px; }
+
+#toggle-password:hover {
+  cursor: pointer; }
+
+div.is-invalid {
+  color: #D9831F;
+  width: 100%;
+  font-size: 80%;
+  margin-top: 0.25rem; }
+
+/*# sourceMappingURL=app.css.map */

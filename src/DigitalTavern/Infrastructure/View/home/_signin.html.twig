@@ -1,0 +1,21 @@
+<form id="signin_form" class="signin-form" method="post" action="{{ path('User:signin') }}" data-pjax>
+    <fieldset>
+        <legend>Join the adventure!</legend>
+        <div class="form-group mt-3">
+            <label for="email" class="floating-label">Email address</label>
+            <input type="email" class="form-control" id="email" name="email" autofocus readonly>
+        </div>
+        <div class="form-group mt-4">
+            <label for="password" class="floating-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" readonly>
+        </div>
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="remember_me" name="remember_me" value="true" checked>
+            <label class="custom-control-label" for="remember_me">Remember me</label>
+        </div>
+        {{ csrf_token() }}
+
+        <p class="mb-0 mt-2">Don't have account yet? Sign up <a href="{{ path('User:signup') }}">here!</a></p>
+    </fieldset>
+    <button type="submit" class="btn btn-primary btn-lg mt-3">Sign in</button>
+</form>

@@ -1,0 +1,47 @@
+{% set base = (is_pjax(_request)) ? 'base_pjax.html.twig' : 'base.html.twig' %}
+
+{% extends base %}
+
+{% block layout %}
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{{ path('Default:index') }}">{{ _appname }}</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation" style="">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor02">
+                <ul class="navbar-nav mr-auto ml-auto w-100 justify-content-end">
+                    {% if is_granted() %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">{{ user().username }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('User:signout') }}">Sign out</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('User:signin') }}">Sign in</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('User:signup') }}">Sign up</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content" role="main">
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <footer class="page-footer">
+        <div class="container">
+            <hr>
+            <p>{{ 'now'|date('Y') }} &copy; {{ _appname }}</p>
+        </div>
+    </footer>
+{% endblock %}

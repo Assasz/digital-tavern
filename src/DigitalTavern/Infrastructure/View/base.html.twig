@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {#<meta name="keywords" content="">#}
+        {#<meta name="description" content="">#}
+        {#<meta name="author" content="">#}
+
+        <title>{% block title %}{% endblock %} - {{ _appname }}</title>
+
+        {#<link rel="icon" href="">#}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/nprogress.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        {% block css %}{% endblock %}
+
+        <!--[if lte IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <link href='/css/animations-ie-fix.css' rel='stylesheet'>
+        <![endif]-->
+    </head>
+    <body>
+        <div id="pjax-container">
+            {% block layout %}{% endblock %}
+        </div>
+
+        <script src="http://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+        <script src="{{ asset('js/app.js') }}"></script>
+        {% block js %}{% endblock %}
+    </body>
+</html>

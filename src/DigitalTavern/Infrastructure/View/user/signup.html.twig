@@ -1,0 +1,48 @@
+{% extends 'layout/empty.html.twig' %}
+
+{% block title %}Sign up{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% for error in flashbag('danger') %}
+            <div class="alert alert-dismissible alert-primary">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>Oh snap!</strong> {{ error }}
+            </div>
+        {% endfor %}
+
+        <div class="col-lg-4 col-sm-6 col-xs-12">
+            <form id="signup_form" method="post" action="{{ path('User:signup') }}" data-pjax>
+                <fieldset>
+                    <legend>Sign up to <a href="{{ path('Home:index') }}">{{ _appname }}</a></legend>
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="email@domain.com" autofocus autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Strong password" autocomplete="off">
+                            <div id="toggle-password" class="input-group-append input-group-text" data-action="show-password">
+                                <span class="fa fa-fw fa-eye" aria-hidden="true"></span>
+                                <span class="offscreen">Show password</span>
+                            </div>
+                        </div>
+                    </div>
+                    {{ csrf_token() }}
+
+                    <p class="mt-2">By clicking on "Sign up" below, you are agreeing to the <a href="#">Terms of Service</a> and the <a href="#">Privacy Policy.</a></p>
+                    <p class="mb-0 mt-2">Already have an account? Sign in <a href="{{ path('Home:index') }}">here!</a></p>
+                </fieldset>
+                <button type="submit" class="btn btn-primary btn-lg mt-3">Sign up</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script>
+        var emailCheckerRoute = '{{ path('User:checkEmail') }}';
+    </script>
+    <script src="{{ asset('js/app.signup.js') }}"></script>
+{% endblock %}
