@@ -37,7 +37,7 @@ class UserController extends AbstractController
     public function signinAction()
     {
         if($this->isGranted()){
-            return $this->redirectToAction('Default:index');
+            return $this->redirectToAction('Session:public');
         }
 
         $form = new FormHandler();
@@ -77,7 +77,7 @@ class UserController extends AbstractController
             $this->getResponse()->headers->setCookie(new Cookie('remember', serialize($cookie), strtotime('now + 1 week')));
         }
 
-        return $this->redirectToAction('Default:index');
+        return $this->redirectToAction('Session:public');
     }
 
     /**
@@ -89,7 +89,7 @@ class UserController extends AbstractController
     public function signoutAction()
     {
         if(!$this->isGranted()){
-            return $this->redirectToAction('Default:index');
+            return $this->redirectToAction('Session:public');
         }
 
         $session = new Session();
@@ -144,7 +144,7 @@ class UserController extends AbstractController
     public function signupAction()
     {
         if($this->isGranted()){
-            return $this->redirectToAction('Default:index');
+            return $this->redirectToAction('Session:public');
         }
 
         $form = new FormHandler();
@@ -159,13 +159,14 @@ class UserController extends AbstractController
 
             if($response->isSuccess()){
                 $session->getFlashBag()->set('success', 'Account created successfully. Check your mailbox for confirmation mail.');
-                return $this->redirectToAction('Default:index');
+            } else {
+                $session->getFlashBag()->set('danger', 'Something went wrong.');
             }
-
-            $session->getFlashBag()->set('danger', 'Something went wrong.');
         }
 
-        return $this->render('user/signup.html.twig');
+        return $this->redirectToAction('Home:index', [
+            'partial' => 'signup'
+        ]);
     }
 
     /**

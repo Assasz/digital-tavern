@@ -39,31 +39,47 @@ body {
       border-top-left-radius: 2px;
       border-top-right-radius: 2px;
       padding: 40px; }
-    .main-content .homepage-box .signin-form {
+    .main-content .homepage-box .homepage-form {
       color: #FCFCFC; }
-      .main-content .homepage-box .signin-form .form-group {
+      .main-content .homepage-box .homepage-form .form-group {
         position: relative; }
-        .main-content .homepage-box .signin-form .form-group .form-control {
+        .main-content .homepage-box .homepage-form .form-group .form-control {
           background-color: transparent;
           border: 1.5px solid transparent;
           border-radius: 2px;
           border-bottom: 1.5px solid #D9230F;
           transition: all .3s ease;
           color: #FCFCFC; }
-          .main-content .homepage-box .signin-form .form-group .form-control:focus {
+          .main-content .homepage-box .homepage-form .form-group .form-control:focus {
             border: 1.5px solid #D9230F; }
-        .main-content .homepage-box .signin-form .form-group .floating-label {
+        .main-content .homepage-box .homepage-form .form-group .form-control.is-invalid {
+          border-bottom: 1.5px solid #D9831F; }
+          .main-content .homepage-box .homepage-form .form-group .form-control.is-invalid:focus {
+            border: 1.5px solid #D9831F; }
+        .main-content .homepage-box .homepage-form .form-group .form-control.is-valid {
+          border-bottom: 1.5px solid #469408; }
+          .main-content .homepage-box .homepage-form .form-group .form-control.is-valid:focus {
+            border: 1.5px solid #469408; }
+        .main-content .homepage-box .homepage-form .form-group .floating-label {
           position: absolute;
           top: 8px;
           left: 15px;
           transition: all .3s ease;
           cursor: text; }
-        .main-content .homepage-box .signin-form .form-group .float {
+        .main-content .homepage-box .homepage-form .form-group .float {
           top: -19px;
           left: 2px;
           font-size: 12px; }
-  .main-content #toggle-password:hover {
-    cursor: pointer; }
+        .main-content .homepage-box .homepage-form .form-group .input-addon {
+          position: absolute;
+          top: 0;
+          right: 0;
+          padding: 8px 15px;
+          background-color: transparent;
+          color: #FCFCFC;
+          border: none; }
+          .main-content .homepage-box .homepage-form .form-group .input-addon:hover {
+            cursor: pointer; }
   .main-content div.is-invalid {
     color: #D9831F;
     width: 100%;

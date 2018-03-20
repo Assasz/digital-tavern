@@ -49,7 +49,7 @@ body {
       border-top-right-radius: 2px;
       padding: 40px; }
 
-    .signin-form {
+    .homepage-form {
       color: $primary;
 
       .form-group {
@@ -62,8 +62,19 @@ body {
           border-bottom: 1.5px solid $red;
           transition: all .3s ease;
           color: $primary;
+
           &:focus {
             border: 1.5px solid $red; }}
+
+        .form-control.is-invalid {
+          border-bottom: 1.5px solid #D9831F;
+          &:focus {
+            border: 1.5px solid #D9831F; }}
+
+        .form-control.is-valid {
+          border-bottom: 1.5px solid #469408;
+          &:focus {
+            border: 1.5px solid #469408; }}
 
         .floating-label {
           position: absolute;
@@ -75,10 +86,19 @@ body {
         .float {
           top: -19px;
           left: 2px;
-          font-size: 12px; }}}}
+          font-size: 12px; }
 
-  #toggle-password:hover {
-    cursor: pointer; }
+        .input-addon {
+          position: absolute;
+          top: 0;
+          right: 0;
+          padding: 8px 15px;
+          background-color: transparent;
+          color: $primary;
+          border: none;
+          &:hover {
+          cursor: pointer; }}}}}
+
 
   div.is-invalid {
     color: #D9831F;

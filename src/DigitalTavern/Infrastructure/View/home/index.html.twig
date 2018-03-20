@@ -8,6 +8,7 @@
         <div class="col-md-5 col-xs-8 mx-auto">
             <div class="container homepage-box">
                 <h1 class="box-heading">{{ _appname }}</h1>
+
                 {% for msg in flashbag('success') %}
                     <div class="alert alert-dismissible alert-success">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -29,12 +30,15 @@
                     </div>
                 {% endfor %}
 
-                {{ partial(signinView) }}
+                {{ partial(form) }}
             </div>
         </div>
     </div>
 {% endblock %}
 
 {% block js %}
+    <script>
+        var emailCheckerRoute = '{{ path('User:checkEmail') }}';
+    </script>
     <script src="{{ asset('js/app.index.js') }}"></script>
 {% endblock %}

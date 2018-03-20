@@ -1,4 +1,4 @@
-<form id="signin_form" class="signin-form" method="post" action="{{ path('User:signin') }}" data-pjax>
+<form id="signin_form" class="homepage-form" method="post" action="{{ path('User:signin') }}" data-pjax>
     <fieldset>
         <legend>Join the adventure!</legend>
         <div class="form-group mt-3">
@@ -15,7 +15,7 @@
         </div>
         {{ csrf_token() }}
 
-        <p class="mb-0 mt-2">Don't have account yet? Sign up <a href="{{ path('User:signup') }}">here!</a></p>
+        <p class="mb-0 mt-2">Don't have account yet? Sign up <a href="{{ path('Home:index', {'partial': 'signup'}) }}">here!</a></p>
     </fieldset>
     <button type="submit" class="btn btn-primary btn-lg mt-3">Sign in</button>
 </form>

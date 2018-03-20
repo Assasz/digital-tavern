@@ -40,12 +40,12 @@ class SignupService extends AbstractService implements ServiceInterface
 
         if(count($errors) < 1){
             $link = $this->getRouter()->getQuery('User:signupConfirmation', [$user->getConfirmationToken()]);
-            $body = 'Hi there! Click <a href="'.$link.'">here</a> to activate your account.<br><br>Best regards, your Team.';
+            $body = 'Hello there! Click <a href="'.$link.'">here</a> to activate your account.<br><br>Best regards, your Team.';
 
             $mailSenderRequest = new MailSenderRequest();
-            $mailSenderRequest->setSubject('Sign up confirmation');
+            $mailSenderRequest->setSubject('DigitalTavern - sign up confirmation');
             $mailSenderRequest->setBody($body);
-            $mailSenderRequest->setSender(['team@application.com' => 'Application Team']);
+            $mailSenderRequest->setSender(['team@digitaltavern.com' => 'DigitalTavern Team']);
             $mailSenderRequest->setReceivers([$user->getEmail() => $user->getEmail()]);
 
             $mailSenderService = $this->getContainer()->get('shared.mail_sender');
