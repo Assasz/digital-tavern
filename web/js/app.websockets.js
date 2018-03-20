@@ -1,21 +1,21 @@
 $(document).ready(function () {
-    loadPageActions();
+    loadWebsockets();
 });
 
 $(document).on('pjax:end', function () {
-    loadPageActions();
+    loadWebsockets();
 });
 
-function loadPageActions() {
-    if(typeof conn === 'undefined') {
-        var conn = new WebSocket('ws://localhost:8888');
+function loadWebsockets() {
+    if(!(wsConn instanceof WebSocket)) {
+        wsConn = new WebSocket('ws://localhost:8888');
     }
 
-    conn.onopen = function(e) {
+    wsConn.onopen = function(e) {
         console.log("Connection established!");
     };
 
-    conn.onmessage = function(e) {
+    wsConn.onmessage = function(e) {
         console.log(e.data);
     };
 }

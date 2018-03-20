@@ -15,3 +15,5 @@ $(document).ready(function () {
         NProgress.done();
     });
 });
+
+var wsConn;

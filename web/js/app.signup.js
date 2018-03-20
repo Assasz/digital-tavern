@@ -1,13 +1,13 @@
 $(document).ready(function () {
-    loadPageActions();
+    loadSignupActions();
 });
 
 $(document).on('pjax:end', function () {
-    loadPageActions();
+    loadSignupActions();
 });
 
-function loadPageActions(){
-    $('[data-action="show-password"]').click(function () {
+function loadSignupActions(){
+    $(document).on('click', '[data-action="show-password"]', function () {
         if($('#password').attr('type') == 'password'){
             $('#password').attr('type', 'text');
             $('#toggle-password').html('<span class="fa fa-fw fa-eye-slash" aria-hidden="true"></span>\n' +
