@@ -6,7 +6,8 @@ use DigitalTavern\Application\Service\UserModule\Request\EmailCheckerRequest;
 use DigitalTavern\Application\Service\UserModule\Request\RememberedAuthRequest;
 use DigitalTavern\Application\Service\UserModule\Request\SignupConfirmationRequest;
 use DigitalTavern\Application\Service\UserModule\Request\SignupRequest;
-use DigitalTavern\Application\Service\UserModule\Request\UserAuthRequest;
+use DigitalTavern\Application\Service\UserModule\Request\AuthRequest;
+use DigitalTavern\Application\Service\UserModule\Request\ActivityUpdateRequest;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Yggdrasil\Core\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Cookie;
@@ -37,7 +38,7 @@ class UserController extends AbstractController
     public function signinAction()
     {
         if($this->isGranted()){
-            return $this->redirectToAction('Session:public');
+            return $this->redirectToAction('Session:index');
         }
 
         $form = new FormHandler();
@@ -48,7 +49,7 @@ class UserController extends AbstractController
 
         $rememberMe = $form->hasData('remember_me');
 
-        $authRequest = new UserAuthRequest();
+        $authRequest = new AuthRequest();
         $authRequest = $form->serializeData($authRequest);
         $authRequest->setRemember($rememberMe);
 
@@ -77,7 +78,7 @@ class UserController extends AbstractController
             $this->getResponse()->headers->setCookie(new Cookie('remember', serialize($cookie), strtotime('now + 1 week')));
         }
 
-        return $this->redirectToAction('Session:public');
+        return $this->redirectToAction('Session:index');
     }
 
     /**
@@ -89,7 +90,7 @@ class UserController extends AbstractController
     public function signoutAction()
     {
         if(!$this->isGranted()){
-            return $this->redirectToAction('Session:public');
+            return $this->redirectToAction('Session:index');
         }
 
         $session = new Session();
@@ -144,7 +145,7 @@ class UserController extends AbstractController
     public function signupAction()
     {
         if($this->isGranted()){
-            return $this->redirectToAction('Session:public');
+            return $this->redirectToAction('Session:index');
         }
 
         $form = new FormHandler();
@@ -218,5 +219,23 @@ class UserController extends AbstractController
         }
 
         return $this->redirectToAction('Home:index');
+    }
+
+    /**
+     * Activity update passive action
+     *
+     * @return Response
+     */
+    public function activityUpdatePassiveAction()
+    {
+        if($this->isGranted()){
+            $request = new ActivityUpdateRequest();
+            $request->setUserId($this->getUser()->getId());
+
+            $service = $this->getContainer()->get('user.activity_update');
+            $response = $service->process($request);
+        }
+
+        return $this->getResponse();
     }
 }

@@ -71,6 +71,22 @@ class User
     private $confirmationToken;
 
     /**
+     * User last activity date
+     *
+     * @Column(type="datetime", nullable=true)
+     * @var \DateTime $lastActivityDate
+     */
+    private $lastActivityDate;
+
+    /**
+     * User role-playing profile
+     *
+     * @OneToOne(targetEntity="Profile", inversedBy="user")
+     * @JoinColumn(name="profileId", referencedColumnName="id", nullable=true)
+     */
+    private $profile;
+
+    /**
      * User constructor.
      *
      * Sets home values
@@ -212,5 +228,45 @@ class User
     public function setConfirmationToken(string $confirmationToken): void
     {
         $this->confirmationToken = $confirmationToken;
+    }
+
+    /**
+     * Returns user last activity date
+     *
+     * @return \DateTime
+     */
+    public function getLastActivityDate(): \DateTime
+    {
+        return $this->lastActivityDate;
+    }
+
+    /**
+     * Sets user last activity date
+     *
+     * @param \DateTime $date
+     */
+    public function setLastActivityDate(\DateTime $date): void
+    {
+        $this->lastActivityDate = $date;
+    }
+
+    /**
+     * Returns user role-playing profile
+     *
+     * @return null|Profile
+     */
+    public function getProfile()
+    {
+        return $this->profile;
+    }
+
+    /**
+     * Sets user role-playing profile
+     *
+     * @param Profile $profile
+     */
+    public function setProfile(Profile $profile): void
+    {
+        $this->profile = $profile;
     }
 }

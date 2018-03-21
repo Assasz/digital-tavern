@@ -28,7 +28,7 @@ class HomeController extends AbstractController
     public function indexAction(string $partial = 'signin')
     {
         if($this->isGranted()){
-            return $this->redirectToAction('Session:public');
+            return $this->redirectToAction('Session:index');
         }
 
         $form = ($partial === 'signup') ? $this->signupPartialAction() : $this->siginPartialAction();

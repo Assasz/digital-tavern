@@ -7,12 +7,28 @@ $red: #D9230F;
 
 body {
   font-family: 'Titillium Web', sans-serif;
-  color: $secondary;
+  background-color: $secondary;
+  color: $primary;
 
   a, a:hover {
     font-weight: bold;
     color: $red;
     text-decoration: none; }}
+
+.navbar {
+  text-transform: uppercase;
+
+  .active span {
+    color: $red; }
+
+  .nav-link {
+    span {
+      margin-right: 5px; }}
+
+  .navbar-brand {
+    font-weight: bold;
+    letter-spacing: .2em;
+    font-family: 'Orbitron', sans-serif; }}
 
 .main-content {
   padding-top: 80px;
@@ -21,7 +37,7 @@ body {
   overflow-x: hidden;
 
   .homepage-bg {
-    background-image: linear-gradient(to right, rgba(253, 205, 120, .4), rgba(229, 172, 127,.7)), url('../images/home-bg.jpg');
+    background-image: linear-gradient(to right, rgba(253, 205, 120, .4), rgba(229, 172, 127,.7)), url('../images/bg.gif');
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
@@ -40,6 +56,7 @@ body {
 
     .box-heading {
       background-color: $primary;
+      color: $secondary;
       font-weight: bold;
       font-family: 'Orbitron', sans-serif;
       text-transform: uppercase;
@@ -50,7 +67,6 @@ body {
       padding: 40px; }
 
     .homepage-form {
-      color: $primary;
 
       .form-group {
         position: relative;

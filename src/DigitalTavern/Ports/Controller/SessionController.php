@@ -15,8 +15,8 @@ use Symfony\Component\HttpFoundation\Response;
 class SessionController extends AbstractController
 {
     /**
-     * Lists public sessions
-     * Route /session/public
+     * Session index action
+     * Route /session/index, /session
      *
      * @return string|Response
      *
@@ -24,12 +24,16 @@ class SessionController extends AbstractController
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function publicAction()
+    public function indexAction()
     {
         if(!$this->isGranted()){
             return $this->redirectToAction('Home:index');
         }
 
-        return $this->render('session/public.html.twig');
+//        if(empty($this->getUser()->getProfile())){
+//            return $this->redirectToAction('Profile:create');
+//        }
+
+        return $this->render('session/index.html.twig');
     }
 }

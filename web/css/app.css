@@ -2,11 +2,23 @@
 @import "https://fonts.googleapis.com/css?family=Titillium+Web|Orbitron";
 body {
   font-family: 'Titillium Web', sans-serif;
-  color: #263238; }
+  background-color: #263238;
+  color: #FCFCFC; }
   body a, body a:hover {
     font-weight: bold;
     color: #D9230F;
     text-decoration: none; }
+
+.navbar {
+  text-transform: uppercase; }
+  .navbar .active span {
+    color: #D9230F; }
+  .navbar .nav-link span {
+    margin-right: 5px; }
+  .navbar .navbar-brand {
+    font-weight: bold;
+    letter-spacing: .2em;
+    font-family: 'Orbitron', sans-serif; }
 
 .main-content {
   padding-top: 80px;
@@ -14,7 +26,7 @@ body {
   min-height: calc(100vh - 200px);
   overflow-x: hidden; }
   .main-content .homepage-bg {
-    background-image: linear-gradient(to right, rgba(253, 205, 120, 0.4), rgba(229, 172, 127, 0.7)), url("../images/home-bg.jpg");
+    background-image: linear-gradient(to right, rgba(253, 205, 120, 0.4), rgba(229, 172, 127, 0.7)), url("../images/bg.gif");
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
@@ -31,6 +43,7 @@ body {
     margin-bottom: 80px; }
     .main-content .homepage-box .box-heading {
       background-color: #FCFCFC;
+      color: #263238;
       font-weight: bold;
       font-family: 'Orbitron', sans-serif;
       text-transform: uppercase;
@@ -39,47 +52,45 @@ body {
       border-top-left-radius: 2px;
       border-top-right-radius: 2px;
       padding: 40px; }
-    .main-content .homepage-box .homepage-form {
-      color: #FCFCFC; }
-      .main-content .homepage-box .homepage-form .form-group {
-        position: relative; }
-        .main-content .homepage-box .homepage-form .form-group .form-control {
-          background-color: transparent;
-          border: 1.5px solid transparent;
-          border-radius: 2px;
-          border-bottom: 1.5px solid #D9230F;
-          transition: all .3s ease;
-          color: #FCFCFC; }
-          .main-content .homepage-box .homepage-form .form-group .form-control:focus {
-            border: 1.5px solid #D9230F; }
-        .main-content .homepage-box .homepage-form .form-group .form-control.is-invalid {
-          border-bottom: 1.5px solid #D9831F; }
-          .main-content .homepage-box .homepage-form .form-group .form-control.is-invalid:focus {
-            border: 1.5px solid #D9831F; }
-        .main-content .homepage-box .homepage-form .form-group .form-control.is-valid {
-          border-bottom: 1.5px solid #469408; }
-          .main-content .homepage-box .homepage-form .form-group .form-control.is-valid:focus {
-            border: 1.5px solid #469408; }
-        .main-content .homepage-box .homepage-form .form-group .floating-label {
-          position: absolute;
-          top: 8px;
-          left: 15px;
-          transition: all .3s ease;
-          cursor: text; }
-        .main-content .homepage-box .homepage-form .form-group .float {
-          top: -19px;
-          left: 2px;
-          font-size: 12px; }
-        .main-content .homepage-box .homepage-form .form-group .input-addon {
-          position: absolute;
-          top: 0;
-          right: 0;
-          padding: 8px 15px;
-          background-color: transparent;
-          color: #FCFCFC;
-          border: none; }
-          .main-content .homepage-box .homepage-form .form-group .input-addon:hover {
-            cursor: pointer; }
+    .main-content .homepage-box .homepage-form .form-group {
+      position: relative; }
+      .main-content .homepage-box .homepage-form .form-group .form-control {
+        background-color: transparent;
+        border: 1.5px solid transparent;
+        border-radius: 2px;
+        border-bottom: 1.5px solid #D9230F;
+        transition: all .3s ease;
+        color: #FCFCFC; }
+        .main-content .homepage-box .homepage-form .form-group .form-control:focus {
+          border: 1.5px solid #D9230F; }
+      .main-content .homepage-box .homepage-form .form-group .form-control.is-invalid {
+        border-bottom: 1.5px solid #D9831F; }
+        .main-content .homepage-box .homepage-form .form-group .form-control.is-invalid:focus {
+          border: 1.5px solid #D9831F; }
+      .main-content .homepage-box .homepage-form .form-group .form-control.is-valid {
+        border-bottom: 1.5px solid #469408; }
+        .main-content .homepage-box .homepage-form .form-group .form-control.is-valid:focus {
+          border: 1.5px solid #469408; }
+      .main-content .homepage-box .homepage-form .form-group .floating-label {
+        position: absolute;
+        top: 8px;
+        left: 15px;
+        transition: all .3s ease;
+        cursor: text; }
+      .main-content .homepage-box .homepage-form .form-group .float {
+        top: -19px;
+        left: 2px;
+        font-size: 12px; }
+      .main-content .homepage-box .homepage-form .form-group .input-addon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 8px 15px;
+        background-color: transparent;
+        color: #FCFCFC;
+        border: none; }
+        .main-content .homepage-box .homepage-form .form-group .input-addon:hover {
+          cursor: pointer; }
   .main-content div.is-invalid {
     color: #D9831F;
     width: 100%;

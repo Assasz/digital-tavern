@@ -6,13 +6,13 @@ use DigitalTavern\Domain\Entity\User;
 use Yggdrasil\Core\Service\ServiceResponseInterface;
 
 /**
- * Class UserAuthResponse
+ * Class AuthResponse
  *
  * This is a part of built-in user module, feel free to customize as needed
  *
  * @package DigitalTavern\Application\Service\UserModule\Response
  */
-class UserAuthResponse implements ServiceResponseInterface
+class AuthResponse implements ServiceResponseInterface
 {
     /**
      * Result of service processing
