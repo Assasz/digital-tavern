@@ -24,6 +24,10 @@ class ProfileController extends AbstractController
      */
     public function createAction()
     {
+        if(!empty($this->getUser()->getProfile())){
+            return $this->redirectToAction('Session:index');
+        }
+
         return $this->render('profile/create.html.twig');
     }
 }

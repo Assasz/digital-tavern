@@ -30,9 +30,9 @@ class SessionController extends AbstractController
             return $this->redirectToAction('Home:index');
         }
 
-//        if(empty($this->getUser()->getProfile())){
-//            return $this->redirectToAction('Profile:create');
-//        }
+        if(empty($this->getUser()->getProfile())){
+            return $this->redirectToAction('Profile:create');
+        }
 
         return $this->render('session/index.html.twig');
     }

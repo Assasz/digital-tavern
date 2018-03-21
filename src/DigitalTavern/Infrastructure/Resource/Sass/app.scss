@@ -36,6 +36,11 @@ body {
   min-height: calc(100vh - 200px);
   overflow-x: hidden;
 
+  .brand-name {
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    font-weight: bold; }
+
   .homepage-bg {
     background-image: linear-gradient(to right, rgba(253, 205, 120, .4), rgba(229, 172, 127,.7)), url('../images/bg.gif');
     background-position: center;
