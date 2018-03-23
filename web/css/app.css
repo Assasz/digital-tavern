@@ -95,7 +95,12 @@ body {
     margin: 0;
     padding: 0.375rem 0.75rem;
     overflow: hidden;
+    transition: all .3s ease;
     position: absolute; }
+  .form-group .file-label.is-invalid {
+    border-bottom: 1.5px solid #D9831F; }
+  .form-group .file-label.is-valid {
+    border-bottom: 1.5px solid #469408; }
   .form-group .custom-file-input {
     cursor: pointer; }
   .form-group .float {

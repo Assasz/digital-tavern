@@ -17,20 +17,19 @@ function loadProfileCreateActions() {
 
     var width, height;
 
-    $.validator.addMethod('imageSize', function (value, element, params) {
-        return (width >= params[0] && height >= params[1] && width/height === params[2]);
+    $.validator.addMethod('imageSize', function (value, element) {
+        return (width >= 300 && height >= 300 && width/height === 1);
     }, 'This avatar is of invalid size.');
 
     $("#profile_form").validate({
         rules: {
             avatar: {
-                required: {
+                extension: "jpg|jpeg|png",
+                imageSize: {
                     depends: function(element) {
                         return ($('#avatar').val().length > 0);
                     }
-                },
-                extension: "jpg|jpeg|png",
-                imageSize: [300, 300, 1]
+                }
             },
             ign: {
                 required: true,
@@ -62,7 +61,16 @@ function loadProfileCreateActions() {
                     width = this.width;
                     height = this.height;
 
-                    $('#avatar').valid();
+                    //$('#avatar').valid();
+
+                    if($('#avatar').valid()){
+                        $('label[for="avatar"]').removeClass('is-invalid').addClass('is-valid');
+                    } else {
+                        $('label[for="avatar"]').removeClass('is-valid').addClass('is-invalid');
+                    }
+
+                    // $(this).closest('label').toggleClass('is-invalid', $(this).hasClass('is-invalid'));
+                    // $(this).closest('label').toggleClass('is-valid', $(this).hasClass('is-valid'));
 
                     if(this.height >= 300 && this.width >= 300 && this.height/this.width === 1){
                         $('#avatar_preview').attr('src', e.target.result);
