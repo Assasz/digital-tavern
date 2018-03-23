@@ -1,0 +1,63 @@
+.form-group {
+  position: relative;
+
+  .form-control {
+    background-color: transparent;
+    border: 1.5px solid transparent;
+    border-radius: 2px;
+    border-bottom: 1.5px solid $red;
+    transition: all .3s ease;
+    color: $primary;
+    &:focus {
+      border: 1.5px solid $red; }}
+
+  .form-control.is-invalid {
+    border-bottom: 1.5px solid #D9831F;
+    &:focus {
+      border: 1.5px solid #D9831F; }}
+
+  .form-control.is-valid {
+    border-bottom: 1.5px solid #469408;
+    &:focus {
+      border: 1.5px solid #469408; }}
+
+  .floating-label {
+    position: absolute;
+    top: 8px;
+    left: 15px;
+    transition: all .3s ease;
+    cursor: text; }
+
+  .file-label {
+    width: 100%;
+    height: calc(1.96875rem + 2px);
+    border-bottom: 1.5px solid $red;
+    margin: 0;
+    padding: 0.375rem 0.75rem;
+    overflow: hidden;
+    position: absolute; }
+
+  .custom-file-input {
+    cursor: pointer; }
+
+  .float {
+    top: -19px;
+    left: 2px;
+    font-size: 12px; }
+
+  div.is-invalid {
+    color: #D9831F;
+    width: 100%;
+    font-size: 80%;
+    margin-top: 0.25rem; }
+
+  .input-addon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 8px 15px;
+    background-color: transparent;
+    color: $primary;
+    border: none;
+    &:hover {
+      cursor: pointer; }}}

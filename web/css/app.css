@@ -9,21 +9,10 @@ body {
     color: #D9230F;
     text-decoration: none; }
 
-.navbar {
-  text-transform: uppercase; }
-  .navbar .active span {
-    color: #D9230F; }
-  .navbar .nav-link span {
-    margin-right: 5px; }
-  .navbar .navbar-brand {
-    font-weight: bold;
-    letter-spacing: .2em;
-    font-family: 'Orbitron', sans-serif; }
-
 .main-content {
   padding-top: 80px;
   width: 100%;
-  min-height: calc(100vh - 200px);
+  min-height: calc(100vh - 120px);
   overflow-x: hidden; }
   .main-content .brand-name {
     font-family: 'Orbitron', sans-serif;
@@ -56,56 +45,78 @@ body {
       border-top-left-radius: 2px;
       border-top-right-radius: 2px;
       padding: 40px; }
-    .main-content .homepage-box .homepage-form .form-group {
-      position: relative; }
-      .main-content .homepage-box .homepage-form .form-group .form-control {
-        background-color: transparent;
-        border: 1.5px solid transparent;
-        border-radius: 2px;
-        border-bottom: 1.5px solid #D9230F;
-        transition: all .3s ease;
-        color: #FCFCFC; }
-        .main-content .homepage-box .homepage-form .form-group .form-control:focus {
-          border: 1.5px solid #D9230F; }
-      .main-content .homepage-box .homepage-form .form-group .form-control.is-invalid {
-        border-bottom: 1.5px solid #D9831F; }
-        .main-content .homepage-box .homepage-form .form-group .form-control.is-invalid:focus {
-          border: 1.5px solid #D9831F; }
-      .main-content .homepage-box .homepage-form .form-group .form-control.is-valid {
-        border-bottom: 1.5px solid #469408; }
-        .main-content .homepage-box .homepage-form .form-group .form-control.is-valid:focus {
-          border: 1.5px solid #469408; }
-      .main-content .homepage-box .homepage-form .form-group .floating-label {
-        position: absolute;
-        top: 8px;
-        left: 15px;
-        transition: all .3s ease;
-        cursor: text; }
-      .main-content .homepage-box .homepage-form .form-group .float {
-        top: -19px;
-        left: 2px;
-        font-size: 12px; }
-      .main-content .homepage-box .homepage-form .form-group .input-addon {
-        position: absolute;
-        top: 0;
-        right: 0;
-        padding: 8px 15px;
-        background-color: transparent;
-        color: #FCFCFC;
-        border: none; }
-        .main-content .homepage-box .homepage-form .form-group .input-addon:hover {
-          cursor: pointer; }
-  .main-content div.is-invalid {
-    color: #D9831F;
-    width: 100%;
-    font-size: 80%;
-    margin-top: 0.25rem; }
 
 .page-footer {
   margin-top: 40px;
   height: 80px; }
   .page-footer p {
     margin-top: 20px; }
+
+.navbar {
+  text-transform: uppercase; }
+  .navbar .active span {
+    color: #D9230F; }
+  .navbar .nav-link span {
+    margin-right: 5px; }
+  .navbar .navbar-brand {
+    font-weight: bold;
+    letter-spacing: .2em;
+    font-family: 'Orbitron', sans-serif; }
+
+.form-group {
+  position: relative; }
+  .form-group .form-control {
+    background-color: transparent;
+    border: 1.5px solid transparent;
+    border-radius: 2px;
+    border-bottom: 1.5px solid #D9230F;
+    transition: all .3s ease;
+    color: #FCFCFC; }
+    .form-group .form-control:focus {
+      border: 1.5px solid #D9230F; }
+  .form-group .form-control.is-invalid {
+    border-bottom: 1.5px solid #D9831F; }
+    .form-group .form-control.is-invalid:focus {
+      border: 1.5px solid #D9831F; }
+  .form-group .form-control.is-valid {
+    border-bottom: 1.5px solid #469408; }
+    .form-group .form-control.is-valid:focus {
+      border: 1.5px solid #469408; }
+  .form-group .floating-label {
+    position: absolute;
+    top: 8px;
+    left: 15px;
+    transition: all .3s ease;
+    cursor: text; }
+  .form-group .file-label {
+    width: 100%;
+    height: calc(1.96875rem + 2px);
+    border-bottom: 1.5px solid #D9230F;
+    margin: 0;
+    padding: 0.375rem 0.75rem;
+    overflow: hidden;
+    position: absolute; }
+  .form-group .custom-file-input {
+    cursor: pointer; }
+  .form-group .float {
+    top: -19px;
+    left: 2px;
+    font-size: 12px; }
+  .form-group div.is-invalid {
+    color: #D9831F;
+    width: 100%;
+    font-size: 80%;
+    margin-top: 0.25rem; }
+  .form-group .input-addon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 8px 15px;
+    background-color: transparent;
+    color: #FCFCFC;
+    border: none; }
+    .form-group .input-addon:hover {
+      cursor: pointer; }
 
 .offscreen {
   clip-path: inset(100%);

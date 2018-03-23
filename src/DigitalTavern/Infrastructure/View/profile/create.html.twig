@@ -3,7 +3,53 @@
 {% block title %}Profile setup{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h1 class="text-center">Welcome in <span class="brand-name">{{ _appname }}</span> traveler!<br><small>Let's setup your role-playing profile.</small></h1>
+    <div class="container mb-5">
+        <h1 class="text-center">Welcome in <span class="brand-name">{{ _appname }}</span> traveler!</h1>
+        <div class="row">
+            <form id="profile_form" class="col-md-6 mx-auto" method="post" action="{{ path('Profile:create') }}" data-pjax>
+                <fieldset>
+                    <legend class="text-center">Let's setup your role-playing profile.</legend>
+                    <img id="avatar_preview" class="rounded-circle mx-auto d-block mt-4" width="200px" src="{{ asset('images/default-avatar.jpg') }}" alt="Avatar">
+                    <div class="form-group mt-4">
+                        <label for="avatar" class="file-label">Upload avatar</label>
+                        <input type="file" class="custom-file-input" id="avatar" name="avatar" aria-describedby="avatar_help">
+                        <small id="ign_help" class="form-text text-muted">Avatar of your character. Minimum 300px of height and width, required aspect ratio: 1:1 (square).</small>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="ign" class="floating-label">IGN</label>
+                        <input type="text" class="form-control" id="ign" name="ign" aria-describedby="ign_help" autofocus readonly>
+                        <small id="ign_help" class="form-text text-muted">In Game Name, full name of your character. Required to start your adventure.</small>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="race" class="floating-label">Race</label>
+                        <input type="text" class="form-control" id="race" name="race" aria-describedby="race_help" autofocus readonly>
+                        <small id="race_help" class="form-text text-muted">Race of your character like human, dwarf and so on. Feel free to create your own race too!</small>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="origin" class="floating-label">Origin</label>
+                        <input type="text" class="form-control" id="origin" name="origin" aria-describedby="origin_help" autofocus readonly>
+                        <small id="origin_help" class="form-text text-muted">Origin of your character, it can be name of kingdom, lands or whatever you want.</small>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="age" class="floating-label">Age</label>
+                        <input type="text" class="form-control" id="age" name="age" aria-describedby="age_help" autofocus readonly>
+                        <small id="age_help" class="form-text text-muted">Approximate age of your character, should be a number, but it's not required.</small>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="occupation" class="floating-label">Occupation</label>
+                        <input type="text" class="form-control" id="occupation" name="occupation" aria-describedby="occupation_help" autofocus readonly>
+                        <small id="occupation_help" class="form-text text-muted">Is your character a mighty wizard, notorious assassin or just adventurous wanderer? Specify it here!</small>
+                    </div>
+                    {{ csrf_token() }}
+
+                    <p class="mt-2">Every field can be edited later. If you don't have inspiration to do it right now, just leave particular fields empty (only IGN is required, but can be changed later as well).</p>
+                </fieldset>
+                <button type="submit" class="btn btn-primary btn-lg mt-3">Save</button>
+            </form>
+        </div>
     </div>
+{% endblock %}
+
+{% block js %}
+    <script src="{{ asset('js/app.profile-create.js') }}"></script>
 {% endblock %}

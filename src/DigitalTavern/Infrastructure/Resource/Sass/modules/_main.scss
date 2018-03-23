@@ -1,0 +1,57 @@
+body {
+  font-family: 'Titillium Web', sans-serif;
+  background-color: $secondary;
+  color: $primary;
+
+  a, a:hover {
+    font-weight: bold;
+    color: $red;
+    text-decoration: none; }}
+
+.main-content {
+  padding-top: 80px;
+  width: 100%;
+  min-height: calc(100vh - 120px);
+  overflow-x: hidden;
+
+  .brand-name {
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    font-weight: bold; }
+
+  .homepage-bg {
+    background-image: linear-gradient(to right, rgba(253, 205, 120, .4), rgba(229, 172, 127,.7)), url('../images/bg.gif');
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+
+  .homepage-box {
+    background-color: rgba(38,50,56,.75);
+    padding: 40px 40px 60px 40px;
+    border-radius: 2px;
+    margin-bottom: 80px;
+
+    .box-heading {
+      background-color: $primary;
+      color: $secondary;
+      font-weight: bold;
+      font-family: 'Orbitron', sans-serif;
+      text-transform: uppercase;
+      margin: -40px;
+      margin-bottom: 40px;
+      border-top-left-radius: 2px;
+      border-top-right-radius: 2px;
+      padding: 40px; }}}
+
+.page-footer {
+  margin-top: 40px;
+  height: 80px;
+
+  p {
+    margin-top: 20px; }}
