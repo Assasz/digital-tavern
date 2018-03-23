@@ -61,16 +61,11 @@ function loadProfileCreateActions() {
                     width = this.width;
                     height = this.height;
 
-                    //$('#avatar').valid();
-
                     if($('#avatar').valid()){
                         $('label[for="avatar"]').removeClass('is-invalid').addClass('is-valid');
                     } else {
                         $('label[for="avatar"]').removeClass('is-valid').addClass('is-invalid');
                     }
-
-                    // $(this).closest('label').toggleClass('is-invalid', $(this).hasClass('is-invalid'));
-                    // $(this).closest('label').toggleClass('is-valid', $(this).hasClass('is-valid'));
 
                     if(this.height >= 300 && this.width >= 300 && this.height/this.width === 1){
                         $('#avatar_preview').attr('src', e.target.result);
@@ -80,5 +75,16 @@ function loadProfileCreateActions() {
 
             reader.readAsDataURL($(this).prop('files')[0]);
         }
+    });
+
+    CKEDITOR.replace('profile', {
+        toolbar :
+            [
+                ['Bold','Italic','Underline','Strike','RemoveFormat'],
+                ['NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
+                ['Link','Unlink','Anchor'],
+                ['Image','Table','HorizontalRule','SpecialChar'],
+                ['Format','FontSize','TextColor']
+            ],
     });
 }

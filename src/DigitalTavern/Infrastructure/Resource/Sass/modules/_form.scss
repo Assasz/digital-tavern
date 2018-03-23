@@ -68,3 +68,35 @@
     border: none;
     &:hover {
       cursor: pointer; }}}
+
+.cke_1 {
+  background-color: $secondary !important;
+  border: 1.5px solid transparent !important;
+  border-bottom: 1.5px solid $red !important;
+  border-radius: 2px !important;;
+  transition: all .3s ease !important;
+
+  .cke_inner {
+    background-color: transparent !important; }
+
+  .cke_top {
+    background-image: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    color: $red !important;
+    border: 0 !important; }
+
+  .cke_wysiwyg_frame {
+    background-color: transparent !important;
+    color: $primary !important;
+    border: 0 !important; }
+
+  .cke_bottom {
+    display: none !important; }}
+
+.cke_chrome {
+  box-shadow: none !important; }
+
+.cke_focus {
+  border: 1.5px solid $red !important;
+  box-shadow: 0 0 0 0.2rem rgba(217,35,15,0.25) !important; }
