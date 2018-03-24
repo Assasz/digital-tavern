@@ -9,6 +9,14 @@
             <form id="profile_form" class="col-md-6 mx-auto" method="post" action="{{ path('Profile:create') }}" data-pjax>
                 <fieldset>
                     <legend class="text-center">Let's setup your role-playing profile.</legend>
+
+                    {% for error in flashbag('danger') %}
+                        <div class="alert alert-dismissible alert-primary mt-4">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <span class="font-weight-bold">Oh snap!</span> {{ error }}
+                        </div>
+                    {% endfor %}
+
                     <img id="avatar_preview" class="rounded-circle mx-auto d-block mt-4" width="200px" src="{{ asset('images/default-avatar.jpg') }}" alt="Avatar">
                     <div class="form-group mt-4">
                         <label for="avatar" class="file-label">Upload avatar</label>
@@ -22,27 +30,27 @@
                     </div>
                     <div class="form-group mt-4">
                         <label for="race" class="floating-label">Race</label>
-                        <input type="text" class="form-control" id="race" name="race" aria-describedby="race_help" autofocus readonly>
+                        <input type="text" class="form-control" id="race" name="race" aria-describedby="race_help" readonly>
                         <small id="race_help" class="form-text text-muted">Race of your character like human, dwarf and so on. Feel free to create your own race too!</small>
                     </div>
                     <div class="form-group mt-4">
                         <label for="origin" class="floating-label">Origin</label>
-                        <input type="text" class="form-control" id="origin" name="origin" aria-describedby="origin_help" autofocus readonly>
+                        <input type="text" class="form-control" id="origin" name="origin" aria-describedby="origin_help" readonly>
                         <small id="origin_help" class="form-text text-muted">Origin of your character, it can be name of kingdom, lands or whatever you want.</small>
                     </div>
                     <div class="form-group mt-4">
                         <label for="age" class="floating-label">Age</label>
-                        <input type="text" class="form-control" id="age" name="age" aria-describedby="age_help" autofocus readonly>
+                        <input type="text" class="form-control" id="age" name="age" aria-describedby="age_help" readonly>
                         <small id="age_help" class="form-text text-muted">Approximate age of your character, should be a number, but it's not required.</small>
                     </div>
                     <div class="form-group mt-4">
                         <label for="occupation" class="floating-label">Occupation</label>
-                        <input type="text" class="form-control" id="occupation" name="occupation" aria-describedby="occupation_help" autofocus readonly>
+                        <input type="text" class="form-control" id="occupation" name="occupation" aria-describedby="occupation_help" readonly>
                         <small id="occupation_help" class="form-text text-muted">Is your character a mighty wizard, notorious assassin or just adventurous wanderer? Specify it here!</small>
                     </div>
                     <div class="form-group mt-4">
-                        <textarea id="profile" name="profile" class="form-control" rows="8" aria-describedby="profile_help"></textarea>
-                        <small id="profile_help" class="form-text text-muted">Everything you want to say about your character: appearance, characteristic, history and so on.</small>
+                        <textarea id="full" name="full" class="form-control" rows="8" aria-describedby="full_help"></textarea>
+                        <small id="full_help" class="form-text text-muted">Everything you want to tell about your character: appearance, characteristic, history and so on.</small>
                     </div>
                     {{ csrf_token() }}
 
@@ -55,6 +63,5 @@
 {% endblock %}
 
 {% block js %}
-    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('js/app.profile-create.js') }}"></script>
 {% endblock %}

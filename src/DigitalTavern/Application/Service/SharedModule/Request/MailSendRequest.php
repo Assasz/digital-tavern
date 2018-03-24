@@ -5,13 +5,13 @@ namespace DigitalTavern\Application\Service\SharedModule\Request;
 use Yggdrasil\Core\Service\ServiceRequestInterface;
 
 /**
- * Class MailSenderRequest
+ * Class MailSendRequest
  *
  * This is a part of built-in shared module, feel free to customize as needed
  *
  * @package DigitalTavern\Application\Service\SharedModule\Request
  */
-class MailSenderRequest implements ServiceRequestInterface
+class MailSendRequest implements ServiceRequestInterface
 {
     /**
      * Mail subject
@@ -42,7 +42,7 @@ class MailSenderRequest implements ServiceRequestInterface
     private $receivers;
 
     /**
-     * MailSenderRequest constructor.
+     * MailSendRequest constructor.
      *
      * Initialises arrays
      */

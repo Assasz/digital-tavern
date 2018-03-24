@@ -69,25 +69,25 @@
     &:hover {
       cursor: pointer; }}}
 
-.cke_1 {
+.cke {
   background-color: $secondary !important;
-  border: 1.5px solid transparent !important;
+  border: 1.5px solid $secondary !important;
   border-bottom: 1.5px solid $red !important;
   border-radius: 2px !important;;
   transition: all .3s ease !important;
 
   .cke_inner {
-    background-color: transparent !important; }
+    background-color: $secondary !important; }
 
   .cke_top {
     background-image: none !important;
     box-shadow: none !important;
-    background: transparent !important;
+    background: $secondary !important;
     color: $red !important;
     border: 0 !important; }
 
   .cke_wysiwyg_frame {
-    background-color: transparent !important;
+    background-color: $secondary !important;
     color: $primary !important;
     border: 0 !important; }
 

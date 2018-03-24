@@ -123,25 +123,25 @@ body {
     .form-group .input-addon:hover {
       cursor: pointer; }
 
-.cke_1 {
+.cke {
   background-color: #263238 !important;
-  border: 1.5px solid transparent !important;
+  border: 1.5px solid #263238 !important;
   border-bottom: 1.5px solid #D9230F !important;
   border-radius: 2px !important;
   transition: all .3s ease !important; }
-  .cke_1 .cke_inner {
-    background-color: transparent !important; }
-  .cke_1 .cke_top {
+  .cke .cke_inner {
+    background-color: #263238 !important; }
+  .cke .cke_top {
     background-image: none !important;
     box-shadow: none !important;
-    background: transparent !important;
+    background: #263238 !important;
     color: #D9230F !important;
     border: 0 !important; }
-  .cke_1 .cke_wysiwyg_frame {
-    background-color: transparent !important;
+  .cke .cke_wysiwyg_frame {
+    background-color: #263238 !important;
     color: #FCFCFC !important;
     border: 0 !important; }
-  .cke_1 .cke_bottom {
+  .cke .cke_bottom {
     display: none !important; }
 
 .cke_chrome {

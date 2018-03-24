@@ -13,6 +13,7 @@
         {#<link rel="icon" href="">#}
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/nprogress.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/jquery.scrollbar.css') }}">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         {% block css %}{% endblock %}
 
@@ -34,6 +35,8 @@
         <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
         <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+        <script src="{{ asset('js/jquery.scrollbar.min.js') }}"></script>
+        <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
         <script src="{{ asset('js/app.js') }}"></script>
         {% block js %}{% endblock %}
     </body>

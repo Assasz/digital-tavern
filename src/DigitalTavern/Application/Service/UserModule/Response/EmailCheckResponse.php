@@ -5,13 +5,13 @@ namespace DigitalTavern\Application\Service\UserModule\Response;
 use Yggdrasil\Core\Service\ServiceResponseInterface;
 
 /**
- * Class EmailCheckerResponse
+ * Class EmailCheckResponse
  *
  * This is a part of built-in user module, feel free to customize as needed
  *
  * @package DigitalTavern\Application\Service\UserModule\Response
  */
-class EmailCheckerResponse implements ServiceResponseInterface
+class EmailCheckResponse implements ServiceResponseInterface
 {
     /**
      * Result of service processing
@@ -21,7 +21,7 @@ class EmailCheckerResponse implements ServiceResponseInterface
     private $success;
 
     /**
-     * EmailCheckerResponse constructor.
+     * EmailCheckResponse constructor.
      *
      * Sets home value of $success
      */

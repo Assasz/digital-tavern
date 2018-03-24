@@ -2,7 +2,7 @@
 
 namespace DigitalTavern\Application\Service\UserModule;
 
-use DigitalTavern\Application\Service\SharedModule\Request\MailSenderRequest;
+use DigitalTavern\Application\Service\SharedModule\Request\MailSendRequest;
 use DigitalTavern\Application\Service\UserModule\Response\SignupResponse;
 use DigitalTavern\Domain\Entity\User;
 use Yggdrasil\Core\Service\AbstractService;
@@ -42,13 +42,13 @@ class SignupService extends AbstractService implements ServiceInterface
             $link = $this->getRouter()->getQuery('User:signupConfirmation', [$user->getConfirmationToken()]);
             $body = 'Hello there! Click <a href="'.$link.'">here</a> to activate your account.<br><br>Best regards, your Team.';
 
-            $mailSenderRequest = new MailSenderRequest();
+            $mailSenderRequest = new MailSendRequest();
             $mailSenderRequest->setSubject('DigitalTavern - sign up confirmation');
             $mailSenderRequest->setBody($body);
             $mailSenderRequest->setSender(['team@digitaltavern.com' => 'DigitalTavern Team']);
             $mailSenderRequest->setReceivers([$user->getEmail() => $user->getEmail()]);
 
-            $mailSenderService = $this->getContainer()->get('shared.mail_sender');
+            $mailSenderService = $this->getContainer()->get('shared.mail_send');
             $mailSenderResponse = $mailSenderService->process($mailSenderRequest);
 
             if($mailSenderResponse->isSuccess()) {

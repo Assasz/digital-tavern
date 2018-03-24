@@ -33,6 +33,7 @@ function loadProfileCreateActions() {
             },
             ign: {
                 required: true,
+                maxlength: 36,
                 normalizer: function(value) {
                     return $.trim(value);
                 }
@@ -63,12 +64,9 @@ function loadProfileCreateActions() {
 
                     if($('#avatar').valid()){
                         $('label[for="avatar"]').removeClass('is-invalid').addClass('is-valid');
+                        $('#avatar_preview').attr('src', e.target.result);
                     } else {
                         $('label[for="avatar"]').removeClass('is-valid').addClass('is-invalid');
-                    }
-
-                    if(this.height >= 300 && this.width >= 300 && this.height/this.width === 1){
-                        $('#avatar_preview').attr('src', e.target.result);
                     }
                 };
             };
@@ -77,14 +75,15 @@ function loadProfileCreateActions() {
         }
     });
 
-    CKEDITOR.replace('profile', {
+    CKEDITOR.replace('full', {
         toolbar :
             [
                 ['Bold','Italic','Underline','Strike','RemoveFormat'],
                 ['NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
                 ['Link','Unlink','Anchor'],
                 ['Image','Table','HorizontalRule','SpecialChar'],
-                ['Format','FontSize','TextColor']
+                ['Format','FontSize','TextColor'],
+                ['Maximize']
             ],
     });
 }

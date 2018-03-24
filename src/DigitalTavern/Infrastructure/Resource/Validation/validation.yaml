@@ -1,4 +1,4 @@
-Skeleton\Domain\Entity\User:
+DigitalTavern\Domain\Entity\User:
   constraints:
     - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: email
   properties:
@@ -8,3 +8,11 @@ Skeleton\Domain\Entity\User:
     password:
       - NotBlank: ~
       - Length: { min: 6 }
+
+DigitalTavern\Domain\Entity\Profile:
+  properties:
+    ign:
+      - NotBlank: ~
+      - Length: { max: 36 }
+    avatar:
+      - Image: { minWidth: 300, minHeight: 300, allowLandscape: false, allowPortrait: false }

@@ -89,7 +89,7 @@ class User
     /**
      * User constructor.
      *
-     * Sets home values
+     * Sets default values
      *
      * @throws \Exception
      */

@@ -5,13 +5,13 @@ namespace DigitalTavern\Application\Service\SharedModule\Response;
 use Yggdrasil\Core\Service\ServiceResponseInterface;
 
 /**
- * Class MailSenderResponse
+ * Class MailSendResponse
  *
  * This is a part of built-in shared module, feel free to customize as needed
  *
  * @package DigitalTavern\Application\Service\SharedModule\Response
  */
-class MailSenderResponse implements ServiceResponseInterface
+class MailSendResponse implements ServiceResponseInterface
 {
     /**
      * Result of service processing
@@ -21,7 +21,7 @@ class MailSenderResponse implements ServiceResponseInterface
     private $success;
 
     /**
-     * MailSenderResponse constructor.
+     * MailSendResponse constructor.
      *
      * Sets home value for $success
      */

@@ -2,20 +2,20 @@
 
 namespace DigitalTavern\Application\Service\UserModule;
 
-use DigitalTavern\Application\Service\UserModule\Response\EmailCheckerResponse;
+use DigitalTavern\Application\Service\UserModule\Response\EmailCheckResponse;
 use Yggdrasil\Core\Service\AbstractService;
 use Yggdrasil\Core\Service\ServiceInterface;
 use Yggdrasil\Core\Service\ServiceRequestInterface;
 use Yggdrasil\Core\Service\ServiceResponseInterface;
 
 /**
- * Class EmailCheckerService
+ * Class EmailCheckService
  *
  * This is a part of built-in user module, feel free to customize as needed
  *
  * @package DigitalTavern\Application\Service\UserModule
  */
-class EmailCheckerService extends AbstractService implements ServiceInterface
+class EmailCheckService extends AbstractService implements ServiceInterface
 {
     /**
      * Checks if email address is already taken by another user
@@ -28,7 +28,7 @@ class EmailCheckerService extends AbstractService implements ServiceInterface
         $entityManager = $this->getEntityManager();
         $users = $entityManager->getRepository('Entity:User')->findByEmail($request->getEmail());
 
-        $response = new EmailCheckerResponse();
+        $response = new EmailCheckResponse();
 
         if(count($users) < 1){
             $response->setSuccess(true);

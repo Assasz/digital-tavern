@@ -1,40 +1,27 @@
 <?php
 
-namespace DigitalTavern\Domain\Entity;
-use Symfony\Component\HttpFoundation\File\File;
+namespace DigitalTavern\Application\Service\ProfileModule\Request;
+
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Yggdrasil\Core\Service\ServiceRequestInterface;
 
 /**
- * Profile entity
+ * Class CreateRequest
  *
- * @Entity(repositoryClass="DigitalTavern\Application\Repository\ProfileRepository")
- * @Table(name="profile")
- *
- * @package DigitalTavern\Domain\Entity
+ * @package DigitalTavern\Application\Service\ProfileModule\Request
  */
-class Profile
+class CreateRequest implements ServiceRequestInterface
 {
     /**
-     * Profile ID
+     * User ID
      *
-     * @Id
-     * @Column(type="integer")
-     * @GeneratedValue(strategy="AUTO")
-     * @var int $id
+     * @var int
      */
-    private $id;
-
-    /**
-     * User associated with profile
-     *
-     * @OneToOne(targetEntity="User", mappedBy="profile")
-     * @var User
-     */
-    private $user;
+    private $userId;
 
     /**
      * Profile In Game Name
      *
-     * @Column(type="string", length=255)
      * @var string
      */
     private $ign;
@@ -42,22 +29,13 @@ class Profile
     /**
      * Profile avatar file
      *
-     * @var File
+     * @var UploadedFile
      */
     private $avatar;
 
     /**
-     * Profile avatar path
-     *
-     * @Column(name="avatar", type="string", length=255, nullable=true)
-     * @var string
-     */
-    private $avatarPath;
-
-    /**
      * Profile race
      *
-     * @Column(type="string", length=255, nullable=true)
      * @var string
      */
     private $race;
@@ -65,7 +43,6 @@ class Profile
     /**
      * Profile origin
      *
-     * @Column(type="string", length=255, nullable=true)
      * @var string
      */
     private $origin;
@@ -73,7 +50,6 @@ class Profile
     /**
      * Profile age
      *
-     * @Column(type="string", length=255, nullable=true)
      * @var string
      */
     private $age;
@@ -81,7 +57,6 @@ class Profile
     /**
      * Profile occupation
      *
-     * @Column(type="string", length=255, nullable=true)
      * @var string
      */
     private $occupation;
@@ -89,39 +64,28 @@ class Profile
     /**
      * Full profile
      *
-     * @Column(type="text", nullable=true)
      * @var string
      */
     private $full;
 
     /**
-     * Returns profile ID
+     * Returns user ID
      *
      * @return int
      */
-    public function getId(): int
+    public function getUserId(): int
     {
-        return $this->id;
+        return $this->userId;
     }
 
     /**
-     * Returns user associated with profile
+     * Sets user ID
      *
-     * @return User
+     * @param int $userId
      */
-    public function getUser(): User
+    public function setUserId(int $userId): void
     {
-        return $this->user;
-    }
-
-    /**
-     * Sets user associated with profile
-     *
-     * @param User $user
-     */
-    public function setUser(User $user): void
-    {
-        $this->user = $user;
+        $this->userId = $userId;
     }
 
     /**
@@ -145,11 +109,11 @@ class Profile
     }
 
     /**
-     * Return profile avatar file
+     * Returns profile avatar file
      *
-     * @return File
+     * @return UploadedFile
      */
-    public function getAvatar(): File
+    public function getAvatar(): UploadedFile
     {
         return $this->avatar;
     }
@@ -157,39 +121,19 @@ class Profile
     /**
      * Sets profile avatar file
      *
-     * @param File $avatar
+     * @param UploadedFile $avatar
      */
-    public function setAvatar(File $avatar = null): void
+    public function setAvatar(UploadedFile $avatar): void
     {
         $this->avatar = $avatar;
     }
 
     /**
-     * Returns profile avatar path
-     *
-     * @return null|string
-     */
-    public function getAvatarPath()
-    {
-        return $this->avatarPath;
-    }
-
-    /**
-     * Sets profile avatar path
-     *
-     * @param string $avatar
-     */
-    public function setAvatarPath(string $avatar): void
-    {
-        $this->avatarPath = $avatar;
-    }
-
-    /**
      * Returns profile race
      *
-     * @return null|string
+     * @return string
      */
-    public function getRace()
+    public function getRace(): string
     {
         return $this->race;
     }
@@ -207,9 +151,9 @@ class Profile
     /**
      * Returns profile origin
      *
-     * @return null|string
+     * @return string
      */
-    public function getOrigin()
+    public function getOrigin(): string
     {
         return $this->origin;
     }
@@ -227,9 +171,9 @@ class Profile
     /**
      * Returns profile age
      *
-     * @return null|string
+     * @return string
      */
-    public function getAge()
+    public function getAge(): string
     {
         return $this->age;
     }
@@ -247,9 +191,9 @@ class Profile
     /**
      * Returns profile occupation
      *
-     * @return null|string
+     * @return string
      */
-    public function getOccupation()
+    public function getOccupation(): string
     {
         return $this->occupation;
     }
@@ -267,9 +211,9 @@ class Profile
     /**
      * Returns full profile
      *
-     * @return null|string
+     * @return string
      */
-    public function getFull()
+    public function getFull(): string
     {
         return $this->full;
     }

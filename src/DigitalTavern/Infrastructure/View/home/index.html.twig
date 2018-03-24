@@ -12,21 +12,21 @@
                 {% for msg in flashbag('success') %}
                     <div class="alert alert-dismissible alert-success">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <strong>Well done!</strong> {{ msg }}
+                        <span class="font-weight-bold">Well done!</span> {{ msg }}
                     </div>
                 {% endfor %}
 
                 {% for msg in flashbag('warning') %}
                     <div class="alert alert-dismissible alert-warning">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <strong>Check yo self!</strong> {{ msg }}
+                        <span class="font-weight-bold">Check yo self!</span> {{ msg }}
                     </div>
                 {% endfor %}
 
                 {% for error in flashbag('danger') %}
                     <div class="alert alert-dismissible alert-primary">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <strong>Oh snap!</strong> {{ error }}
+                        <span class="font-weight-bold">Oh snap!</span> {{ error }}
                     </div>
                 {% endfor %}
 
@@ -38,7 +38,7 @@
 
 {% block js %}
     <script>
-        var emailCheckerRoute = '{{ path('User:checkEmail') }}';
+        var emailCheckRoute = '{{ path('User:emailCheck') }}';
     </script>
     <script src="{{ asset('js/app.index.js') }}"></script>
 {% endblock %}

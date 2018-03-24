@@ -5,13 +5,13 @@ namespace DigitalTavern\Application\Service\UserModule\Request;
 use Yggdrasil\Core\Service\ServiceRequestInterface;
 
 /**
- * Class EmailCheckerRequest
+ * Class EmailCheckRequest
  *
  * This is a part of built-in user module, feel free to customize as needed
  *
  * @package DigitalTavern\Application\Service\UserModule\Request
  */
-class EmailCheckerRequest implements ServiceRequestInterface
+class EmailCheckRequest implements ServiceRequestInterface
 {
     /**
      * User email address

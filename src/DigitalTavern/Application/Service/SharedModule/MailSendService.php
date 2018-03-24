@@ -2,20 +2,20 @@
 
 namespace DigitalTavern\Application\Service\SharedModule;
 
-use DigitalTavern\Application\Service\SharedModule\Response\MailSenderResponse;
+use DigitalTavern\Application\Service\SharedModule\Response\MailSendResponse;
 use Yggdrasil\Core\Service\AbstractService;
 use Yggdrasil\Core\Service\ServiceInterface;
 use Yggdrasil\Core\Service\ServiceRequestInterface;
 use Yggdrasil\Core\Service\ServiceResponseInterface;
 
 /**
- * Class MailSenderService
+ * Class MailSendService
  *
  * This is a part of built-in shared module, feel free to customize as needed
  *
  * @package DigitalTavern\Application\Service\SharedModule
  */
-class MailSenderService extends AbstractService implements ServiceInterface
+class MailSendService extends AbstractService implements ServiceInterface
 {
     /**
      * Sends mails
@@ -30,7 +30,7 @@ class MailSenderService extends AbstractService implements ServiceInterface
             ->setTo($request->getReceivers())
             ->setBody($request->getBody(), 'text/html');
 
-        $response = new MailSenderResponse();
+        $response = new MailSendResponse();
 
         if($this->getMailer()->send($message)){
             $response->setSuccess(true);
