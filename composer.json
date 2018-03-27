@@ -1,8 +1,8 @@
 {
-  "name": "assasz/yggdrasil-skeleton",
+  "name": "assasz/digitaltavern",
   "type": "project",
   "license": "MIT",
-  "description": "Skeleton app for Yggdrasil framework",
+  "description": "RPG sessions online",
   "autoload": {
     "psr-4": {
       "DigitalTavern\\": "src/DigitalTavern/"
