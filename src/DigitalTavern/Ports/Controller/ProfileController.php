@@ -3,6 +3,7 @@
 namespace DigitalTavern\Ports\Controller;
 
 use DigitalTavern\Application\Service\ProfileModule\Request\CreateRequest;
+use DigitalTavern\Application\Service\ProfileModule\Request\GetRequest;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Yggdrasil\Core\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,6 +16,42 @@ use Yggdrasil\Core\Form\FormHandler;
  */
 class ProfileController extends AbstractController
 {
+
+    /**
+     * Profile index action, renders given user profile
+     * Route: /profile/index/{userId}, /profile/{userId}
+     *
+     * @param int $userId
+     * @return string|Response
+     *
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
+    public function indexAction(int $userId)
+    {
+        if(!$this->isGranted()){
+            return $this->redirectToAction('Home:index');
+        }
+
+        $request = new GetRequest();
+        $request->setUserId($userId);
+
+        $service = $this->getContainer()->get('profile.get');
+        $response = $service->process($request);
+
+        if(!$response->isSuccess()){
+            $session = new Session();
+            $session->getFlashBag()->set('warning', 'Profile you are looking for doesn\'t exist.');
+
+            return $this->redirectToAction('Session:index');
+        }
+
+        return $this->render('profile/index.html.twig', [
+            'profile' => $response->getProfile()
+        ]);
+    }
+
     /**
      * Create action, executed with user first sign in
      * Route: /profile/create

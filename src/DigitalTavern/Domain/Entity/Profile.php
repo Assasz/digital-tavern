@@ -26,7 +26,8 @@ class Profile
     /**
      * User associated with profile
      *
-     * @OneToOne(targetEntity="User", mappedBy="profile")
+     * @OneToOne(targetEntity="User", inversedBy="profile")
+     * @JoinColumn(name="userId", referencedColumnName="id")
      * @var User
      */
     private $user;
