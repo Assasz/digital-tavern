@@ -20,7 +20,6 @@ class GetService extends AbstractService implements ServiceInterface
      *
      * @param ServiceRequestInterface $request
      * @return ServiceResponseInterface
-     * @throws \Exception
      */
     public function process(ServiceRequestInterface $request): ServiceResponseInterface
     {

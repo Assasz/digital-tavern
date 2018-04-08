@@ -2,10 +2,12 @@
 @import "https://fonts.googleapis.com/css?family=Titillium+Web|Orbitron";
 
 $primary: #FCFCFC;
-$secondary: #263238;
+$secondary: #363A43;
+$dark: #26262E;
 $red: #D9230F;
 
 @import "modules/main";
 @import "modules/navbar";
 @import "modules/form";
+@import "modules/profile";
 @import "modules/helpers";

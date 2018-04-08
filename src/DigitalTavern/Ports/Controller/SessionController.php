@@ -16,7 +16,7 @@ class SessionController extends AbstractController
 {
     /**
      * Session index action
-     * Route /session/index, /session
+     * Route: /session/index
      *
      * @return string|Response
      *

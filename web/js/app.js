@@ -14,6 +14,16 @@ $(document).ready(function () {
     $(document).on('pjax:end', function () {
         NProgress.done();
     });
+
+    loadGlobalActions()
+});
+
+$(document).on('pjax:end', function () {
+    loadGlobalActions()
 });
 
 var wsConn;
+
+function loadGlobalActions() {
+    $('[data-toggle="tooltip"]').tooltip()
+}

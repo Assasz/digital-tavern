@@ -2,7 +2,7 @@
 @import "https://fonts.googleapis.com/css?family=Titillium+Web|Orbitron";
 body {
   font-family: 'Titillium Web', sans-serif;
-  background-color: #263238;
+  background-color: #363A43;
   color: #FCFCFC; }
   body a, body a:hover {
     font-weight: bold;
@@ -14,9 +14,13 @@ body {
   width: 100%;
   min-height: calc(100vh - 120px);
   overflow-x: hidden; }
-  .main-content h1 {
-    font-size: 1.75rem;
-    margin: 20px 0; }
+  .main-content .section-heading {
+    background-color: #26262E;
+    padding: 15px;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    font-size: 1.25rem;
+    margin-bottom: 20px; }
   .main-content .brand-name {
     font-family: 'Orbitron', sans-serif;
     text-transform: uppercase;
@@ -39,7 +43,7 @@ body {
     margin-bottom: 80px; }
     .main-content .homepage-box .box-heading {
       background-color: #FCFCFC;
-      color: #263238;
+      color: #363A43;
       font-weight: bold;
       font-family: 'Orbitron', sans-serif;
       text-transform: uppercase;
@@ -56,7 +60,9 @@ body {
     margin-top: 20px; }
 
 .navbar {
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  background-color: #26262E;
+  border: none; }
   .navbar .active span {
     color: #D9230F; }
   .navbar .nav-link span {
@@ -127,21 +133,21 @@ body {
       cursor: pointer; }
 
 .cke {
-  background-color: #263238 !important;
-  border: 1.5px solid #263238 !important;
+  background-color: #363A43 !important;
+  border: 1.5px solid #363A43 !important;
   border-bottom: 1.5px solid #D9230F !important;
   border-radius: 2px !important;
   transition: all .3s ease !important; }
   .cke .cke_inner {
-    background-color: #263238 !important; }
+    background-color: #363A43 !important; }
   .cke .cke_top {
     background-image: none !important;
     box-shadow: none !important;
-    background: #263238 !important;
+    background: #363A43 !important;
     color: #D9230F !important;
     border: 0 !important; }
   .cke .cke_wysiwyg_frame {
-    background-color: #263238 !important;
+    background-color: #363A43 !important;
     color: #FCFCFC !important;
     border: 0 !important; }
   .cke .cke_bottom {
@@ -153,6 +159,14 @@ body {
 .cke_focus {
   border: 1.5px solid #D9230F !important;
   box-shadow: 0 0 0 0.2rem rgba(217, 35, 15, 0.25) !important; }
+
+.profile-info {
+  font-size: 1.5rem; }
+  .profile-info .profile-label {
+    display: block;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #26262E; }
 
 .offscreen {
   clip-path: inset(100%);

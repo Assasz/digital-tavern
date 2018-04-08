@@ -19,7 +19,7 @@ class ProfileController extends AbstractController
 
     /**
      * Profile index action, renders given user profile
-     * Route: /profile/index/{userId}, /profile/{userId}
+     * Route: /profile/index/{userId}
      *
      * @param int $userId
      * @return string|Response

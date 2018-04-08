@@ -6,7 +6,7 @@
     {% set route = _request.query.get('route')|split('/') %}
     {% set route = route[0] ~ '/' ~ route[1] %}
 
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="{{ path('Session:index') }}">{{ _appname }}</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" style="">
@@ -15,25 +15,25 @@
 
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="navbar-nav mr-auto ml-auto w-100 justify-content-end">
-                    <li class="nav-item mr-lg-4 {% if route == 'session/index' %}active{% endif %}">
-                        <a class="nav-link" href="#">
+                    <li class="nav-item mr-lg-4 {% if route in 'session/index' %}active{% endif %}">
+                        <a class="nav-link" href="{{ path('Session:index') }}">
                             <span class="fa fa-fw fa-beer" aria-hidden="true"></span>
                             Sessions
                         </a>
                     </li>
-                    <li class="nav-item mr-lg-4 {% if route == 'user/lobby' %}active{% endif %}">
+                    <li class="nav-item mr-lg-4 {% if route in 'user/lobby' %}active{% endif %}">
                         <a class="nav-link" href="#">
                             <span class="fa fa-fw fa-users" aria-hidden="true"></span>
                             Lobby
                         </a>
                     </li>
-                    <li class="nav-item mr-lg-4 {% if route == 'profile/index' %}active{% endif %}">
+                    <li class="nav-item mr-lg-4 {% if route in 'profile/index' %}active{% endif %}">
                         <a class="nav-link" href="{{ path('Profile:index', {'userId': _user.id }) }}">
                             <span class="fa fa-fw fa-user" aria-hidden="true"></span>
                             Profile
                         </a>
                     </li>
-                    <li class="nav-item mr-lg-4 {% if route == 'user/edit' %}active{% endif %}">
+                    <li class="nav-item mr-lg-4 {% if route in 'user/edit' %}active{% endif %}">
                         <a class="nav-link" href="#">
                             <span class="fa fa-fw fa-cog" aria-hidden="true"></span>
                             Account

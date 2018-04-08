@@ -9,7 +9,7 @@ use Yggdrasil\Core\Driver\EntityManagerDriver;
 use Yggdrasil\Core\Driver\ExceptionHandlerDriver;
 use Yggdrasil\Core\Driver\MailerDriver;
 use Yggdrasil\Core\Driver\RouterDriver;
-use Yggdrasil\Core\Driver\TemplateEngineDriver;
+use DigitalTavern\Infrastructure\Driver\TemplateEngineDriver;
 use Yggdrasil\Core\Driver\ValidatorDriver;
 
 /**

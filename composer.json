@@ -20,6 +20,7 @@
     "league/container": "^2.4",
     "swiftmailer/swiftmailer": "^6.0",
     "symfony/yaml": "^4.0",
-    "cboden/ratchet": "^0.4.1"
+    "cboden/ratchet": "^0.4.1",
+    "twig/extensions": "^1.5"
   }
 }

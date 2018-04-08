@@ -1,5 +1,7 @@
 .navbar {
   text-transform: uppercase;
+  background-color: $dark;
+  border: none;
 
   .active span {
     color: $red; }

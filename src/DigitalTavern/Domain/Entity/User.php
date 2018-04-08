@@ -83,8 +83,17 @@ class User
      *
      * @OneToOne(targetEntity="Profile", inversedBy="user")
      * @JoinColumn(name="profileId", referencedColumnName="id", nullable=true)
+     * @var Profile $profile
      */
     private $profile;
+
+    /**
+     * User role
+     *
+     * @Column(type="string", nullable=true)
+     * @var string $role
+     */
+    private $role;
 
     /**
      * User constructor.
@@ -268,5 +277,25 @@ class User
     public function setProfile(Profile $profile): void
     {
         $this->profile = $profile;
+    }
+
+    /**
+     * Returns user role
+     *
+     * @return null|string
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * Sets user role
+     *
+     * @param string $role
+     */
+    public function setRole(string $role): void
+    {
+        $this->role = $role;
     }
 }

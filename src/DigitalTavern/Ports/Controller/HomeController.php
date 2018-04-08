@@ -16,7 +16,7 @@ class HomeController extends AbstractController
 {
     /**
      * Homepage index action
-     * Routes: /home/index/{partial}, /home/{partial}, /{partial}
+     * Route: /home/index/{partial}
      *
      * @param string $partial Indicates which partial view should be loaded
      * @return Response
