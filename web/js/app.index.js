@@ -7,14 +7,6 @@ $(document).on('pjax:end', function () {
 });
 
 function loadIndexActions() {
-    $(document).on('keyup', '.form-control', function () {
-        $(this).parent().find('.floating-label').toggleClass('float', $(this).val().length > 0);
-    });
-
-    $(document).on('focus', '.form-control', function () {
-        $(this).removeAttr('readonly');
-    });
-
     $('[data-action="show-password"]').click(function () {
         if($('#password').attr('type') == 'password'){
             $('#password').attr('type', 'text');

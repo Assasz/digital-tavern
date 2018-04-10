@@ -69,6 +69,9 @@
     &:hover {
       cursor: pointer; }}}
 
+.btn-primary:hover {
+  font-weight: normal; }
+
 .cke {
   background-color: $secondary !important;
   border: 1.5px solid $secondary !important;

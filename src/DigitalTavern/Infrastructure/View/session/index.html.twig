@@ -16,4 +16,17 @@
             <span class="font-weight-bold">Check yo self!</span> {{ msg }}
         </div>
     {% endfor %}
+
+    <section id="sessions">
+        <h1 class="section-heading">Sessions</h1>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link {% if full_route[2] == 'public' or full_route[2]|length < 1 %}active{% endif %}" href="{{ path('Session:index') }}">Public</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if full_route[2] == 'private' %}active{% endif %}" href="{{ path('Session:index', {'type': 'private'}) }}">Private</a>
+            </li>
+        </ul>
+        {{ partial(result) }}
+    </section>
 {% endblock %}

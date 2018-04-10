@@ -7,14 +7,6 @@ $(document).on('pjax:end', function () {
 });
 
 function loadProfileCreateActions() {
-    $(document).on('keyup', '.form-control', function () {
-        $(this).parent().find('.floating-label').toggleClass('float', $(this).val().length > 0);
-    });
-
-    $(document).on('focus', '.form-control', function () {
-        $(this).removeAttr('readonly');
-    });
-
     var width, height;
 
     $.validator.addMethod('imageSize', function (value, element) {

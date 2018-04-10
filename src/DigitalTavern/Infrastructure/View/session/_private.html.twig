@@ -1,0 +1,20 @@
+<div class="row mt-4">
+    <div class="col-md-6">
+        <form id="session_search" action="{{ path('Session:search', {'type': 'private'}) }}">
+            <div class="form-group">
+                <label for="ign" class="floating-label">Search</label>
+                <input type="text" class="form-control" id="search" name="search" aria-describedby="search_help" readonly>
+                <small id="search_help" class="form-text text-muted">You can search private sessions only by token.</small>
+            </div>
+            {{ csrf_token() }}
+        </form>
+    </div>
+    <div class="col-md-6">
+        <a href="{{ path('Session:create') }}" class="btn btn-primary float-md-right" role="button">Create new session</a>
+    </div>
+</div>
+<div id="sessions_container" class="row mt-4">
+    <div class="col-md-12">
+        <p>To join private session you will need token and password.</p>
+    </div>
+</div>

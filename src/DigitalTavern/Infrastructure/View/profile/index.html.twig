@@ -18,23 +18,23 @@
         </h1>
         <img src="{{ asset(profile.avatarPath) }}" alt="{{ profile.ign }}" class="rounded-circle d-block mx-auto mb-4" width="300px">
         <div class="row justify-content-center">
-            <p class="profile-info col-md-2">
-                {{ profile.race|default('unknow') }}
+            <p class="profile-info col-lg-2 col-md-4 col-sm-6" {% if profile.race|length > 40 %}data-toggle="tooltip" data-placement="bottom" title="{{ profile.race|default('unknow') }}" data-original-title="{{ profile.race|default('unknow') }}"{% endif %}>
+                {{ (profile.race|length > 40) ? profile.race|slice(0, 40) ~ '...' : profile.race|default('unknow') }}
                 <span class="profile-label">Race</span>
             </p>
-            <p class="profile-info col-md-2">
-                {{ profile.origin|default('unknow') }}
+            <p class="profile-info col-lg-2 col-md-4 col-sm-6" {% if profile.origin|length > 40 %}data-toggle="tooltip" data-placement="bottom" title="{{ profile.origin|default('unknow') }}" data-original-title="{{ profile.origin|default('unknow') }}"{% endif %}>
+                {{ (profile.origin|length > 40) ? profile.origin|slice(0, 40) ~ '...' : profile.origin|default('unknow') }}
                 <span class="profile-label">Origin</span>
             </p>
-            <p class="profile-info col-md-2">
-                {{ profile.age|default('unknow') }}
+            <p class="profile-info col-lg-2 col-md-4 col-sm-6" {% if profile.age|length > 40 %}data-toggle="tooltip" data-placement="bottom" title="{{ profile.age|default('unknow') }}" data-original-title="{{ profile.age|default('unknow') }}"{% endif %}>
+                {{ (profile.age|length > 40) ? profile.age|slice(0, 40) ~ '...' : profile.age|default('unknow') }}
                 <span class="profile-label">Age</span>
             </p>
-            <p class="profile-info col-md-2">
-                {{ profile.occupation|default('unknow') }}
+            <p class="profile-info col-lg-2 col-md-4 col-sm-6" {% if profile.occupation|length > 40 %}data-toggle="tooltip" data-placement="bottom" title="{{ profile.occupation|default('unknow') }}" data-original-title="{{ profile.occupation|default('unknow') }}"{% endif %}>
+                {{ (profile.occupation|length > 40) ? profile.occupation|slice(0, 40) ~ '...' : profile.occupation|default('unknow') }}
                 <span class="profile-label">Occupation</span>
             </p>
-            <p class="profile-info col-md-2">
+            <p class="profile-info col-lg-2 col-md-4 col-sm-6">
                 {{ profile.user.lastActivityDate|date|time_diff|default('never') }}
                 <span class="profile-label">Last seen</span>
             </p>

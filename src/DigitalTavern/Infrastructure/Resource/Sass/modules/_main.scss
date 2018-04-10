@@ -14,6 +14,20 @@ body {
   min-height: calc(100vh - 120px);
   overflow-x: hidden;
 
+  .nav-tabs {
+    border-color: $dark;
+
+    .nav-item {
+      color: $primary;
+
+      .active {
+        color: $primary;
+        border-color: $dark;
+        background-color: $dark; }
+
+      .nav-link:hover {
+        border-color: $dark; }}}
+
   .section-heading {
     background-color: $dark;
     padding: 15px;

@@ -3,8 +3,8 @@
 {% extends base %}
 
 {% block layout %}
-    {% set route = _request.query.get('route')|split('/') %}
-    {% set route = route[0] ~ '/' ~ route[1] %}
+    {% set full_route = _request.query.get('route')|split('/') %}
+    {% set route = full_route[0] ~ '/' ~ full_route[1] %}
 
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
         <div class="container">

@@ -25,5 +25,13 @@ $(document).on('pjax:end', function () {
 var wsConn;
 
 function loadGlobalActions() {
-    $('[data-toggle="tooltip"]').tooltip()
+    $('[data-toggle="tooltip"]').tooltip();
+
+    $(document).on('keyup', '.form-control', function () {
+        $(this).parent().find('.floating-label').toggleClass('float', $(this).val().length > 0);
+    });
+
+    $(document).on('focus', '.form-control', function () {
+        $(this).removeAttr('readonly');
+    });
 }
