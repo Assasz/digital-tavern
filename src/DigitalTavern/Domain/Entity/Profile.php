@@ -1,6 +1,7 @@
 <?php
 
 namespace DigitalTavern\Domain\Entity;
+
 use Symfony\Component\HttpFoundation\File\File;
 
 /**

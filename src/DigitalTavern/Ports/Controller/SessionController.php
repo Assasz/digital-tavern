@@ -16,7 +16,7 @@ class SessionController extends AbstractController
 {
     /**
      * Session index action
-     * Route: /session/index/{partial}
+     * Route: /session/index/{type}
      *
      * @return string|Response
      * @param string $type Indicates which sessions should be loaded

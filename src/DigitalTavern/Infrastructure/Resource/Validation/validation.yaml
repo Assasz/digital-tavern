@@ -16,3 +16,35 @@ DigitalTavern\Domain\Entity\Profile:
       - Length: { max: 36 }
     avatar:
       - Image: { minWidth: 300, minHeight: 300, allowLandscape: false, allowPortrait: false }
+    full:
+      - Length: { max: 20000 }
+
+DigitalTavern\Domain\Entity\Session:
+  properties:
+    name:
+      - NotBlank: ~
+    description:
+      - NotBlank: ~
+      - Length: { max: 300 }
+    plotBackground:
+      - NotBlank: ~
+      - Length: { max: 5000 }
+    location:
+      - NotBlank: ~
+    image:
+      - Image: { minWidth: 1200, minHeight: 400, minRatio: 3, maxRatio: 3 }
+    token:
+      - Expression: { expression: "not (this.getPassword() != null and value == null)", message: "Token is required for private sessions." }
+      - Length: { min: 6 }
+    password:
+      - Length: { min: 6 }
+    playersLimit:
+      - GreaterThan: 1
+      - LessThan: 100
+
+DigitalTavern\Domain\Entity\SessionMessage:
+  properties:
+    content:
+      - NotBlank: ~
+      - Length: { max: 2000 }
+

@@ -29,6 +29,36 @@ function loadProfileCreateActions() {
                 normalizer: function(value) {
                     return $.trim(value);
                 }
+            },
+            full: {
+                maxlength: 20000,
+                normalizer: function(value) {
+                    return $.trim(value);
+                }
+            },
+            origin: {
+                maxlength: 255,
+                normalizer: function(value) {
+                    return $.trim(value);
+                }
+            },
+            race: {
+                maxlength: 255,
+                normalizer: function(value) {
+                    return $.trim(value);
+                }
+            },
+            age: {
+                maxlength: 255,
+                normalizer: function(value) {
+                    return $.trim(value);
+                }
+            },
+            occupation: {
+                maxlength: 255,
+                normalizer: function(value) {
+                    return $.trim(value);
+                }
             }
         },
         onkeyup: false,
