@@ -173,6 +173,13 @@ body {
   border: 1.5px solid #D9230F !important;
   box-shadow: 0 0 0 0.2rem rgba(217, 35, 15, 0.25) !important; }
 
+input[type='number'] {
+  -moz-appearance: textfield; }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none; }
+
 .profile-info {
   font-size: 1.5rem; }
   .profile-info .profile-label {

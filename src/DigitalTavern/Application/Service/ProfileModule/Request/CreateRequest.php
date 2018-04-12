@@ -111,9 +111,9 @@ class CreateRequest implements ServiceRequestInterface
     /**
      * Returns profile avatar file
      *
-     * @return UploadedFile
+     * @return null|UploadedFile
      */
-    public function getAvatar(): UploadedFile
+    public function getAvatar()
     {
         return $this->avatar;
     }
@@ -121,9 +121,9 @@ class CreateRequest implements ServiceRequestInterface
     /**
      * Sets profile avatar file
      *
-     * @param UploadedFile $avatar
+     * @param null|UploadedFile $avatar
      */
-    public function setAvatar(UploadedFile $avatar): void
+    public function setAvatar($avatar): void
     {
         $this->avatar = $avatar;
     }

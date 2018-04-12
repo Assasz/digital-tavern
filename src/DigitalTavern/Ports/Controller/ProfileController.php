@@ -34,6 +34,10 @@ class ProfileController extends AbstractController
             return $this->redirectToAction('Home:index');
         }
 
+        if(empty($this->getUser()->getProfile())){
+            return $this->redirectToAction('Session:index');
+        }
+
         $request = new GetRequest();
         $request->setUserId($userId);
 

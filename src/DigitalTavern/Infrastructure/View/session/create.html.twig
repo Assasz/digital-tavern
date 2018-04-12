@@ -1,0 +1,73 @@
+{% extends 'layout/default.html.twig' %}
+
+{% block title %}Create session{% endblock %}
+
+{% block content %}
+    <section id="session_create">
+        <h1 class="section-heading">Create session</h1>
+        {% for error in flashbag('danger') %}
+            <div class="alert alert-dismissible alert-primary mt-4">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <span class="font-weight-bold">Oh snap!</span> {{ error }}
+            </div>
+        {% endfor %}
+        <img id="image_preview" class="img-fluid" src="{{ asset('images/default-session-image.jpeg') }}" alt="Session image">
+        <div class="row">
+            <form id="session_form" class="col-md-6 mt-4" method="post" action="{{ path('Session:create') }}" data-pjax>
+                <fieldset>
+                    <legend>Let's start a new adventure!</legend>
+                    <div class="form-group mt-4">
+                        <label for="image" class="file-label">Upload image</label>
+                        <input type="file" class="custom-file-input" id="image" name="image" aria-describedby="image_help">
+                        <small id="image_help" class="form-text text-muted">Session image. Minimum 400px of height and 1200px of width, required aspect ratio: 3:1. Optional.</small>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="name" class="floating-label">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" aria-describedby="name_help" autofocus readonly>
+                        <small id="name_help" class="form-text text-muted">Name of session. Keep it climatic!</small>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="description" class="floating-label">Description</label>
+                        <input type="text" class="form-control" id="description" name="description" aria-describedby="description_help">
+                        <small id="description_help" class="form-text text-muted">Short description of session to get players interested.</small>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="token" class="floating-label">Token</label>
+                        <input type="text" class="form-control" id="token" name="token" aria-describedby="token_help" readonly>
+                        <small id="token_help" class="form-text text-muted">While token is optional, it allows player to find your session easily. It's required for private sessions.</small>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="password" class="floating-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" aria-describedby="password_help" readonly>
+                        <div class="input-addon" data-action="show-password">
+                            <span class="fa fa-fw fa-eye" aria-hidden="true"></span>
+                            <span class="offscreen">Show password</span>
+                        </div>
+                        <small id="password_help" class="form-text text-muted">Makes session private.</small>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="players_limit" class="floating-label">Players limit</label>
+                        <input type="number" class="form-control" id="players_limit" name="playersLimit" aria-describedby="players_limit_help" readonly>
+                        <small id="players_limit_help" class="form-text text-muted">Number greater than 1, optional. By default there is no limit.</small>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="plot_background" class="floating-label">Plot background</label>
+                        <textarea class="form-control" id="plot_background" name="plotBackground" aria-describedby="plot_background_help" rows="5"></textarea>
+                        <small id="plot_background_help" class="form-text text-muted">What is this session about?</small>
+                    </div>
+                    <div class="form-group mt-4">
+                        <label for="location" class="floating-label">Location</label>
+                        <input type="text" class="form-control" id="location" name="location" aria-describedby="location_help" readonly>
+                        <small id="location_help" class="form-text text-muted">Location, where session's events takes place.</small>
+                    </div>
+                    {{ csrf_token() }}
+                </fieldset>
+                <button type="submit" class="btn btn-primary btn-lg mt-3">Create</button>
+            </form>
+        </div>
+    </section>
+{% endblock %}
+
+{% block js %}
+    <script src="{{ asset('js/app.session-create.js') }}"></script>
+{% endblock %}

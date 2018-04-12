@@ -40,7 +40,6 @@ DigitalTavern\Domain\Entity\Session:
       - Length: { min: 6 }
     playersLimit:
       - GreaterThan: 1
-      - LessThan: 100
 
 DigitalTavern\Domain\Entity\SessionMessage:
   properties:

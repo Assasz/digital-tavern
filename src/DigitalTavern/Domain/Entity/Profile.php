@@ -149,9 +149,9 @@ class Profile
     /**
      * Return profile avatar file
      *
-     * @return File
+     * @return null|File
      */
-    public function getAvatar(): File
+    public function getAvatar()
     {
         return $this->avatar;
     }

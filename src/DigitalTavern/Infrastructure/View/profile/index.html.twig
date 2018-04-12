@@ -16,7 +16,7 @@
                 </a>
             {% endif %}
         </h1>
-        <img src="{{ asset(profile.avatarPath) }}" alt="{{ profile.ign }}" class="rounded-circle d-block mx-auto mb-4" width="300px">
+        <img src="{{ asset(profile.avatarPath|default('images/default-avatar.jpg')) }}" alt="{{ profile.ign }}" class="rounded-circle d-block mx-auto mb-4" width="300px">
         <div class="row justify-content-center">
             <p class="profile-info col-lg-2 col-md-4 col-sm-6" {% if profile.race|length > 40 %}data-toggle="tooltip" data-placement="bottom" title="{{ profile.race|default('unknow') }}" data-original-title="{{ profile.race|default('unknow') }}"{% endif %}>
                 {{ (profile.race|length > 40) ? profile.race|slice(0, 40) ~ '...' : profile.race|default('unknow') }}

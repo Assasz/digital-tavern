@@ -236,9 +236,9 @@ class Session
     /**
      * Returns session image file
      *
-     * @return File
+     * @return null|File
      */
-    public function getImage(): File
+    public function getImage()
     {
         return $this->image;
     }
