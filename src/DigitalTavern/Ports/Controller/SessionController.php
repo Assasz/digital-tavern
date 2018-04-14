@@ -3,6 +3,7 @@
 namespace DigitalTavern\Ports\Controller;
 
 use DigitalTavern\Application\Service\SessionModule\Request\CreateRequest;
+use DigitalTavern\Application\Service\SessionModule\Request\GetPublicRequest;
 use Yggdrasil\Core\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -56,7 +57,18 @@ class SessionController extends AbstractController
      */
     public function publicPartialAction()
     {
-        return $this->render('session/_public.html.twig', [], true);
+        $request = new GetPublicRequest();
+        $service = $this->getContainer()->get('session.get_public');
+        $response = $service->process($request);
+
+        if(!$response->isSuccess()){
+            $session = new Session();
+            $session->getFlashBag()->set('info', 'Can\'t find any available sessions right now.');
+        }
+
+        return $this->render('session/_public.html.twig', [
+            'sessions' => $response->getSessions()
+        ], true);
     }
 
     /**

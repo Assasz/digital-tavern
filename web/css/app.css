@@ -188,6 +188,20 @@ input::-webkit-inner-spin-button {
     font-size: 1.2rem;
     color: #26262E; }
 
+.card-session {
+  background-color: #26262E; }
+  .card-session .card-header {
+    border: none;
+    height: 100px; }
+    .card-session .card-header h2 {
+      font-size: 1.2rem; }
+  .card-session .card-text {
+    height: 57px; }
+  .card-session .session-image {
+    width: 100%;
+    height: auto;
+    display: block; }
+
 .offscreen {
   clip-path: inset(100%);
   clip: rect(1px 1px 1px 1px);

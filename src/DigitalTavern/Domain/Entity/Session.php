@@ -3,6 +3,7 @@
 namespace DigitalTavern\Domain\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
 
 /**
@@ -336,9 +337,9 @@ class Session
     /**
      * Return session players
      *
-     * @return ArrayCollection
+     * @return Collection
      */
-    public function getPlayers(): ArrayCollection
+    public function getPlayers(): Collection
     {
         return $this->players;
     }

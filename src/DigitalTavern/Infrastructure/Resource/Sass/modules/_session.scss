@@ -1,0 +1,17 @@
+.card-session {
+  background-color: $dark;
+
+  .card-header {
+    border: none;
+    height: 100px;
+
+    h2 {
+      font-size: 1.2rem; }}
+
+  .card-text {
+    height: 57px; }
+
+  .session-image {
+    width: 100%;
+    height: auto;
+    display: block; }}
