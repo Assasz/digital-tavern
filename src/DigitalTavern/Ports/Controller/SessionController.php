@@ -4,9 +4,11 @@ namespace DigitalTavern\Ports\Controller;
 
 use DigitalTavern\Application\Service\SessionModule\Request\CreateRequest;
 use DigitalTavern\Application\Service\SessionModule\Request\GetPublicRequest;
+use DigitalTavern\Application\Service\SessionModule\Request\SearchRequest;
 use Yggdrasil\Core\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Yggdrasil\Core\Form\FormHandler;
 
 /**
@@ -58,13 +60,9 @@ class SessionController extends AbstractController
     public function publicPartialAction()
     {
         $request = new GetPublicRequest();
+
         $service = $this->getContainer()->get('session.get_public');
         $response = $service->process($request);
-
-        if(!$response->isSuccess()){
-            $session = new Session();
-            $session->getFlashBag()->set('info', 'Can\'t find any available sessions right now.');
-        }
 
         return $this->render('session/_public.html.twig', [
             'sessions' => $response->getSessions()
@@ -126,5 +124,38 @@ class SessionController extends AbstractController
         }
 
         return $this->redirectToAction('Session:index');
+    }
+
+    /**
+     * Session search action
+     * Route: /session/search/{type}
+     *
+     * @param string $type Indicates which sessions should be loaded
+     * @return JsonResponse|Response
+     *
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
+    public function searchAction(string $type = 'public')
+    {
+        $form = new FormHandler();
+
+        if(!$this->getRequest()->isXmlHttpRequest() || !$form->handle($this->getRequest())){
+            return $this->accessDenied();
+        }
+
+        $request = new SearchRequest();
+        $request->setQuery($form->getData('search'));
+        $request->setType($type);
+
+        $service = $this->getContainer()->get('session.search');
+        $response = $service->process($request);
+
+        $result = $this->render('session/_list.html.twig', [
+            'sessions' => $response->getSessions()
+        ], true);
+
+        return $this->json([$result]);
     }
 }

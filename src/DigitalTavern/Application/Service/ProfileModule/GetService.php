@@ -9,7 +9,7 @@ use Yggdrasil\Core\Service\ServiceRequestInterface;
 use Yggdrasil\Core\Service\ServiceResponseInterface;
 
 /**
- * Class GetService
+ * Class GetPublicService
  *
  * @package DigitalTavern\Application\Service\ProfileModule
  */

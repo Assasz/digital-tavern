@@ -5,11 +5,11 @@ namespace DigitalTavern\Application\Service\SessionModule\Response;
 use Yggdrasil\Core\Service\ServiceResponseInterface;
 
 /**
- * Class GetPublicResponse
+ * Class SearchResponse
  *
  * @package DigitalTavern\Application\Service\SessionModule\Response
  */
-class GetPublicResponse implements ServiceResponseInterface
+class SearchResponse implements ServiceResponseInterface
 {
     /**
      * Public sessions

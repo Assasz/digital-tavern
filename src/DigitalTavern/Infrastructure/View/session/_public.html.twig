@@ -14,46 +14,11 @@
     </div>
 </div>
 <div id="sessions_container" class="row mt-4">
-    {% for session in sessions %}
-        <div class="mb-3 col-lg-4 col-sm-6">
-            <div class="card card-session border-primary">
-                <div class="card-header">
-                    <h2 {% if session.name|length > 50 %}data-toggle="tooltip" data-placement="top" title="{{ session.name }}" data-original-title="{{ session.name }}"{% endif %}>
-                        {{ (session.name|length > 50) ? session.name|slice(0, 50) ~ '...' : session.name }}
-                    </h2>
-                    <p class="text-muted" {% if session.location|length > 30 %}data-toggle="tooltip" data-placement="bottom" title="{{ session.location }}" data-original-title="{{ session.location }}"{% endif %}>
-                        <span class="fa fa-fw fa-compass" aria-hidden="true"></span>
-                        <span class="offscreen">Location</span>
-                        {{ (session.location|length > 30) ? session.location|slice(0, 30) ~ '...' : session.location }}
-                    </p>
-                </div>
-                <img class="session-image" src="{{ asset(session.image|default('images/default-session-image.jpeg')) }}" alt="{{ session.name }}">
-                <div class="card-body">
-                    <p class="card-text" {% if session.description|length > 150 %}data-toggle="tooltip" data-placement="bottom" title="{{ session.description }}" data-original-title="{{ session.description }}"{% endif %}>
-                        {{ (session.description|length > 150) ? session.description|slice(0, 150) ~ '...' : session.description }}
-                    </p>
-                    <a href="#" class="btn btn-primary mt-2" role="button">
-                        <span class="fa fa-fw fa-play" aria-hidden="true"></span>
-                        Join
-                    </a>
-                    <span class="float-right pt-3">
-                        <span class="fa fa-fw fa-users" aria-hidden="true"></span>
-                        <span class="offscreen">Players</span>
-                        {{ session.players|length }} /
-                        {% if session.playersLimit is null %}
-                            &infin;
-                        {% else %}
-                            {{ session.playersLimit }}
-                        {% endif %}
-                    </span>
-                </div>
-            </div>
-        </div>
-    {% endfor %}
+    {{ include('session/_list.html.twig') }}
 
-    {% for msg in flashbag('info') %}
+    {% if sessions|length < 1 %}
         <div class="col-md-12">
             <p>Can't find any available sessions right now.</p>
         </div>
-    {% endfor %}
+    {% endif %}
 </div>

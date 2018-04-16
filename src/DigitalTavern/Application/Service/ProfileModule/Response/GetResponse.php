@@ -6,7 +6,7 @@ use DigitalTavern\Domain\Entity\Profile;
 use Yggdrasil\Core\Service\ServiceResponseInterface;
 
 /**
- * Class GetResponse
+ * Class GetPublicResponse
  *
  * @package DigitalTavern\Application\Service\ProfileModule\Response
  */
@@ -27,7 +27,7 @@ class GetResponse implements ServiceResponseInterface
     private $profile;
 
     /**
-     * GetResponse constructor.
+     * GetPublicResponse constructor.
      *
      * Sets $success default value
      */

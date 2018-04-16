@@ -5,7 +5,7 @@ namespace DigitalTavern\Application\Service\ProfileModule\Request;
 use Yggdrasil\Core\Service\ServiceRequestInterface;
 
 /**
- * Class GetRequest
+ * Class GetPublicRequest
  *
  * @package DigitalTavern\Application\Service\ProfileModule\Request
  */
