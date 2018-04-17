@@ -4,6 +4,7 @@ namespace DigitalTavern\Ports\Controller;
 
 use DigitalTavern\Application\Service\SessionModule\Request\CreateRequest;
 use DigitalTavern\Application\Service\SessionModule\Request\GetPublicRequest;
+use DigitalTavern\Application\Service\SessionModule\Request\JoinRequest;
 use DigitalTavern\Application\Service\SessionModule\Request\SearchRequest;
 use Yggdrasil\Core\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,6 +40,13 @@ class SessionController extends AbstractController
 
         if(empty($this->getUser()->getProfile())){
             return $this->redirectToAction('Profile:create');
+        }
+
+        $session = new Session();
+        $currentChannel = $session->get('current_channel');
+
+        if(!empty($currentChannel)){
+            return $this->redirectToAction('Session:play', [$currentChannel]);
         }
 
         $result = ($type === 'public') ? $this->publicPartialAction() : $this->privatePartialAction();
@@ -103,6 +111,13 @@ class SessionController extends AbstractController
             return $this->redirectToAction('Profile:create');
         }
 
+        $session = new Session();
+        $currentChannel = $session->get('current_channel');
+
+        if(!empty($currentChannel)){
+            return $this->redirectToAction('Session:play', [$currentChannel]);
+        }
+
         $form = new FormHandler();
 
         if(!$form->handle($this->getRequest())){
@@ -117,13 +132,11 @@ class SessionController extends AbstractController
         $response = $service->process($request);
 
         if(!$response->isSuccess()){
-            $session = new Session();
             $session->getFlashBag()->set('danger', 'Something went wrong!');
-
             return $this->render('session/create.html.twig');
         }
 
-        return $this->redirectToAction('Session:index');
+        return $this->redirectToAction('Session:play', [$response->getChannel()]);
     }
 
     /**
@@ -157,5 +170,52 @@ class SessionController extends AbstractController
         ], true);
 
         return $this->json([$result]);
+    }
+
+    /**
+     * Session play action
+     * Route: /session/play/{channel}
+     *
+     * @param string $channel Session WebSocket channel
+     * @return mixed
+     *
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
+    public function playAction(string $channel)
+    {
+        if(!$this->isGranted()){
+            return $this->redirectToAction('Home:index');
+        }
+
+        if(empty($this->getUser()->getProfile())){
+            return $this->redirectToAction('Profile:create');
+        }
+
+        $session = new Session();
+        $currentChannel = $session->get('current_channel');
+
+        if(!empty($currentChannel) && $currentChannel !== $channel){
+            return $this->redirectToAction('Session:play', [$currentChannel]);
+        }
+
+        $request = new JoinRequest();
+        $request->setChannel($channel);
+        $request->setUserId($this->getUser()->getId());
+
+        $service = $this->getContainer()->get('session.join');
+        $response = $service->process($request);
+
+        if(!$response->isSuccess()){
+            $session->getFlashBag()->set('warning', 'Session cannot be found.');
+            return $this->redirectToAction('Session:index');
+        }
+
+        $session->set('current_channel', $channel);
+
+        return $this->render('session/play.html.twig', [
+            'session' => $response->getSession()
+        ]);
     }
 }

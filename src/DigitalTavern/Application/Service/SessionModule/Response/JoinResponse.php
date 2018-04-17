@@ -2,26 +2,32 @@
 
 namespace DigitalTavern\Application\Service\SessionModule\Response;
 
+use DigitalTavern\Domain\Entity\Session;
 use Yggdrasil\Core\Service\ServiceResponseInterface;
 
-class CreateResponse implements ServiceResponseInterface
+/**
+ * Class JoinResponse
+ *
+ * @package DigitalTavern\Application\Service\SessionModule\Response
+ */
+class JoinResponse implements ServiceResponseInterface
 {
     /**
      * Result of service processing
      *
-     * @var bool $success
+     * @var bool
      */
     private $success;
 
     /**
-     * Session WebSocket channel
+     * Requested session
      *
-     * @var string
+     * @var Session
      */
-    private $channel;
+    private $session;
 
     /**
-     * CreateResponse constructor.
+     * JoinResponse constructor.
      *
      * Sets $success default value
      */
@@ -51,22 +57,22 @@ class CreateResponse implements ServiceResponseInterface
     }
 
     /**
-     * Returns session channel
+     * Returns session
      *
-     * @return string
+     * @return Session
      */
-    public function getChannel(): string
+    public function getSession(): Session
     {
-        return $this->channel;
+        return $this->session;
     }
 
     /**
-     * Sets session channel
+     * Sets session
      *
-     * @param string $channel
+     * @param Session $session
      */
-    public function setChannel(string $channel): void
+    public function setSession(Session $session): void
     {
-        $this->channel = $channel;
+        $this->session = $session;
     }
 }

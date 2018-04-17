@@ -20,6 +20,7 @@ class CreateService extends AbstractService implements ServiceInterface
      *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws \Exception
      */
     public function process(ServiceRequestInterface $request): ServiceResponseInterface
     {
@@ -44,15 +45,13 @@ class CreateService extends AbstractService implements ServiceInterface
             }
         }
 
-        $host = $this->getEntityManager()->getRepository('Entity:User')->find($request->getHostId());
-        $session->setHost($host);
-
         $response = new CreateResponse();
 
         $errors = $this->getValidator()->validate($session);
 
         if(count($errors) < 1){
             $response->setSuccess(true);
+            $response->setChannel($session->getChannel());
 
             if(!empty($session->getPassword())){
                 $hash = password_hash($session->getPassword(), PASSWORD_BCRYPT);
@@ -70,6 +69,9 @@ class CreateService extends AbstractService implements ServiceInterface
                 $session->setImage();
             }
 
+            $host = $this->getEntityManager()->getRepository('Entity:User')->find($request->getHostId());
+
+            $session->setHost($host);
             $session->addPlayer($host);
 
             $this->getEntityManager()->persist($session);

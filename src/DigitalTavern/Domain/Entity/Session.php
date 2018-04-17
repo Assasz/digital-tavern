@@ -135,13 +135,24 @@ class Session
     private $createDate;
 
     /**
+     * Session WebSocket channel
+     *
+     * @Column(type="string", length=24)
+     * @var string
+     */
+    private $channel;
+
+    /**
      * Session constructor.
+     *
+     * @throws \Exception
      */
     public function __construct()
     {
         $this->players = new ArrayCollection();
         $this->messages = new ArrayCollection();
         $this->createDate = new \DateTime('now');
+        $this->channel = bin2hex(random_bytes(12));
     }
 
     /**
@@ -335,7 +346,7 @@ class Session
     }
 
     /**
-     * Return session players
+     * Returns session players
      *
      * @return Collection
      */
@@ -432,5 +443,25 @@ class Session
     public function setCreateDate(\DateTime $createDate): void
     {
         $this->createDate = $createDate;
+    }
+
+    /**
+     * Returns session channel
+     *
+     * @return string
+     */
+    public function getChannel(): string
+    {
+        return $this->channel;
+    }
+
+    /**
+     * Sets session channel
+     *
+     * @param string $channel
+     */
+    public function setChannel(string $channel): void
+    {
+        $this->channel = $channel;
     }
 }

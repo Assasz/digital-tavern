@@ -15,10 +15,4 @@
 </div>
 <div id="sessions_container" class="row mt-4">
     {{ include('session/_list.html.twig') }}
-
-    {% if sessions|length < 1 %}
-        <div class="col-md-12">
-            <p>Can't find any available sessions right now.</p>
-        </div>
-    {% endif %}
 </div>
