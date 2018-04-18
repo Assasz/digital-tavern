@@ -35,11 +35,14 @@ class JoinService extends AbstractService implements ServiceInterface
 
             if(!$session->getPlayers()->contains($user)){
                 $session->addPlayer($user);
-                $this->getEntityManager()->flush();
             }
+
+            $user->setCurrentChannel($request->getChannel());
+            $this->getEntityManager()->flush();
 
             $response->setSuccess(true);
             $response->setSession($session);
+            $response->setUser($user);
         }
 
         return $response;

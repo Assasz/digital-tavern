@@ -42,11 +42,8 @@ class SessionController extends AbstractController
             return $this->redirectToAction('Profile:create');
         }
 
-        $session = new Session();
-        $currentChannel = $session->get('current_channel');
-
-        if(!empty($currentChannel)){
-            return $this->redirectToAction('Session:play', [$currentChannel]);
+        if(!empty($this->getUser()->getCurrentChannel())){
+            return $this->redirectToAction('Session:play', [$this->getUser()->getCurrentChannel()]);
         }
 
         $result = ($type === 'public') ? $this->publicPartialAction() : $this->privatePartialAction();
@@ -111,11 +108,8 @@ class SessionController extends AbstractController
             return $this->redirectToAction('Profile:create');
         }
 
-        $session = new Session();
-        $currentChannel = $session->get('current_channel');
-
-        if(!empty($currentChannel)){
-            return $this->redirectToAction('Session:play', [$currentChannel]);
+        if(!empty($this->getUser()->getCurrentChannel())){
+            return $this->redirectToAction('Session:play', [$this->getUser()->getCurrentChannel()]);
         }
 
         $form = new FormHandler();
@@ -132,7 +126,9 @@ class SessionController extends AbstractController
         $response = $service->process($request);
 
         if(!$response->isSuccess()){
+            $session = new Session();
             $session->getFlashBag()->set('danger', 'Something went wrong!');
+
             return $this->render('session/create.html.twig');
         }
 
@@ -193,10 +189,9 @@ class SessionController extends AbstractController
             return $this->redirectToAction('Profile:create');
         }
 
-        $session = new Session();
-        $currentChannel = $session->get('current_channel');
+        $currentChannel = $this->getUser()->getCurrentChannel();
 
-        if(!empty($currentChannel) && $currentChannel !== $channel){
+        if($currentChannel !== $channel && !empty($currentChannel)){
             return $this->redirectToAction('Session:play', [$currentChannel]);
         }
 
@@ -207,12 +202,16 @@ class SessionController extends AbstractController
         $service = $this->getContainer()->get('session.join');
         $response = $service->process($request);
 
+        $session = new Session();
+
         if(!$response->isSuccess()){
             $session->getFlashBag()->set('warning', 'Session cannot be found.');
             return $this->redirectToAction('Session:index');
         }
 
-        $session->set('current_channel', $channel);
+        if(!empty($response->getUser())){
+            $session->set('user', $response->getUser());
+        }
 
         return $this->render('session/play.html.twig', [
             'session' => $response->getSession()

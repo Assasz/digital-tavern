@@ -90,10 +90,18 @@ class User
     /**
      * User role
      *
-     * @Column(type="string", nullable=true)
+     * @Column(type="string", length=255, nullable=true)
      * @var string $role
      */
     private $role;
+
+    /**
+     * Current channel user is connected to
+     *
+     * @Column(type="string", length=24, nullable=true)
+     * @var string $currentChannel
+     */
+    private $currentChannel;
 
     /**
      * User constructor.
@@ -297,5 +305,25 @@ class User
     public function setRole(string $role): void
     {
         $this->role = $role;
+    }
+
+    /**
+     * Returns current channel
+     *
+     * @return null|string
+     */
+    public function getCurrentChannel()
+    {
+        return $this->currentChannel;
+    }
+
+    /**
+     * Sets current channel
+     *
+     * @param string $currentChannel
+     */
+    public function setCurrentChannel(string $currentChannel): void
+    {
+        $this->currentChannel = $currentChannel;
     }
 }

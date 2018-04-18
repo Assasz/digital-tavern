@@ -3,6 +3,7 @@
 namespace DigitalTavern\Application\Service\SessionModule\Response;
 
 use DigitalTavern\Domain\Entity\Session;
+use DigitalTavern\Domain\Entity\User;
 use Yggdrasil\Core\Service\ServiceResponseInterface;
 
 /**
@@ -15,16 +16,23 @@ class JoinResponse implements ServiceResponseInterface
     /**
      * Result of service processing
      *
-     * @var bool
+     * @var bool $success
      */
     private $success;
 
     /**
      * Requested session
      *
-     * @var Session
+     * @var Session $session
      */
     private $session;
+
+    /**
+     * Updated instance of user
+     *
+     * @var User $user
+     */
+    private $user;
 
     /**
      * JoinResponse constructor.
@@ -74,5 +82,25 @@ class JoinResponse implements ServiceResponseInterface
     public function setSession(Session $session): void
     {
         $this->session = $session;
+    }
+
+    /**
+     * Returns updated user
+     *
+     * @return null|User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Sets updated user
+     *
+     * @param User $user
+     */
+    public function setUser(User $user): void
+    {
+        $this->user = $user;
     }
 }
