@@ -207,6 +207,14 @@ input::-webkit-inner-spin-button {
 
 .session-players {
   height: 500px; }
+  .session-players .list-group {
+    overflow-y: auto; }
+    .session-players .list-group p {
+      font-weight: normal;
+      color: #FCFCFC; }
+    .session-players .list-group .active {
+      background-color: #26262E;
+      border-color: #D9230F; }
 
 .offscreen {
   clip-path: inset(100%);
@@ -217,5 +225,10 @@ input::-webkit-inner-spin-button {
   position: absolute;
   white-space: nowrap;
   width: 1px; }
+
+.list-group-item {
+  background-color: #26262E;
+  border-color: #26262E;
+  border-radius: 2px; }
 
 /*# sourceMappingURL=app.css.map */

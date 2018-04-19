@@ -20,4 +20,15 @@
   height: 500px; }
 
 .session-players {
-  height: 500px; }
+  height: 500px;
+
+  .list-group {
+    overflow-y: auto;
+
+    p {
+      font-weight: normal;
+      color: $primary; }
+
+    .active {
+      background-color: $dark;
+      border-color: $red; }}}

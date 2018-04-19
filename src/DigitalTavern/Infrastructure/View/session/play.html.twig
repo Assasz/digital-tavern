@@ -3,16 +3,61 @@
 {% block title %}{{ session.name }}{% endblock %}
 
 {% block content %}
+    {% set is_gm = _user == session.host or _user.role == 'super game master' %}
     <section id="session_chatbox">
-        <h1 class="section-heading">{{ session.name }}</h1>
+        <h1 class="section-heading">
+            {{ session.name }}
+            <span class="float-right">
+                <span class="fa fa-fw fa-users" aria-hidden="true"></span>
+                <span class="offscreen">Players</span>
+                {{ session.players|length }} /
+                {% if session.playersLimit is null %}
+                    &infin;
+                {% else %}
+                    {{ session.playersLimit }}
+                {% endif %}
+            </span>
+        </h1>
         <div class="row">
             <div class="col-md-8 session-chat"></div>
-            <div class="col-md-4 session-players"></div>
+            <div class="col-md-4 session-players">
+                <a href="{{ path('Session:leave', {'channel': session.channel}) }}" class="btn btn-primary btn-block mb-2" role="button">
+                    {% if is_gm %}
+                        End session
+                    {% else %}
+                        Leave session
+                    {% endif %}
+                </a>
+                <ul id="session_players" class="list-group scrollbar-macosx">
+                    {% for player in session.players %}
+                        <a href="{{ path('Profile:index', {'userId': player.id}) }}">
+                            <li class="list-group-item mb-2 {% if player == _user %}active{% endif %}">
+                                <img src="{{ asset(player.profile.avatarPath|default('images/default-avatar.jpg')) }}" class="rounded-circle mr-3" alt="{{ player.profile.ign }}" width="40px">
+                                <p class="d-inline">
+                                    {{ player.profile.ign }}
+                                    {% if player.role is not null %}
+                                        <span class="badge badge-primary ml-3">{{ player.role|upper }}</span>
+                                    {% elseif player == session.host %}
+                                        <span class="badge badge-primary ml-3">{{ 'game master'|upper }}</span>
+                                    {% endif %}
+                                </p>
+                                {#{% if is_gm and player.role != 'super game master'%}#}
+                                    {#<span class="fa fa-fw fa-gavel float-right" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Punish player" data-original-title="Punish player"></span>#}
+                                {#{% endif %}#}
+                            </li>
+                        </a>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </section>
-    <section id="session_backstory">
+    <section id="session_backstory" class="mt-4">
         <h2 class="section-heading">Session backstory</h2>
         <img src="{{ asset(session.imagePath|default('images/default-session-image.jpeg')) }}" class="img-fluid" alt="{{ session.name }}">
         <p class="mt-4">{{ session.backstory|nl2br }}</p>
     </section>
+{% endblock %}
+
+{% block js %}
+    <script src="{{ asset('js/app.session-play.js') }}"></script>
 {% endblock %}

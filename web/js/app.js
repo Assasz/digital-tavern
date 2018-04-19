@@ -27,6 +27,8 @@ var wsConn;
 function loadGlobalActions() {
     $('[data-toggle="tooltip"]').tooltip();
 
+    $('.scrollbar-macosx').scrollbar();
+
     $(document).on('keyup', '.form-control', function () {
         $(this).parent().find('.floating-label').toggleClass('float', $(this).val().length > 0);
     });

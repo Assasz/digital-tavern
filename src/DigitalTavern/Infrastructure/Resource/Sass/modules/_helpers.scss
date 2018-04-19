@@ -7,3 +7,8 @@
   position: absolute;
   white-space: nowrap;
   width: 1px; }
+
+.list-group-item {
+  background-color: $dark;
+  border-color: $dark;
+  border-radius: 2px; }
