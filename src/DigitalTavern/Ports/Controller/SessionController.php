@@ -2,7 +2,9 @@
 
 namespace DigitalTavern\Ports\Controller;
 
+use DigitalTavern\Application\Service\SessionModule\Request\ChannelCheckRequest;
 use DigitalTavern\Application\Service\SessionModule\Request\CreateRequest;
+use DigitalTavern\Application\Service\SessionModule\Request\GetCurrentRequest;
 use DigitalTavern\Application\Service\SessionModule\Request\GetPublicRequest;
 use DigitalTavern\Application\Service\SessionModule\Request\JoinRequest;
 use DigitalTavern\Application\Service\SessionModule\Request\SearchRequest;
@@ -42,8 +44,14 @@ class SessionController extends AbstractController
             return $this->redirectToAction('Profile:create');
         }
 
-        if(!empty($this->getUser()->getCurrentChannel())){
-            return $this->redirectToAction('Session:play', [$this->getUser()->getCurrentChannel()]);
+        if(!empty($this->getUser()->getCurrentSession())){
+            $request = new GetCurrentRequest();
+            $request->setUserId($this->getUser()->getId());
+
+            $service = $this->getContainer()->get('session.get_current');
+            $response = $service->process($request);
+
+            return $this->redirectToAction('Session:play', [$response->getSession()->getChannel()]);
         }
 
         $result = ($type === 'public') ? $this->publicPartialAction() : $this->privatePartialAction();
@@ -108,8 +116,14 @@ class SessionController extends AbstractController
             return $this->redirectToAction('Profile:create');
         }
 
-        if(!empty($this->getUser()->getCurrentChannel())){
-            return $this->redirectToAction('Session:play', [$this->getUser()->getCurrentChannel()]);
+        if(!empty($this->getUser()->getCurrentSession())){
+            $request = new GetCurrentRequest();
+            $request->setUserId($this->getUser()->getId());
+
+            $service = $this->getContainer()->get('session.get_current');
+            $response = $service->process($request);
+
+            return $this->redirectToAction('Session:play', [$response->getSession()->getChannel()]);
         }
 
         $form = new FormHandler();
@@ -189,10 +203,17 @@ class SessionController extends AbstractController
             return $this->redirectToAction('Profile:create');
         }
 
-        $currentChannel = $this->getUser()->getCurrentChannel();
+        if(!empty($this->getUser()->getCurrentSession())){
+            $request = new GetCurrentRequest();
+            $request->setUserId($this->getUser()->getId());
 
-        if($currentChannel !== $channel && !empty($currentChannel)){
-            return $this->redirectToAction('Session:play', [$currentChannel]);
+            $service = $this->getContainer()->get('session.get_current');
+            $response = $service->process($request);
+
+            $session = $response->getSession();
+            if(!empty($session) && $session->getChannel() !== $channel){
+                return $this->redirectToAction('Session:play', [$session->getChannel()]);
+            }
         }
 
         $request = new JoinRequest();
@@ -205,7 +226,7 @@ class SessionController extends AbstractController
         $session = new Session();
 
         if(!$response->isSuccess()){
-            $session->getFlashBag()->set('warning', 'Session cannot be found.');
+            $session->getFlashBag()->set('warning', 'Session cannot be found or players limit is reached.');
             return $this->redirectToAction('Session:index');
         }
 
@@ -213,8 +234,35 @@ class SessionController extends AbstractController
             $session->set('user', $response->getUser());
         }
 
+        if(empty($session->get('current_channel'))){
+            $session->set('current_channel', $channel);
+        }
+
         return $this->render('session/play.html.twig', [
             'session' => $response->getSession()
         ]);
+    }
+
+    /**
+     * Channel check passive action
+     *
+     * @return Response
+     */
+    public function channelCheckPassiveAction()
+    {
+        if($this->isGranted() && !empty($this->getUser()->getCurrentSession())){
+            $request = new ChannelCheckRequest();
+            $request->setUserId($this->getUser()->getId());
+
+            $service = $this->getContainer()->get('session.channel_check');
+            $response = $service->process($request);
+
+            if(!empty($response->getUser())){
+                $session = new Session();
+                $session->set('user', $response->getUser());
+            }
+        }
+
+        return $this->getResponse();
     }
 }

@@ -31,18 +31,20 @@ class JoinService extends AbstractService implements ServiceInterface
         $response = new JoinResponse();
 
         if(!empty($session)){
-            $user = $this->getEntityManager()->getRepository('Entity:User')->find($request->getUserId());
+            if(empty($session->getPlayersLimit()) || (count($session->getPlayers()->toArray()) < $session->getPlayersLimit())){
+                $user = $this->getEntityManager()->getRepository('Entity:User')->find($request->getUserId());
 
-            if(!$session->getPlayers()->contains($user)){
-                $session->addPlayer($user);
+                if(!$session->getPlayers()->contains($user)){
+                    $session->addPlayer($user);
+                }
+
+                $user->setCurrentSession($session);
+                $this->getEntityManager()->flush();
+
+                $response->setSuccess(true);
+                $response->setSession($session);
+                $response->setUser($user);
             }
-
-            $user->setCurrentChannel($request->getChannel());
-            $this->getEntityManager()->flush();
-
-            $response->setSuccess(true);
-            $response->setSession($session);
-            $response->setUser($user);
         }
 
         return $response;

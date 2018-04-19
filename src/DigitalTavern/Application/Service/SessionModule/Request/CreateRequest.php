@@ -22,11 +22,11 @@ class CreateRequest implements ServiceRequestInterface
     private $description;
 
     /**
-     * Session plot background
+     * Session backstory
      *
-     * @var string $plotBackground
+     * @var string $backstory
      */
-    private $plotBackground;
+    private $backstory;
 
     /**
      * Session plot location
@@ -111,23 +111,23 @@ class CreateRequest implements ServiceRequestInterface
     }
 
     /**
-     * Returns session plot background
+     * Returns session backstory
      *
      * @return string
      */
-    public function getPlotBackground(): string
+    public function getBackstory(): string
     {
-        return $this->plotBackground;
+        return $this->backstory;
     }
 
     /**
-     * Sets session plot background
+     * Sets session backstory
      *
-     * @param string $plotBackground
+     * @param string $backstory
      */
-    public function setPlotBackground(string $plotBackground): void
+    public function setBackstory(string $backstory): void
     {
-        $this->plotBackground = $plotBackground;
+        $this->backstory = $backstory;
     }
 
     /**

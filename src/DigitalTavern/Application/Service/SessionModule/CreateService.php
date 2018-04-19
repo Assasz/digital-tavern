@@ -26,7 +26,7 @@ class CreateService extends AbstractService implements ServiceInterface
     {
         $session = new Session();
 
-        $requiredProperties = ['Name', 'Description', 'PlotBackground', 'Location'];
+        $requiredProperties = ['Name', 'Description', 'Backstory', 'Location'];
         $optionalProperties = ['Token', 'Password', 'PlayersLimit', 'Image'];
 
         foreach ($requiredProperties as $property){

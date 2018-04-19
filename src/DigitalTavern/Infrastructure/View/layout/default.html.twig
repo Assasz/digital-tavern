@@ -16,9 +16,8 @@
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="navbar-nav mr-auto ml-auto w-100 justify-content-end">
                     <li class="nav-item mr-lg-4 {% if route in 'session/index' or route in 'session/play' %}active{% endif %}">
-                        {% set channel = _user.currentChannel %}
-                        {% if channel is not null %}
-                            <a class="nav-link" href="{{ path('Session:play', {'channel': channel}) }}">
+                        {% if _session.get('current_channel') is not null %}
+                            <a class="nav-link" href="{{ path('Session:play', {'channel': _session.get('current_channel')}) }}">
                                 <span class="fa fa-fw fa-beer" aria-hidden="true"></span>
                                 Current session
                             </a>

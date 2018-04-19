@@ -53,7 +53,7 @@ function loadSessionCreateActions() {
                     return $.trim(value);
                 }
             },
-            plotBackground: {
+            backstory: {
                 required: true,
                 maxlength: 5000,
                 normalizer: function(value) {

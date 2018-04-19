@@ -96,12 +96,13 @@ class User
     private $role;
 
     /**
-     * Current channel user is connected to
+     * Current session channel that user is connected to
      *
-     * @Column(type="string", length=24, nullable=true)
-     * @var string $currentChannel
+     * @ManyToOne(targetEntity="Session", inversedBy="players")
+     * @JoinColumn(name="currentSession", referencedColumnName="id", nullable=true)
+     * @var Session $currentSession
      */
-    private $currentChannel;
+    private $currentSession;
 
     /**
      * User constructor.
@@ -308,22 +309,22 @@ class User
     }
 
     /**
-     * Returns current channel
+     * Returns current session
      *
-     * @return null|string
+     * @return null|Session
      */
-    public function getCurrentChannel()
+    public function getCurrentSession()
     {
-        return $this->currentChannel;
+        return $this->currentSession;
     }
 
     /**
-     * Sets current channel
+     * Sets current session
      *
-     * @param string $currentChannel
+     * @param null|Session $currentSession
      */
-    public function setCurrentChannel(string $currentChannel): void
+    public function setCurrentSession($currentSession): void
     {
-        $this->currentChannel = $currentChannel;
+        $this->currentSession = $currentSession;
     }
 }

@@ -202,6 +202,12 @@ input::-webkit-inner-spin-button {
     height: auto;
     display: block; }
 
+.session-chat {
+  height: 500px; }
+
+.session-players {
+  height: 500px; }
+
 .offscreen {
   clip-path: inset(100%);
   clip: rect(1px 1px 1px 1px);

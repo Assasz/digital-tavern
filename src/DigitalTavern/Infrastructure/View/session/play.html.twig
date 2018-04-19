@@ -3,5 +3,16 @@
 {% block title %}{{ session.name }}{% endblock %}
 
 {% block content %}
-    <p>Test</p>
+    <section id="session_chatbox">
+        <h1 class="section-heading">{{ session.name }}</h1>
+        <div class="row">
+            <div class="col-md-8 session-chat"></div>
+            <div class="col-md-4 session-players"></div>
+        </div>
+    </section>
+    <section id="session_backstory">
+        <h2 class="section-heading">Session backstory</h2>
+        <img src="{{ asset(session.imagePath|default('images/default-session-image.jpeg')) }}" class="img-fluid" alt="{{ session.name }}">
+        <p class="mt-4">{{ session.backstory|nl2br }}</p>
+    </section>
 {% endblock %}

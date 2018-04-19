@@ -13,7 +13,7 @@
         {% endfor %}
         <img id="image_preview" class="img-fluid" src="{{ asset('images/default-session-image.jpeg') }}" alt="Session image">
         <div class="row">
-            <form id="session_form" class="col-md-6 mt-4" method="post" action="{{ path('Session:create') }}" data-pjax>
+            <form id="session_form" class="col-lg-6 col-md-8 mt-4" method="post" action="{{ path('Session:create') }}" data-pjax>
                 <fieldset>
                     <legend>Let's start a new adventure!</legend>
                     <div class="form-group mt-4">
@@ -51,9 +51,9 @@
                         <small id="players_limit_help" class="form-text text-muted">Number greater than 1, optional. By default there is no limit.</small>
                     </div>
                     <div class="form-group mt-4">
-                        <label for="plot_background" class="floating-label">Plot background</label>
-                        <textarea class="form-control" id="plot_background" name="plotBackground" aria-describedby="plot_background_help" rows="5"></textarea>
-                        <small id="plot_background_help" class="form-text text-muted">What is this session about?</small>
+                        <label for="backstory" class="floating-label">Backstory</label>
+                        <textarea class="form-control" id="backstory" name="backstory" aria-describedby="backstory_help" rows="5"></textarea>
+                        <small id="backstory_help" class="form-text text-muted">Introduction to session plot. What events took place before, what is going to happen?</small>
                     </div>
                     <div class="form-group mt-4">
                         <label for="location" class="floating-label">Location</label>

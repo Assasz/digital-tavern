@@ -37,18 +37,18 @@ class Session
     /**
      * Session short description
      *
-     * @Column(type="text")
+     * @Column(type="string", length=300)
      * @var string $description
      */
     private $description;
 
     /**
-     * Session plot background
+     * Session backstory
      *
      * @Column(type="text")
-     * @var string $plotBackground
+     * @var string $backstory
      */
-    private $plotBackground;
+    private $backstory;
 
     /**
      * Session plot location
@@ -100,11 +100,7 @@ class Session
     /**
      * Session players
      *
-     * @ManyToMany(targetEntity="User")
-     * @JoinTable(name="session_player",
-     *      joinColumns={@JoinColumn(name="sessionId", referencedColumnName="id")},
-     *      inverseJoinColumns={@JoinColumn(name="userId", referencedColumnName="id", unique=true)}
-     *      )
+     * @OneToMany(targetEntity="User", mappedBy="currentSession")
      * @var ArrayCollection $players
      */
     private $players;
@@ -206,23 +202,23 @@ class Session
     }
 
     /**
-     * Returns session plot background
+     * Returns session backstory
      *
      * @return string
      */
-    public function getPlotBackground(): string
+    public function getBackstory(): string
     {
-        return $this->plotBackground;
+        return $this->backstory;
     }
 
     /**
-     * Sets session plot background
+     * Sets session backstory
      *
-     * @param string $plotBackground
+     * @param string $backstory
      */
-    public function setPlotBackground(string $plotBackground): void
+    public function setBackstory(string $backstory): void
     {
-        $this->plotBackground = $plotBackground;
+        $this->backstory = $backstory;
     }
 
     /**
