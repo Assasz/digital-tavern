@@ -24,12 +24,15 @@ class GetCurrentService extends AbstractService implements ServiceInterface
     public function process(ServiceRequestInterface $request): ServiceResponseInterface
     {
         $user = $this->getEntityManager()->getRepository('Entity:User')->find($request->getUserId());
-        $session = $this->getEntityManager()->getRepository('Entity:Session')->find($user->getCurrentSession());
 
         $response = new GetCurrentResponse();
 
-        if(!empty($session)){
-            $response->setSession($session);
+        if(!empty($user->getCurrentSession())) {
+            $session = $this->getEntityManager()->getRepository('Entity:Session')->find($user->getCurrentSession());
+
+            if(!empty($session)){
+                $response->setSession($session);
+            }
         }
 
         return $response;

@@ -323,7 +323,7 @@ class User
      *
      * @param null|Session $currentSession
      */
-    public function setCurrentSession($currentSession): void
+    public function setCurrentSession(Session $currentSession = null): void
     {
         $this->currentSession = $currentSession;
     }

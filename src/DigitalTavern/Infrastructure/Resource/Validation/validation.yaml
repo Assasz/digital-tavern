@@ -24,7 +24,7 @@ DigitalTavern\Domain\Entity\Session:
     description:
       - NotBlank: ~
       - Length: { max: 300 }
-    plotBackground:
+    backstory:
       - NotBlank: ~
       - Length: { max: 5000 }
     location:

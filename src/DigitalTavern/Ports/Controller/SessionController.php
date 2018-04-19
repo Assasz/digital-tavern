@@ -7,11 +7,13 @@ use DigitalTavern\Application\Service\SessionModule\Request\CreateRequest;
 use DigitalTavern\Application\Service\SessionModule\Request\GetCurrentRequest;
 use DigitalTavern\Application\Service\SessionModule\Request\GetPublicRequest;
 use DigitalTavern\Application\Service\SessionModule\Request\JoinRequest;
+use DigitalTavern\Application\Service\SessionModule\Request\LeaveRequest;
 use DigitalTavern\Application\Service\SessionModule\Request\SearchRequest;
 use Yggdrasil\Core\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Yggdrasil\Core\Form\FormHandler;
 
 /**
@@ -51,7 +53,9 @@ class SessionController extends AbstractController
             $service = $this->getContainer()->get('session.get_current');
             $response = $service->process($request);
 
-            return $this->redirectToAction('Session:play', [$response->getSession()->getChannel()]);
+            if(!empty($response->getSession())){
+                return $this->redirectToAction('Session:play', [$response->getSession()->getChannel()]);
+            }
         }
 
         $result = ($type === 'public') ? $this->publicPartialAction() : $this->privatePartialAction();
@@ -264,5 +268,44 @@ class SessionController extends AbstractController
         }
 
         return $this->getResponse();
+    }
+
+    /**
+     * Leave session action
+     * Route: /session/leave/{channel}
+     *
+     * @param string $channel
+     * @return RedirectResponse
+     */
+    public function leaveAction(string $channel)
+    {
+        if(!$this->isGranted()){
+            return $this->redirectToAction('Home:index');
+        }
+
+        if(empty($this->getUser()->getProfile())){
+            return $this->redirectToAction('Profile:create');
+        }
+
+        if(empty($this->getUser()->getCurrentSession())) {
+            return $this->redirectToAction('Session:index');
+        }
+
+        $request = new LeaveRequest();
+        $request->setChannel($channel);
+        $request->setUser($this->getUser());
+
+        $service = $this->getContainer()->get('session.leave');
+        $response = $service->process($request);
+
+        $session = new Session();
+
+        if(!empty($response->getUser())){
+            $session->set('user', $response->getUser());
+        }
+
+        $session->set('current_channel', null);
+
+        return $this->redirectToAction('Session:index');
     }
 }
