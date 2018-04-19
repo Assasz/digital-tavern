@@ -248,29 +248,6 @@ class SessionController extends AbstractController
     }
 
     /**
-     * Channel check passive action
-     *
-     * @return Response
-     */
-    public function channelCheckPassiveAction()
-    {
-        if($this->isGranted() && !empty($this->getUser()->getCurrentSession())){
-            $request = new ChannelCheckRequest();
-            $request->setUserId($this->getUser()->getId());
-
-            $service = $this->getContainer()->get('session.channel_check');
-            $response = $service->process($request);
-
-            if(!empty($response->getUser())){
-                $session = new Session();
-                $session->set('user', $response->getUser());
-            }
-        }
-
-        return $this->getResponse();
-    }
-
-    /**
      * Leave session action
      * Route: /session/leave/{channel}
      *
