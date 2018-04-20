@@ -22,8 +22,6 @@ $(document).on('pjax:end', function () {
     loadGlobalActions()
 });
 
-var wsConn;
-
 function loadGlobalActions() {
     $('[data-toggle="tooltip"]').tooltip();
 

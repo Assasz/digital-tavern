@@ -5,6 +5,7 @@ namespace DigitalTavern\Ports\Controller;
 use DigitalTavern\Application\Service\SessionModule\Request\ChannelCheckRequest;
 use DigitalTavern\Application\Service\SessionModule\Request\CreateRequest;
 use DigitalTavern\Application\Service\SessionModule\Request\GetCurrentRequest;
+use DigitalTavern\Application\Service\SessionModule\Request\GetPlayersRequest;
 use DigitalTavern\Application\Service\SessionModule\Request\GetPublicRequest;
 use DigitalTavern\Application\Service\SessionModule\Request\JoinRequest;
 use DigitalTavern\Application\Service\SessionModule\Request\LeaveRequest;
@@ -284,5 +285,49 @@ class SessionController extends AbstractController
         $session->set('current_channel', null);
 
         return $this->redirectToAction('Session:index');
+    }
+
+    /**
+     * Session players list action
+     * Route: /session/players/{channel}
+     *
+     * @param string $channel
+     * @return Response
+     *
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
+    public function playersAction(string $channel)
+    {
+        $request = new GetPlayersRequest();
+        $request->setChannel($channel);
+
+        $service = $this->getContainer()->get('session.get_players');
+        $response = $service->process($request);
+
+        if(!empty($response->getPlayers())){
+            $template = $this->render('session/_players.html.twig', [
+                'players' => $response->getPlayers()
+            ], true);
+
+            $this->getDriver('eventSource')->send(json_encode($template));
+            $this->getDriver('eventSource')->playersCount->send(json_encode(count($response->getPlayers())));
+        }
+
+        return $this->getResponse();
+    }
+
+    /**
+     * Response content type control passive action
+     *
+     * @return Response
+     */
+    public function contentControlPassiveAction()
+    {
+        $response = $this->getResponse();
+        $response->headers->set('Content-Type', 'text/html');
+
+        return $response;
     }
 }

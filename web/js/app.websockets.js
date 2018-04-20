@@ -1,12 +1,15 @@
 $(document).ready(function () {
-    loadWebsockets();
+    loadWebSocketsActions();
 });
 
 $(document).on('pjax:end', function () {
-    loadWebsockets();
+    loadWebSocketsActions();
 });
 
-function loadWebsockets() {
+var wsConn;
+
+function loadWebSocketsActions() {
+
     if(!(wsConn instanceof WebSocket)) {
         wsConn = new WebSocket('ws://localhost:8888');
     }

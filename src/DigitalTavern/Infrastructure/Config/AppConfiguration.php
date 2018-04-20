@@ -2,6 +2,7 @@
 
 namespace DigitalTavern\Infrastructure\Config;
 
+use DigitalTavern\Infrastructure\Driver\EventSourceDriver;
 use Yggdrasil\Core\Configuration\AbstractConfiguration;
 use Yggdrasil\Core\Configuration\ConfigurationInterface;
 use Yggdrasil\Core\Driver\ContainerDriver;
@@ -38,7 +39,8 @@ class AppConfiguration extends AbstractConfiguration implements ConfigurationInt
             'templateEngine' => TemplateEngineDriver::class,
             'container' => ContainerDriver::class,
             'validator' => ValidatorDriver::class,
-            'mailer' => MailerDriver::class
+            'mailer' => MailerDriver::class,
+            'eventSource' => EventSourceDriver::class
         ];
     }
 }
