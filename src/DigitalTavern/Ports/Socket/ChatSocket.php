@@ -1,6 +1,7 @@
 <?php
 namespace DigitalTavern\Ports\Socket;
 
+use League\Container\Container;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 
@@ -13,6 +14,23 @@ use Ratchet\ConnectionInterface;
  */
 class ChatSocket implements MessageComponentInterface
 {
+    /**
+     * Service container
+     *
+     * @var Container
+     */
+    private $container;
+
+    /**
+     * ChatSocket constructor.
+     *
+     * @param Container $container
+     */
+    public function __construct(Container $container)
+    {
+        $this->container = $container;
+    }
+
     /**
      * Executed on open WebSockets event
      *

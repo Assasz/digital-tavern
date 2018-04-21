@@ -19,7 +19,7 @@ try {
     ConsoleRunner::addCommands($application);
 
     // register commands here
-    $application->add(new WebsocketCommand());
+    $application->add(new WebsocketCommand($appConfig->loadDriver('container')));
 
     $application->run();
 } catch (Exception $e) {

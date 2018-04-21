@@ -2,6 +2,7 @@
 
 namespace DigitalTavern\Ports\Command;
 
+use League\Container\Container;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -19,6 +20,25 @@ use DigitalTavern\Ports\Socket\ChatSocket;
  */
 class WebsocketCommand extends Command
 {
+    /**
+     * Service container
+     *
+     * @var Container
+     */
+    private $container;
+
+    /**
+     * WebsocketCommand constructor.
+     *
+     * @param Container $container
+     */
+    public function __construct(Container $container)
+    {
+        parent::__construct();
+
+        $this->container = $container;
+    }
+
     /**
      * Configures command
      */
@@ -43,7 +63,7 @@ class WebsocketCommand extends Command
         $server = IoServer::factory(
             new HttpServer(
                 new WsServer(
-                    new ChatSocket()
+                    new ChatSocket($this->container)
                 )
             ),
             8888
