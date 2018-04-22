@@ -40,7 +40,7 @@ class EventSourceDriver implements DriverInterface
     public static function getInstance(ConfigurationInterface $appConfiguration): Server
     {
         if(self::$sourceInstance === null){
-            $server = new Server();
+            $server = new Server(false);
             self::$sourceInstance = $server;
         }
 

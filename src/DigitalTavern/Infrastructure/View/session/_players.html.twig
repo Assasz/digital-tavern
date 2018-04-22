@@ -6,7 +6,7 @@
                 {{ player.profile.ign }}
                 {% if player.role is not null %}
                     <span class="badge badge-primary ml-3">{{ player.role|upper }}</span>
-                {% elseif player == session.host %}
+                {% elseif player.currentSession.host == player %}
                     <span class="badge badge-primary ml-3">{{ 'game master'|upper }}</span>
                 {% endif %}
             </p>

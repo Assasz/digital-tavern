@@ -128,7 +128,9 @@ class SessionController extends AbstractController
             $service = $this->getContainer()->get('session.get_current');
             $response = $service->process($request);
 
-            return $this->redirectToAction('Session:play', [$response->getSession()->getChannel()]);
+            if(!empty($response->getSession())){
+                return $this->redirectToAction('Session:play', [$response->getSession()->getChannel()]);
+            }
         }
 
         $form = new FormHandler();
@@ -231,7 +233,6 @@ class SessionController extends AbstractController
         $session = new Session();
 
         if(!$response->isSuccess()){
-            $session->getFlashBag()->set('warning', 'Session cannot be found or players limit is reached.');
             return $this->redirectToAction('Session:index');
         }
 
@@ -242,6 +243,22 @@ class SessionController extends AbstractController
         if(empty($session->get('current_channel'))){
             $session->set('current_channel', $channel);
         }
+
+//        $result = $this->playersPartialAction($channel);
+//
+//        if(!empty($result)){
+//            $context = new \ZMQContext();
+//            $socket = $context->getSocket(\ZMQ::SOCKET_PUSH, 'pusher');
+//            $socket->connect("tcp://localhost:5555");
+//
+//            $data = [
+//                'playersList' => $result['playersList'],
+//                'playersCount' => $result['playersCount'],
+//                'channel' => $channel
+//            ];
+//
+//            $socket->send(json_encode($data));
+//        }
 
         return $this->render('session/play.html.twig', [
             'session' => $response->getSession()
@@ -265,10 +282,6 @@ class SessionController extends AbstractController
             return $this->redirectToAction('Profile:create');
         }
 
-        if(empty($this->getUser()->getCurrentSession())) {
-            return $this->redirectToAction('Session:index');
-        }
-
         $request = new LeaveRequest();
         $request->setChannel($channel);
         $request->setUser($this->getUser());
@@ -288,7 +301,7 @@ class SessionController extends AbstractController
     }
 
     /**
-     * Session players list action
+     * Players list action
      * Route: /session/players/{channel}
      *
      * @param string $channel
@@ -306,15 +319,22 @@ class SessionController extends AbstractController
         $service = $this->getContainer()->get('session.get_players');
         $response = $service->process($request);
 
+
         if(!empty($response->getPlayers())){
             $template = $this->render('session/_players.html.twig', [
                 'players' => $response->getPlayers()
             ], true);
 
-            $this->getDriver('eventSource')->send(json_encode($template));
+            $this->getDriver('eventSource')->players->send(json_encode($template));
             $this->getDriver('eventSource')->playersCount->send(json_encode(count($response->getPlayers())));
         }
 
+//        return [
+//            'playersList' => $this->render('session/_players.html.twig', [
+//                'players' => $response->getPlayers()
+//            ], true),
+//            'playersCount' => count($response->getPlayers())
+//        ];
         return $this->getResponse();
     }
 

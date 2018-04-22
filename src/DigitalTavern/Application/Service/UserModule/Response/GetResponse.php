@@ -1,31 +1,36 @@
 <?php
 
-namespace DigitalTavern\Application\Service\SessionModule\Response;
+namespace DigitalTavern\Application\Service\UserModule\Response;
 
 use DigitalTavern\Domain\Entity\User;
 use Yggdrasil\Core\Service\ServiceResponseInterface;
 
-class ChannelCheckResponse implements ServiceResponseInterface
+/**
+ * Class GetResponse
+ *
+ * @package DigitalTavern\Application\Service\UserModule\Response
+ */
+class GetResponse implements ServiceResponseInterface
 {
     /**
-     * Updated instance of user
+     * User instance
      *
      * @var User
      */
     private $user;
 
     /**
-     * Returns updated user
+     * Returns user
      *
-     * @return null|User
+     * @return User
      */
-    public function getUser()
+    public function getUser(): User
     {
         return $this->user;
     }
 
     /**
-     * Sets updated user
+     * Sets user
      *
      * @param User $user
      */

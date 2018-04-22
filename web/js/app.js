@@ -9,17 +9,21 @@ $(document).ready(function () {
 
     $(document).on('pjax:send', function () {
         NProgress.start();
+
+        if(wsConn instanceof autobahn){
+            wsConn = null;
+        }
     });
 
     $(document).on('pjax:end', function () {
         NProgress.done();
     });
 
-    loadGlobalActions()
+    loadGlobalActions();
 });
 
 $(document).on('pjax:end', function () {
-    loadGlobalActions()
+    loadGlobalActions();
 });
 
 function loadGlobalActions() {

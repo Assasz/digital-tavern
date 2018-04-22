@@ -13,9 +13,9 @@
         {% endfor %}
         <img id="image_preview" class="img-fluid" src="{{ asset('images/default-session-image.jpeg') }}" alt="Session image">
         <div class="row">
-            <form id="session_form" class="col-lg-6 col-md-8 mt-4" method="post" action="{{ path('Session:create') }}" data-pjax>
+            <form id="session_form" class="col-lg-6 col-md-8 mt-4 mx-auto" method="post" action="{{ path('Session:create') }}" data-pjax>
                 <fieldset>
-                    <legend>Let's start a new adventure!</legend>
+                    <legend class="text-center">Let's start a new adventure!</legend>
                     <div class="form-group mt-4">
                         <label for="image" class="file-label">Upload image</label>
                         <input type="file" class="custom-file-input" id="image" name="image" aria-describedby="image_help">

@@ -2,14 +2,19 @@
 
 namespace DigitalTavern\Ports\Command;
 
+use DigitalTavern\Ports\Socket\ChatSocket;
 use League\Container\Container;
+use Ratchet\App;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use React\EventLoop\Factory;
+use React\ZMQ\Context;
+use React\Socket\Server;
 use Ratchet\Server\IoServer;
 use Ratchet\Http\HttpServer;
 use Ratchet\WebSocket\WsServer;
-use DigitalTavern\Ports\Socket\ChatSocket;
+use Ratchet\Wamp\WampServer;
 
 /**
  * Class WebsocketCommand
@@ -60,15 +65,9 @@ class WebsocketCommand extends Command
     {
         $output->write('Server is running!');
 
-        $server = IoServer::factory(
-            new HttpServer(
-                new WsServer(
-                    new ChatSocket($this->container)
-                )
-            ),
-            8888
-        );
+        $app = new App("localhost", 8888);
+        $app->route('/session', new ChatSocket($this->container), array('*'));
 
-        $server->run();
+        $app->run();
     }
 }

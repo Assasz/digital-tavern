@@ -19,9 +19,11 @@
             </span>
         </h1>
         <div class="row">
-            <div class="col-md-8 session-chat"></div>
+            <div class="col-md-8 session-chat">
+                <textarea id="test" name="test" rows="5" class="form-control"></textarea>
+            </div>
             <div class="col-md-4 session-players">
-                <a href="{{ path('Session:leave', {'channel': session.channel}) }}" class="btn btn-primary btn-block mb-2" role="button">
+                <a href="{{ path('Session:leave', {'channel': session.channel}) }}" class="btn btn-primary btn-block mb-2" role="button" data-action="quit-session">
                     {% if is_gm %}
                         End session
                     {% else %}
@@ -60,7 +62,11 @@
 
 {% block js %}
     <script>
-        var playersRoute = '{{ path('Session:players', {'channe':session.channel}) }}';
+        var playersRoute = '{{ path('Session:players', {'channel':session.channel}) }}',
+            user = '{{ _user.id }}',
+            channel = '{{ session.channel }}';
     </script>
+    <script src="{{ asset('js/autobahn.min.js') }}"></script>
+    <script src="{{ asset('js/reconnecting-eventsource.js') }}"></script>
     <script src="{{ asset('js/app.session-play.js') }}"></script>
 {% endblock %}

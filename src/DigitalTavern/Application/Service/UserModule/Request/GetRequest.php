@@ -1,15 +1,15 @@
 <?php
 
-namespace DigitalTavern\Application\Service\SessionModule\Request;
+namespace DigitalTavern\Application\Service\UserModule\Request;
 
 use Yggdrasil\Core\Service\ServiceRequestInterface;
 
 /**
- * Class ChannelCheckRequest
+ * Class GetRequest
  *
- * @package DigitalTavern\Application\Service\SessionModule\Request
+ * @package DigitalTavern\Application\Service\UserModule\Request
  */
-class ChannelCheckRequest implements ServiceRequestInterface
+class GetRequest implements ServiceRequestInterface
 {
     /**
      * User ID

@@ -23,6 +23,9 @@
     "cboden/ratchet": "^0.4.1",
     "twig/extensions": "^1.5",
     "symfony/expression-language": "^4.0",
-    "hoa/eventsource": "3.17.01.10"
+    "hoa/eventsource": "3.17.01.10",
+    "evenement/evenement": "2.0",
+    "react/event-loop": "0.4",
+    "react/zmq": "^0.3.0"
   }
 }
