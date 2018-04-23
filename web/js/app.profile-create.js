@@ -1,12 +1,4 @@
 $(document).ready(function () {
-    loadProfileCreateActions();
-});
-
-$(document).on('pjax:end', function () {
-    loadProfileCreateActions();
-});
-
-function loadProfileCreateActions() {
     var width, height;
 
     $.validator.addMethod('imageSize', function (value, element) {
@@ -108,4 +100,4 @@ function loadProfileCreateActions() {
                 ['Maximize']
             ],
     });
-}
+});

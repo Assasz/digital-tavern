@@ -1,12 +1,4 @@
 $(document).ready(function () {
-    loadSessionCreateActions();
-});
-
-$(document).on('pjax:end', function () {
-    loadSessionCreateActions();
-});
-
-function loadSessionCreateActions() {
     $('[data-action="show-password"]').click(function () {
         if($('#password').attr('type') == 'password'){
             $('#password').attr('type', 'text');
@@ -129,4 +121,4 @@ function loadSessionCreateActions() {
             reader.readAsDataURL($(this).prop('files')[0]);
         }
     });
-}
+});

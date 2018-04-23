@@ -56,13 +56,7 @@ class ChatSocket implements WampServerInterface
         $msg = json_decode($event, true);
         $feedback = null;
 
-        $request = new GetRequest();
-        $request->setUserId($msg['user']);
-
-        $service = $this->container->get('user.get');
-        $response = $service->process($request);
-
-        $user = $response->getUser();
+        $user = $this->getUser($msg['user']);
 
         switch ($msg['event']){
             case 'join':
@@ -159,5 +153,22 @@ class ChatSocket implements WampServerInterface
     public function onError(Conn $conn, \Exception $e)
     {
         echo 'Error: '.$e->getMessage();
+    }
+
+    /**
+     * Gets user
+     *
+     * @param int $userId
+     * @return mixed
+     */
+    private function getUser(int $userId)
+    {
+        $request = new GetRequest();
+        $request->setUserId($userId);
+
+        $service = $this->container->get('user.get');
+        $response = $service->process($request);
+
+        return $response->getUser();
     }
 }

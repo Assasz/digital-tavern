@@ -8,13 +8,6 @@ use Ratchet\App;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use React\EventLoop\Factory;
-use React\ZMQ\Context;
-use React\Socket\Server;
-use Ratchet\Server\IoServer;
-use Ratchet\Http\HttpServer;
-use Ratchet\WebSocket\WsServer;
-use Ratchet\Wamp\WampServer;
 
 /**
  * Class WebsocketCommand

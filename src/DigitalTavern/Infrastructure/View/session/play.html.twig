@@ -58,11 +58,27 @@
         <img src="{{ asset(session.imagePath|default('images/default-session-image.jpeg')) }}" class="img-fluid" alt="{{ session.name }}">
         <p class="mt-4">{{ session.backstory|nl2br }}</p>
     </section>
+
+    <div id="leave_modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Session has come to end</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Game Master has ended this session. You can leave now.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="{{ path('Session:leave', {'channel': session.channel}) }}" class="btn btn-primary" role="button">Leave</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block js %}
     <script>
-        var playersRoute = '{{ path('Session:players', {'channel':session.channel}) }}',
+        var streamRoute = '{{ path('Session:stream', {'channel':session.channel}) }}',
             user = '{{ _user.id }}',
             channel = '{{ session.channel }}';
     </script>

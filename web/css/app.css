@@ -231,4 +231,9 @@ input::-webkit-inner-spin-button {
   border-color: #26262E;
   border-radius: 2px; }
 
+.modal {
+  border-radius: 2px; }
+  .modal h5, .modal p {
+    color: #26262E; }
+
 /*# sourceMappingURL=app.css.map */

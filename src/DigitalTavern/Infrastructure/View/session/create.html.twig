@@ -13,7 +13,7 @@
         {% endfor %}
         <img id="image_preview" class="img-fluid" src="{{ asset('images/default-session-image.jpeg') }}" alt="Session image">
         <div class="row">
-            <form id="session_form" class="col-lg-6 col-md-8 mt-4 mx-auto" method="post" action="{{ path('Session:create') }}" data-pjax>
+            <form id="session_form" class="col-lg-6 col-md-8 mt-4 mx-auto" method="post" action="{{ path('Session:create') }}" enctype="multipart/form-data">
                 <fieldset>
                     <legend class="text-center">Let's start a new adventure!</legend>
                     <div class="form-group mt-4">
@@ -23,7 +23,7 @@
                     </div>
                     <div class="form-group mt-4">
                         <label for="name" class="floating-label">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" aria-describedby="name_help" autofocus readonly>
+                        <input type="text" class="form-control" id="name" name="name" aria-describedby="name_help" readonly>
                         <small id="name_help" class="form-text text-muted">Name of session. Keep it climatic!</small>
                     </div>
                     <div class="form-group mt-4">

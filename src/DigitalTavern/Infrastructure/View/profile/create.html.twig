@@ -6,7 +6,7 @@
     <div class="container mb-5">
         <h1 class="text-center">Welcome in <span class="brand-name">{{ _appname }}</span> traveler!</h1>
         <div class="row">
-            <form id="profile_form" class="col-md-6 mx-auto" method="post" action="{{ path('Profile:create') }}" data-pjax>
+            <form id="profile_form" class="col-md-6 mx-auto" method="post" action="{{ path('Profile:create') }}" enctype="multipart/form-data">
                 <fieldset>
                     <legend class="text-center">Let's setup your role-playing profile.</legend>
 

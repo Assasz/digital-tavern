@@ -1,12 +1,4 @@
 $(document).ready(function () {
-    loadIndexActions();
-});
-
-$(document).on('pjax:end', function () {
-    loadIndexActions();
-});
-
-function loadIndexActions() {
     $('[data-action="show-password"]').click(function () {
         if($('#password').attr('type') == 'password'){
             $('#password').attr('type', 'text');
@@ -61,4 +53,4 @@ function loadIndexActions() {
             error.appendTo( element.parent() );
         }
     });
-}
+});

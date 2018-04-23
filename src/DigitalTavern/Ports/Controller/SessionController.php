@@ -7,6 +7,7 @@ use DigitalTavern\Application\Service\SessionModule\Request\CreateRequest;
 use DigitalTavern\Application\Service\SessionModule\Request\GetCurrentRequest;
 use DigitalTavern\Application\Service\SessionModule\Request\GetPlayersRequest;
 use DigitalTavern\Application\Service\SessionModule\Request\GetPublicRequest;
+use DigitalTavern\Application\Service\SessionModule\Request\GetRequest;
 use DigitalTavern\Application\Service\SessionModule\Request\JoinRequest;
 use DigitalTavern\Application\Service\SessionModule\Request\LeaveRequest;
 use DigitalTavern\Application\Service\SessionModule\Request\SearchRequest;
@@ -141,6 +142,7 @@ class SessionController extends AbstractController
 
         $request = new CreateRequest();
         $request = $form->serializeData($request);
+
         $request->setHostId($this->getUser()->getId());
 
         $service = $this->getContainer()->get('session.create');
@@ -244,22 +246,6 @@ class SessionController extends AbstractController
             $session->set('current_channel', $channel);
         }
 
-//        $result = $this->playersPartialAction($channel);
-//
-//        if(!empty($result)){
-//            $context = new \ZMQContext();
-//            $socket = $context->getSocket(\ZMQ::SOCKET_PUSH, 'pusher');
-//            $socket->connect("tcp://localhost:5555");
-//
-//            $data = [
-//                'playersList' => $result['playersList'],
-//                'playersCount' => $result['playersCount'],
-//                'channel' => $channel
-//            ];
-//
-//            $socket->send(json_encode($data));
-//        }
-
         return $this->render('session/play.html.twig', [
             'session' => $response->getSession()
         ]);
@@ -301,8 +287,8 @@ class SessionController extends AbstractController
     }
 
     /**
-     * Players list action
-     * Route: /session/players/{channel}
+     * Session stream action for Event Source
+     * Route: /session/stream/{channel}
      *
      * @param string $channel
      * @return Response
@@ -311,30 +297,34 @@ class SessionController extends AbstractController
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function playersAction(string $channel)
+    public function streamAction(string $channel)
     {
-        $request = new GetPlayersRequest();
-        $request->setChannel($channel);
+        $playersRequest = new GetPlayersRequest();
+        $playersRequest->setChannel($channel);
 
-        $service = $this->getContainer()->get('session.get_players');
-        $response = $service->process($request);
+        $playersService = $this->getContainer()->get('session.get_players');
+        $playersResponse = $playersService->process($playersRequest);
 
 
-        if(!empty($response->getPlayers())){
+        if(!empty($playersResponse->getPlayers())){
             $template = $this->render('session/_players.html.twig', [
-                'players' => $response->getPlayers()
+                'players' => $playersResponse->getPlayers()
             ], true);
 
             $this->getDriver('eventSource')->players->send(json_encode($template));
-            $this->getDriver('eventSource')->playersCount->send(json_encode(count($response->getPlayers())));
+            $this->getDriver('eventSource')->playersCount->send(json_encode(count($playersResponse->getPlayers())));
         }
 
-//        return [
-//            'playersList' => $this->render('session/_players.html.twig', [
-//                'players' => $response->getPlayers()
-//            ], true),
-//            'playersCount' => count($response->getPlayers())
-//        ];
+        $sessionRequest = new GetRequest();
+        $sessionRequest->setChannel($channel);
+
+        $sessionService = $this->getContainer()->get('session.get');
+        $sessionResponse = $sessionService->process($sessionRequest);
+
+        if(empty($sessionResponse->getSession())){
+            $this->getDriver('eventSource')->end->send(json_encode(true));
+        }
+
         return $this->getResponse();
     }
 

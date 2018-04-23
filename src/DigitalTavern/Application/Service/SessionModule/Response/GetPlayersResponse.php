@@ -14,16 +14,16 @@ class GetPlayersResponse implements ServiceResponseInterface
     /**
      * Session players
      * 
-     * @var array $players
+     * @var null|array $players
      */
     private $players;
 
     /**
      * Returns session players
      * 
-     * @return array
+     * @return null|array
      */
-    public function getPlayers(): array
+    public function getPlayers(): ?array
     {
         return $this->players;
     }
