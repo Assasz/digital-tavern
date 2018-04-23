@@ -1,11 +1,11 @@
 $(document).ready(function () {
     function onSessionOpen(session) {
-        // var data = {
-        //     user: user,
-        //     event: 'join'
-        // };
-        //
-        // session.publish(channel, JSON.stringify(data));
+        var data = {
+            user: user,
+            event: 'join'
+        };
+
+        session.publish(channel, JSON.stringify(data));
 
         session.subscribe(channel, function (topic, event) {
             if (event.msg.length > 0) {
@@ -37,12 +37,12 @@ $(document).ready(function () {
         });
 
         $(document).on('click', '[data-action="quit-session"]', function (e) {
-            // var data = {
-            //     user: user,
-            //     event: 'quit'
-            // };
-            //
-            // session.publish(channel, JSON.stringify(data));
+            var data = {
+                user: user,
+                event: 'quit'
+            };
+
+            session.publish(channel, JSON.stringify(data));
         });
     }
 

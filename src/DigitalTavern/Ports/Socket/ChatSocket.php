@@ -73,7 +73,7 @@ class ChatSocket implements WampServerInterface
                 if(!empty($user) && $this->clients->contains($user)){
                     $this->clients->detach($user);
                     $feedback = [
-                        'msg' => ($user->getCurrentSession()->getHost() == $user || $user->getRole() == 'super game master') ? $user->getProfile()->getIgn().' has ended session. You can leave now.' : $user->getProfile()->getIgn().' has left session.',
+                        'msg' => $user->getProfile()->getIgn().' has left session.',
                         'type' => 'sessionNotification'
                     ];
                 }

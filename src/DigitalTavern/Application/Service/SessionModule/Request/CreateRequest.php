@@ -2,7 +2,6 @@
 
 namespace DigitalTavern\Application\Service\SessionModule\Request;
 
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Yggdrasil\Core\Service\ServiceRequestInterface;
 
@@ -60,7 +59,7 @@ class CreateRequest implements ServiceRequestInterface
     /**
      * Session image file
      *
-     * @var UploadedFile $image
+     * @var null|UploadedFile $image
      */
     private $image;
 
@@ -214,9 +213,9 @@ class CreateRequest implements ServiceRequestInterface
     /**
      * Returns session image file
      *
-     * @return null|File
+     * @return null|UploadedFile
      */
-    public function getImage()
+    public function getImage(): ?UploadedFile
     {
         return $this->image;
     }
@@ -226,7 +225,7 @@ class CreateRequest implements ServiceRequestInterface
      *
      * @param null|UploadedFile $image
      */
-    public function setImage(UploadedFile $image): void
+    public function setImage(?UploadedFile $image): void
     {
         $this->image = $image;
     }
