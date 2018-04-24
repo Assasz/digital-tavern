@@ -20,7 +20,42 @@
         </h1>
         <div class="row">
             <div class="col-md-8 session-chat">
-                <textarea id="test" name="test" rows="5" class="form-control"></textarea>
+                <ul id="message_container" class="message-container list-group d-flex flex-column-reverse scrollbar-macosx">
+                    <li class="list-group-item mt-2 d-flex">
+                        <span class="fa fa-fw fa-bell mr-3 notification-icon" aria-hidden="true"></span>
+                        <span class="offscreen">Session notification</span>
+                        <div class="message-body">
+                            <p>
+                                Session has just started!
+                            </p>
+                            <small class="text-muted mt-2">{{ 'now - 1 day'|date|time_diff }}</small>
+                        </div>
+                    </li>
+                    <li class="list-group-item mt-2 d-flex">
+                        <img src="{{ asset('uploads/f15e67dc041c78179efcbc6f42066206.jpeg') }}" alt="" class="rounded-circle mr-3" width="40" height="40">
+                        <div class="message-body">
+                            <p>
+                                {{ '[do]Wchodzi do karczmy dziarskim krokiem.[/do]
+                                Witam waszmościów! Karczmarz, piwa dla wszystkich!
+                                [do]Woła zmierzając ku ladzie.[/do]'|format_message|nl2br }}
+                            </p>
+                            <small class="text-muted mt-2">Assasz Rack Shan {{ 'now - 1 day'|date|time_diff }}</small>
+                        </div>
+                    </li>
+                </ul>
+                <form id="session_message" class="mt-4" method="post">
+                    <div class="input-group">
+                        <label class="floating-label" for="message">Message</label>
+                        <textarea id="message" name="message" rows="3" class="form-control" aria-describedby="message_help"></textarea>
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary px-4" data-toggle="tooltip" data-placement="bottom" title="Send message" data-original-title="Send message">
+                                <span class="fa fa-fw fa-paper-plane" aria-hidden="true"></span>
+                                <span class="offscreen">Send</span>
+                            </button>
+                        </div>
+                    </div>
+                    <small id="message_help" class="form-text text-muted">Typical message consist of description what your character is doing and saying. Place "doing" part between [do] and [/do] tags, to keep it distinguishable.</small>
+                </form>
             </div>
             <div class="col-md-4 session-players">
                 <a href="{{ path('Session:leave', {'channel': session.channel}) }}" class="btn btn-primary btn-block mb-2" role="button" data-action="quit-session">
@@ -80,6 +115,7 @@
     <script>
         var streamRoute = '{{ path('Session:stream', {'channel':session.channel}) }}',
             user = '{{ _user.id }}',
+            isGm = '{{ (_user.id == session.host.id or _user.role == 'super game master') }}',
             channel = '{{ session.channel }}';
     </script>
     <script src="{{ asset('js/autobahn.min.js') }}"></script>

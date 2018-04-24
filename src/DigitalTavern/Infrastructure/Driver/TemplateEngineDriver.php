@@ -56,6 +56,12 @@ class TemplateEngineDriver implements DriverInterface
             $twig->addExtension(new StandardExtension());
             $twig->addExtension(new RoutingExtension($appConfiguration->loadDriver('router')));
             $twig->addExtension(new \Twig_Extensions_Extension_Date());
+            $twig->addFilter(new \Twig_Filter('format_message', function ($string) {
+                $string = str_replace('[do]', '<span class="text-muted">', $string);
+                $string = str_replace('[/do]', '</span>', $string);
+
+                return $string;
+            }, ['pre_escape' => 'html', 'is_safe' => ['html']]));
 
             $twig->addGlobal('_appname', $configuration['application']['application_name']);
 

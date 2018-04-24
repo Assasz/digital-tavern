@@ -9,13 +9,13 @@ use Ratchet\Wamp\WampServerInterface;
 use Ratchet\Wamp\Topic;
 
 /**
- * Class ChatSocket
+ * Class SessionSocket
  *
- * Manages chat socket events
+ * Manages session socket events
  *
  * @package DigitalTavern\Ports\Socket
  */
-class ChatSocket implements WampServerInterface
+class SessionSocket implements WampServerInterface
 {
     /**
      * Service container
@@ -32,7 +32,7 @@ class ChatSocket implements WampServerInterface
     private $clients;
 
     /**
-     * ChatSocket constructor.
+     * SessionSocket constructor.
      *
      * @param Container $container
      */

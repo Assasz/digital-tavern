@@ -2,7 +2,7 @@
 
 namespace DigitalTavern\Ports\Command;
 
-use DigitalTavern\Ports\Socket\ChatSocket;
+use DigitalTavern\Ports\Socket\SessionSocket;
 use League\Container\Container;
 use Ratchet\App;
 use Symfony\Component\Console\Command\Command;
@@ -59,7 +59,7 @@ class WebsocketCommand extends Command
         $output->write('Server is running!');
 
         $app = new App("localhost", 8888);
-        $app->route('/session', new ChatSocket($this->container), array('*'));
+        $app->route('/session', new SessionSocket($this->container), array('*'));
 
         $app->run();
     }

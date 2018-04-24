@@ -8,10 +8,25 @@
   white-space: nowrap;
   width: 1px; }
 
-.list-group-item {
-  background-color: $dark;
-  border-color: $dark;
-  border-radius: 2px; }
+.list-group {
+  overflow-y: auto;
+
+  .list-group-item {
+    background-color: $dark;
+    border-color: $dark;
+    border-radius: 2px;
+    flex-shrink: 0;
+
+    &:first-child, &:last-child {
+     border-radius: 2px; }}
+
+  p {
+    font-weight: normal;
+    color: $primary; }
+
+  .active {
+    background-color: $dark;
+    border-color: $red; }}
 
 .modal {
   border-radius: 2px;

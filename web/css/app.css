@@ -82,32 +82,32 @@ body {
     letter-spacing: .2em;
     font-family: 'Orbitron', sans-serif; }
 
-.form-group {
+.form-group, .input-group {
   position: relative; }
-  .form-group .form-control {
+  .form-group .form-control, .input-group .form-control {
     background-color: transparent;
     border: 1.5px solid transparent;
     border-radius: 2px;
     border-bottom: 1.5px solid #D9230F;
     transition: all .3s ease;
     color: #FCFCFC; }
-    .form-group .form-control:focus {
+    .form-group .form-control:focus, .input-group .form-control:focus {
       border: 1.5px solid #D9230F; }
-  .form-group .form-control.is-invalid {
+  .form-group .form-control.is-invalid, .input-group .form-control.is-invalid {
     border-bottom: 1.5px solid #D9831F; }
-    .form-group .form-control.is-invalid:focus {
+    .form-group .form-control.is-invalid:focus, .input-group .form-control.is-invalid:focus {
       border: 1.5px solid #D9831F; }
-  .form-group .form-control.is-valid {
+  .form-group .form-control.is-valid, .input-group .form-control.is-valid {
     border-bottom: 1.5px solid #469408; }
-    .form-group .form-control.is-valid:focus {
+    .form-group .form-control.is-valid:focus, .input-group .form-control.is-valid:focus {
       border: 1.5px solid #469408; }
-  .form-group .floating-label {
+  .form-group .floating-label, .input-group .floating-label {
     position: absolute;
     top: 8px;
     left: 15px;
     transition: all .3s ease;
     cursor: text; }
-  .form-group .file-label {
+  .form-group .file-label, .input-group .file-label {
     width: 100%;
     height: calc(1.96875rem + 2px);
     border-bottom: 1.5px solid #D9230F;
@@ -116,22 +116,22 @@ body {
     overflow: hidden;
     transition: all .3s ease;
     position: absolute; }
-  .form-group .file-label.is-invalid {
+  .form-group .file-label.is-invalid, .input-group .file-label.is-invalid {
     border-bottom: 1.5px solid #D9831F; }
-  .form-group .file-label.is-valid {
+  .form-group .file-label.is-valid, .input-group .file-label.is-valid {
     border-bottom: 1.5px solid #469408; }
-  .form-group .custom-file-input {
+  .form-group .custom-file-input, .input-group .custom-file-input {
     cursor: pointer; }
-  .form-group .float {
+  .form-group .float, .input-group .float {
     top: -19px;
     left: 2px;
     font-size: 12px; }
-  .form-group div.is-invalid {
+  .form-group div.is-invalid, .input-group div.is-invalid {
     color: #D9831F;
     width: 100%;
     font-size: 80%;
     margin-top: 0.25rem; }
-  .form-group .input-addon {
+  .form-group .input-addon, .input-group .input-addon {
     position: absolute;
     top: 0;
     right: 0;
@@ -139,7 +139,7 @@ body {
     background-color: transparent;
     color: #FCFCFC;
     border: none; }
-    .form-group .input-addon:hover {
+    .form-group .input-addon:hover, .input-group .input-addon:hover {
       cursor: pointer; }
 
 .btn-primary:hover {
@@ -203,18 +203,19 @@ input::-webkit-inner-spin-button {
     display: block; }
 
 .session-chat {
+  display: flex;
+  flex-direction: column;
   height: 500px; }
+  .session-chat .message-container {
+    flex-grow: 2; }
+    .session-chat .message-container .notification-icon {
+      font-size: 1.25rem;
+      width: 40px; }
+    .session-chat .message-container .message-body {
+      flex-grow: 2; }
 
 .session-players {
   height: 500px; }
-  .session-players .list-group {
-    overflow-y: auto; }
-    .session-players .list-group p {
-      font-weight: normal;
-      color: #FCFCFC; }
-    .session-players .list-group .active {
-      background-color: #26262E;
-      border-color: #D9230F; }
 
 .offscreen {
   clip-path: inset(100%);
@@ -226,10 +227,21 @@ input::-webkit-inner-spin-button {
   white-space: nowrap;
   width: 1px; }
 
-.list-group-item {
-  background-color: #26262E;
-  border-color: #26262E;
-  border-radius: 2px; }
+.list-group {
+  overflow-y: auto; }
+  .list-group .list-group-item {
+    background-color: #26262E;
+    border-color: #26262E;
+    border-radius: 2px;
+    flex-shrink: 0; }
+    .list-group .list-group-item:first-child, .list-group .list-group-item:last-child {
+      border-radius: 2px; }
+  .list-group p {
+    font-weight: normal;
+    color: #FCFCFC; }
+  .list-group .active {
+    background-color: #26262E;
+    border-color: #D9230F; }
 
 .modal {
   border-radius: 2px; }

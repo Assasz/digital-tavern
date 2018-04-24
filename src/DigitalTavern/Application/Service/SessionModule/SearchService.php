@@ -26,10 +26,10 @@ class SearchService extends AbstractService implements ServiceInterface
         $repository = $this->getEntityManager()->getRepository('Entity:Session');
         $sessions = [];
 
-        if($request->getType() === 'public'){
-            $sessions = $repository->findPublicByQuery($request->getQuery(), $request->getOffset(), $request->getLimit());
-        } else {
-            if(!empty($request->getQuery())){
+        if(!empty($request->getQuery())) {
+            if ($request->getType() === 'public') {
+                $sessions = $repository->findPublicByQuery($request->getQuery(), $request->getOffset(), $request->getLimit());
+            } else {
                 $sessions = $repository->findPrivate($request->getQuery(), $request->getOffset(), $request->getLimit());
             }
         }

@@ -65,7 +65,7 @@ $(document).ready(function () {
     });
 
     esConn.addEventListener('end', function (e) {
-        if(active){
+        if(active && !isGm){
             $('#leave_modal').modal({
                 backdrop: 'static'
             });
