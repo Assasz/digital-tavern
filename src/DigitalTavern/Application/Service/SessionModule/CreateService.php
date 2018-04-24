@@ -5,6 +5,7 @@ namespace DigitalTavern\Application\Service\SessionModule;
 use DigitalTavern\Application\Service\SessionModule\Response\CreateResponse;
 use DigitalTavern\Application\Service\SharedModule\Request\FileUploadRequest;
 use DigitalTavern\Domain\Entity\Session;
+use DigitalTavern\Domain\Entity\SessionMessage;
 use Yggdrasil\Core\Service\AbstractService;
 use Yggdrasil\Core\Service\ServiceInterface;
 use Yggdrasil\Core\Service\ServiceRequestInterface;
@@ -71,10 +72,16 @@ class CreateService extends AbstractService implements ServiceInterface
 
             $host = $this->getEntityManager()->getRepository('Entity:User')->find($request->getHostId());
 
+            $message = new SessionMessage();
+            $message->setContent('Session has just started!');
+            $message->setSession($session);
+
             $session->setHost($host);
             $session->addPlayer($host);
+            $session->addMessage($message);
 
             $this->getEntityManager()->persist($session);
+            $this->getEntityManager()->persist($message);
             $this->getEntityManager()->flush();
         }
 

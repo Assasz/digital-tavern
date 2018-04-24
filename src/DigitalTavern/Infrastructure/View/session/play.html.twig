@@ -21,29 +21,11 @@
         <div class="row">
             <div class="col-md-8 session-chat">
                 <ul id="message_container" class="message-container list-group d-flex flex-column-reverse scrollbar-macosx">
-                    <li class="list-group-item mt-2 d-flex">
-                        <span class="fa fa-fw fa-bell mr-3 notification-icon" aria-hidden="true"></span>
-                        <span class="offscreen">Session notification</span>
-                        <div class="message-body">
-                            <p>
-                                Session has just started!
-                            </p>
-                            <small class="text-muted mt-2">{{ 'now - 1 day'|date|time_diff }}</small>
-                        </div>
-                    </li>
-                    <li class="list-group-item mt-2 d-flex">
-                        <img src="{{ asset('uploads/f15e67dc041c78179efcbc6f42066206.jpeg') }}" alt="" class="rounded-circle mr-3" width="40" height="40">
-                        <div class="message-body">
-                            <p>
-                                {{ '[do]Wchodzi do karczmy dziarskim krokiem.[/do]
-                                Witam waszmościów! Karczmarz, piwa dla wszystkich!
-                                [do]Woła zmierzając ku ladzie.[/do]'|format_message|nl2br }}
-                            </p>
-                            <small class="text-muted mt-2">Assasz Rack Shan {{ 'now - 1 day'|date|time_diff }}</small>
-                        </div>
-                    </li>
+                    {% for message in session.messages|reverse %}
+                        {{ include('session/_message.html.twig') }}
+                    {% endfor %}
                 </ul>
-                <form id="session_message" class="mt-4" method="post">
+                <form id="session_message_form" class="mt-4">
                     <div class="input-group">
                         <label class="floating-label" for="message">Message</label>
                         <textarea id="message" name="message" rows="3" class="form-control" aria-describedby="message_help"></textarea>
@@ -54,7 +36,7 @@
                             </button>
                         </div>
                     </div>
-                    <small id="message_help" class="form-text text-muted">Typical message consist of description what your character is doing and saying. Place "doing" part between [do] and [/do] tags, to keep it distinguishable.</small>
+                    <small id="message_help" class="form-text text-muted mb-4">Typical message consist of description what your character is doing and saying. Place "doing" part between [do] and [/do] tags, to keep it distinguishable.</small>
                 </form>
             </div>
             <div class="col-md-4 session-players">
@@ -67,22 +49,7 @@
                 </a>
                 <ul id="session_players" class="list-group scrollbar-macosx">
                     {% for player in session.players %}
-                        <a href="{{ path('Profile:index', {'userId': player.id}) }}">
-                            <li class="list-group-item mb-2 {% if player == _user %}active{% endif %}">
-                                <img src="{{ asset(player.profile.avatarPath|default('images/default-avatar.jpg')) }}" class="rounded-circle mr-3" alt="{{ player.profile.ign }}" width="40px">
-                                <p class="d-inline">
-                                    {{ player.profile.ign }}
-                                    {% if player.role is not null %}
-                                        <span class="badge badge-primary ml-3">{{ player.role|upper }}</span>
-                                    {% elseif player == session.host %}
-                                        <span class="badge badge-primary ml-3">{{ 'game master'|upper }}</span>
-                                    {% endif %}
-                                </p>
-                                {#{% if is_gm and player.role != 'super game master'%}#}
-                                    {#<span class="fa fa-fw fa-gavel float-right" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Punish player" data-original-title="Punish player"></span>#}
-                                {#{% endif %}#}
-                            </li>
-                        </a>
+                        {{ include('session/_player.html.twig') }}
                     {% endfor %}
                 </ul>
             </div>

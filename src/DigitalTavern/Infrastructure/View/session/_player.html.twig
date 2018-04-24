@@ -1,0 +1,16 @@
+<a href="{{ path('Profile:index', {'userId': player.id}) }}">
+    <li class="list-group-item mb-2 {% if player.id == _user.id %}active{% endif %}">
+        <img src="{{ asset(player.profile.avatarPath|default('images/default-avatar.jpg')) }}" class="rounded-circle mr-3" alt="{{ player.profile.ign }}" width="40px">
+        <p class="d-inline">
+            {{ player.profile.ign }}
+            {% if player.role is not null %}
+                <span class="badge badge-primary ml-3">{{ player.role|upper }}</span>
+            {% elseif player.currentSession.host == player %}
+                <span class="badge badge-primary ml-3">{{ 'game master'|upper }}</span>
+            {% endif %}
+        </p>
+        {#{% if is_gm and player.role != 'super game master'%}#}
+        {#<span class="fa fa-fw fa-gavel float-right" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Punish player" data-original-title="Punish player"></span>#}
+        {#{% endif %}#}
+    </li>
+</a>

@@ -93,6 +93,8 @@ body {
     color: #FCFCFC; }
     .form-group .form-control:focus, .input-group .form-control:focus {
       border: 1.5px solid #D9230F; }
+  .form-group textarea.form-control::-webkit-scrollbar, .input-group textarea.form-control::-webkit-scrollbar {
+    display: none; }
   .form-group .form-control.is-invalid, .input-group .form-control.is-invalid {
     border-bottom: 1.5px solid #D9831F; }
     .form-group .form-control.is-invalid:focus, .input-group .form-control.is-invalid:focus {
@@ -215,7 +217,7 @@ input::-webkit-inner-spin-button {
       flex-grow: 2; }
 
 .session-players {
-  height: 500px; }
+  max-height: 500px; }
 
 .offscreen {
   clip-path: inset(100%);

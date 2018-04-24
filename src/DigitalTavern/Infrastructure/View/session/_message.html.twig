@@ -1,0 +1,18 @@
+{% if message.user is null %}
+    <li class="list-group-item mt-2 d-flex">
+        <span class="fa fa-fw fa-bell mr-3 notification-icon" aria-hidden="true"></span>
+        <span class="offscreen">Session notification</span>
+        <div class="message-body">
+            <p>{{ message.content }}</p>
+            <small class="text-muted mt-2">{{ message.createDate|date|time_diff }}</small>
+        </div>
+    </li>
+{% else %}
+    <li class="list-group-item mt-2 d-flex">
+        <img src="{{ asset(message.user.profile.avatarPath|default('images/default-avatar.jpg')) }}" alt="{{ message.user.profile.ign }}" class="rounded-circle mr-3" width="40" height="40">
+        <div class="message-body">
+            <p>{{ message.content|format_message|nl2br }}</p>
+            <small class="text-muted mt-2">{{ message.user.profile.ign }} {{ message.createDate|date|time_diff }}</small>
+        </div>
+    </li>
+{% endif %}

@@ -32,11 +32,11 @@ class SessionMessage
     private $session;
 
     /**
-     * Session message author
+     * Session message author, empty if message is of notification type
      *
      * @ManyToOne(targetEntity="User")
-     * @JoinColumn(name="userId", referencedColumnName="id")
-     * @var User $user
+     * @JoinColumn(name="userId", referencedColumnName="id", nullable=true)
+     * @var null|User $user
      */
     private $user;
 
@@ -77,9 +77,9 @@ class SessionMessage
     /**
      * Return session message author
      *
-     * @return User
+     * @return null|User
      */
-    public function getUser(): User
+    public function getUser(): ?User
     {
         return $this->user;
     }

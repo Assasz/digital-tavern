@@ -394,9 +394,9 @@ class Session
     /**
      * Returns session messages
      *
-     * @return ArrayCollection
+     * @return Collection
      */
-    public function getMessages(): ArrayCollection
+    public function getMessages(): Collection
     {
         return $this->messages;
     }

@@ -37,6 +37,10 @@ class LeaveService extends AbstractService implements ServiceInterface
                     $player->setCurrentSession();
                 }
 
+                foreach ($session->getMessages()->toArray() as $message){
+                    $this->getEntityManager()->remove($message);
+                }
+
                 $this->getEntityManager()->remove($session);
             } else {
                 $session->removePlayer($user);

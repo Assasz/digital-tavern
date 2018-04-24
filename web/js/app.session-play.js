@@ -9,31 +9,24 @@ $(document).ready(function () {
 
         session.subscribe(channel, function (topic, event) {
             if (event.msg.length > 0) {
-                switch (event.type) {
-                    case 'sessionNotification':
-                        $('.session-chat').prepend('<p>' + event.msg + '</p>');
-                        break;
-                    default:
-                        $('.session-chat').prepend('<p>' + event.ign + ': ' + event.msg + '</p>');
-                        break;
-                }
+                $('#message_container').prepend(event.msg);
             }
         });
 
-        $(document).on('keyup', '#test', function (e) {
-            if(e.keyCode === 13){
-                e.preventDefault();
+        $(document).on('submit', '#session_message_form', function (e) {
+            e.preventDefault();
 
-                var data = {
-                    user: user,
-                    msg: $(this).val(),
-                    event: 'default'
-                };
+            var input = $('#message'),
+                data = {
+                user: user,
+                content: input.val(),
+                event: 'default'
+            };
 
-                session.publish(channel, JSON.stringify(data));
+            session.publish(channel, JSON.stringify(data));
 
-                $(this).val('');
-            }
+            input.val('').removeClass('is-valid').removeAttr('aria-invalid');
+            input.closest('label').removeClass('float');
         });
 
         $(document).on('click', '[data-action="quit-session"]', function (e) {
@@ -70,6 +63,25 @@ $(document).ready(function () {
                 backdrop: 'static'
             });
             active = false;
+        }
+    });
+
+    $("#session_message_form").validate({
+        rules: {
+            message: {
+                required: true,
+                maxlength: 2000,
+                normalizer: function(value) {
+                    return $.trim(value);
+                }
+            }
+        },
+        onkeyup: false,
+        errorClass: "is-invalid",
+        validClass: "is-valid",
+        errorElement: "div",
+        errorPlacement: function(error, element) {
+            error.appendTo( element.parent() );
         }
     });
 });

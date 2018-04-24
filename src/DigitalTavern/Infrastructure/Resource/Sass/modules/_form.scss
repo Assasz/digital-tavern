@@ -11,6 +11,10 @@
     &:focus {
       border: 1.5px solid $red; }}
 
+  textarea.form-control {
+    &::-webkit-scrollbar {
+      display: none; }}
+
   .form-control.is-invalid {
     border-bottom: 1.5px solid #D9831F;
     &:focus {
