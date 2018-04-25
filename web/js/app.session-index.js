@@ -13,4 +13,15 @@ $(document).ready(function () {
             }
         });
     });
+
+    $(document).on('click', '[data-action="join-private"]', function (e) {
+        e.preventDefault();
+
+        var modal = $('#join_private_modal');
+
+        modal.find('.modal-title').html('Join ' + $(this).data('name') + ' session');
+        modal.find('form').attr('action', $(this).data('path'));
+
+        modal.modal();
+    });
 });

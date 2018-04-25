@@ -1,3 +1,5 @@
+{% set token = csrf_token(true) %}
+
 <div class="row mt-4">
     <div class="col-md-6">
         <form id="session_search" action="{{ path('Session:search', {'type': 'private'}) }}">
@@ -6,7 +8,7 @@
                 <input type="text" class="form-control" id="search" name="search" aria-describedby="search_help" readonly>
                 <small id="search_help" class="form-text text-muted">You can search private sessions only by token.</small>
             </div>
-            {{ csrf_token() }}
+            <input type="hidden" name="csrf_token" value="{{ token }}">
         </form>
     </div>
     <div class="col-md-6">
@@ -18,5 +20,29 @@
 
     <div class="col-md-12">
         <p>To join private session you will need token and password.</p>
+    </div>
+</div>
+
+<div id="join_private_modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Provide password to join this session:</p>
+                <form id="join_private_form" action="" method="post">
+                    <div class="form-group mt-4">
+                        <label class="floating-label" for="password">Password</label>
+                        <input type="password" id="password" name="password" class="form-control">
+                    </div>
+                    <input type="hidden" name="csrf_token" value="{{ token }}">
+                    <button type="submit" class="btn btn-primary">Let me in</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>

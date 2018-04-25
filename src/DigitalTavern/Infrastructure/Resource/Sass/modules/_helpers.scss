@@ -28,8 +28,13 @@
     background-color: $dark;
     border-color: $red; }}
 
-.modal {
+.modal-content {
   border-radius: 2px;
+  border-color: $red;
+  background-color: $dark;
 
-  h5, p {
-    color: $dark; }}
+  .modal-header {
+    border-color: $secondary;
+
+    .close span {
+      color: $primary; }}}

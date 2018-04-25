@@ -196,13 +196,14 @@ class SessionController extends AbstractController
      * Route: /session/play/{channel}
      *
      * @param string $channel Session WebSocket channel
+     * @param string $type    Session type
      * @return mixed
      *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function playAction(string $channel)
+    public function playAction(string $channel, string $type = 'public')
     {
         if(!$this->isGranted()){
             return $this->redirectToAction('Home:index');
@@ -229,12 +230,26 @@ class SessionController extends AbstractController
         $request->setChannel($channel);
         $request->setUserId($this->getUser()->getId());
 
+        if($type === 'private'){
+            $form = new FormHandler();
+
+            if(!$form->handle($this->getRequest())){
+                return $this->redirectToAction('Session:index');
+            }
+
+            $request->setPassword($form->getData('password'));
+        }
+
         $service = $this->getContainer()->get('session.join');
         $response = $service->process($request);
 
         $session = new Session();
 
         if(!$response->isSuccess()){
+            if(!empty($response->getError())){
+                $session->getFlashBag()->set('warning', $response->getError());
+            }
+
             return $this->redirectToAction('Session:index');
         }
 

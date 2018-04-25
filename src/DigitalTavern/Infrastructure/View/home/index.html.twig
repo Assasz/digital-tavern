@@ -6,7 +6,7 @@
     <div class="homepage-bg"></div>
     <div class="row">
         <div class="col-lg-5 col-sm-8 mx-auto">
-            <div class="container homepage-box">
+            <section id="homepage" class="container homepage-box">
                 <h1 class="box-heading">{{ _appname }}</h1>
 
                 {% for msg in flashbag('success') %}
@@ -31,7 +31,7 @@
                 {% endfor %}
 
                 {{ partial(form) }}
-            </div>
+            </section>
         </div>
     </div>
 {% endblock %}

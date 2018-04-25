@@ -245,9 +245,13 @@ input::-webkit-inner-spin-button {
     background-color: #26262E;
     border-color: #D9230F; }
 
-.modal {
-  border-radius: 2px; }
-  .modal h5, .modal p {
-    color: #26262E; }
+.modal-content {
+  border-radius: 2px;
+  border-color: #D9230F;
+  background-color: #26262E; }
+  .modal-content .modal-header {
+    border-color: #363A43; }
+    .modal-content .modal-header .close span {
+      color: #FCFCFC; }
 
 /*# sourceMappingURL=app.css.map */

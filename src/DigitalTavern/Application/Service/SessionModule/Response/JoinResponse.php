@@ -35,6 +35,13 @@ class JoinResponse implements ServiceResponseInterface
     private $user;
 
     /**
+     * Error message
+     *
+     * @var null|string
+     */
+    private $error;
+
+    /**
      * JoinResponse constructor.
      *
      * Sets $success default value
@@ -102,5 +109,25 @@ class JoinResponse implements ServiceResponseInterface
     public function setUser(User $user): void
     {
         $this->user = $user;
+    }
+
+    /**
+     * Returns error message
+     *
+     * @return null|string
+     */
+    public function getError(): ?string
+    {
+        return $this->error;
+    }
+
+    /**
+     * Sets error message
+     *
+     * @param string $error
+     */
+    public function setError(string $error): void
+    {
+        $this->error = $error;
     }
 }

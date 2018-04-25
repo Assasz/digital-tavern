@@ -31,20 +31,30 @@ class JoinService extends AbstractService implements ServiceInterface
         $response = new JoinResponse();
 
         if(!empty($session)){
-            if(empty($session->getPlayersLimit()) || (count($session->getPlayers()->toArray()) < $session->getPlayersLimit())){
-                $user = $this->getEntityManager()->getRepository('Entity:User')->find($request->getUserId());
-
-                if(!$session->getPlayers()->contains($user)){
-                    $session->addPlayer($user);
-                }
-
-                $user->setCurrentSession($session);
-                $this->getEntityManager()->flush();
-
-                $response->setSuccess(true);
-                $response->setSession($session);
-                $response->setUser($user);
+            if(!empty($session->getPlayersLimit()) && count($session->getPlayers()->toArray()) >= $session->getPlayersLimit()){
+                $response->setError('Session is full at this moment. Try later.');
+                return $response;
             }
+
+            if(!empty($request->getPassword())){
+                if(!password_verify($request->getPassword(), $session->getPassword())){
+                    $response->setError('Wrong session password.');
+                    return $response;
+                }
+            }
+
+            $user = $this->getEntityManager()->getRepository('Entity:User')->find($request->getUserId());
+
+            if(!$session->getPlayers()->contains($user)){
+                $session->addPlayer($user);
+            }
+
+            $user->setCurrentSession($session);
+            $this->getEntityManager()->flush();
+
+            $response->setSuccess(true);
+            $response->setSession($session);
+            $response->setUser($user);
         }
 
         return $response;

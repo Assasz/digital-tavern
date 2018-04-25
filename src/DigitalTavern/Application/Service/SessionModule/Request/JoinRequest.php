@@ -26,6 +26,13 @@ class JoinRequest implements ServiceRequestInterface
     private $userId;
 
     /**
+     * Session password, empty if session is public
+     *
+     * @var null|string
+     */
+    private $password;
+
+    /**
      * Returns session channel
      *
      * @return string
@@ -63,5 +70,25 @@ class JoinRequest implements ServiceRequestInterface
     public function setUserId(int $userId): void
     {
         $this->userId = $userId;
+    }
+
+    /**
+     * Returns session password
+     *
+     * @return null|string
+     */
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    /**
+     * Sets session password
+     *
+     * @param null|string $password
+     */
+    public function setPassword(?string $password): void
+    {
+        $this->password = $password;
     }
 }

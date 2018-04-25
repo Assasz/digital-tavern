@@ -16,10 +16,17 @@
                 <p class="card-text" {% if session.description|length > 150 %}data-toggle="tooltip" data-placement="bottom" title="{{ session.description }}" data-original-title="{{ session.description }}"{% endif %}>
                     {{ (session.description|length > 150) ? session.description|slice(0, 150) ~ '...' : session.description }}
                 </p>
-                <a href="{{ path('Session:play', {'channel': session.channel}) }}" class="btn btn-primary mt-2" role="button">
-                    <span class="fa fa-fw fa-play" aria-hidden="true"></span>
-                    Join
-                </a>
+                {% if session.password is null %}
+                    <a href="{{ path('Session:play', {'channel': session.channel}) }}" class="btn btn-primary mt-2" role="button">
+                        <span class="fa fa-fw fa-play" aria-hidden="true"></span>
+                        Join
+                    </a>
+                {% else %}
+                    <a href="#" class="btn btn-primary mt-2" role="button" data-action="join-private" data-path="{{ path('Session:play', {'channel': session.channel, 'type': 'private'}) }}" data-name="{{ session.name }}">
+                        <span class="fa fa-fw fa-play" aria-hidden="true"></span>
+                        Join
+                    </a>
+                {% endif %}
                 <span class="float-right pt-3">
                         <span class="fa fa-fw fa-users" aria-hidden="true"></span>
                         <span class="offscreen">Players</span>
