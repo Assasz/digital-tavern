@@ -3,7 +3,9 @@
 namespace DigitalTavern\Ports\Controller;
 
 use DigitalTavern\Application\Service\UserModule\Request\EmailCheckRequest;
+use DigitalTavern\Application\Service\UserModule\Request\GetAvailableRequest;
 use DigitalTavern\Application\Service\UserModule\Request\RememberedAuthRequest;
+use DigitalTavern\Application\Service\UserModule\Request\SearchRequest;
 use DigitalTavern\Application\Service\UserModule\Request\SignupConfirmationRequest;
 use DigitalTavern\Application\Service\UserModule\Request\SignupRequest;
 use DigitalTavern\Application\Service\UserModule\Request\AuthRequest;
@@ -237,5 +239,66 @@ class UserController extends AbstractController
         }
 
         return $this->getResponse();
+    }
+
+    /**
+     * User lobby action
+     * Route: /user/lobby
+     *
+     * @return string|RedirectResponse|Response
+     *
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
+    public function lobbyAction()
+    {
+        if(!$this->isGranted()){
+            return $this->redirectToAction('Home:index');
+        }
+
+        if(empty($this->getUser()->getProfile())){
+            return $this->redirectToAction('Profile:create');
+        }
+
+        $request = new GetAvailableRequest();
+
+        $service = $this->getContainer()->get('user.get_available');
+        $response = $service->process($request);
+
+        return $this->render('user/lobby.html.twig', [
+            'users' => $response->getUsers()
+        ]);
+    }
+
+    /**
+     * User search action
+     * Route: /user/search
+     *
+     * @return JsonResponse|Response
+     *
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
+    public function searchAction()
+    {
+        $form = new FormHandler();
+
+        if(!$this->getRequest()->isXmlHttpRequest() || !$form->handle($this->getRequest())){
+            return $this->accessDenied();
+        }
+
+        $request = new SearchRequest();
+        $request->setIgn($form->getData('search'));
+
+        $service = $this->getContainer()->get('user.search');
+        $response = $service->process($request);
+
+        $result = $this->render('user/_list.html.twig', [
+            'users' => $response->getUsers()
+        ], true);
+
+        return $this->json([$result]);
     }
 }

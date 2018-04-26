@@ -9,10 +9,14 @@
             {% if profile.user.role != null %}
                 <span class="badge badge-primary ml-2">{{ profile.user.role|upper }}</span>
             {% endif %}
-            {% if is_granted() and profile.user.id == _user.id %}
-                <a href="{{ path('Profile:edit') }}" class="float-right" data-toggle="tooltip" data-placement="left" title="Edit profile" data-original-title="Edit profile">
+
+            {% if profile.user.id == _user.id %}
+                <a href="{{ path('Profile:edit') }}" class="float-right btn btn-primary btn-sm" data-toggle="tooltip" data-placement="left" title="Edit profile" data-original-title="Edit profile" role="button">
                     <span class="fa fa-fw fa-pencil" aria-hidden="true"></span>
-                    <span class="offscreen">Edit profile</span>
+                </a>
+            {% else %}
+                <a href="#" data-action="chat-with" data-user="{{ profile.id }}" class="float-right btn btn-primary btn-sm" data-toggle="tooltip" data-placement="left" title="Chat with" data-original-title="Chat with" role="button">
+                    <span class="fa fa-fw fa-commenting" aria-hidden="true"></span>
                 </a>
             {% endif %}
         </h1>

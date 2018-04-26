@@ -221,6 +221,7 @@ class SessionController extends AbstractController
             $response = $service->process($request);
 
             $session = $response->getSession();
+
             if(!empty($session) && $session->getChannel() !== $channel){
                 return $this->redirectToAction('Session:play', [$session->getChannel()]);
             }

@@ -245,10 +245,24 @@ input::-webkit-inner-spin-button {
     background-color: #26262E;
     border-color: #D9230F; }
 
+.standard-container {
+  font-weight: normal;
+  color: #FCFCFC;
+  padding: 0.75rem 1.25rem;
+  background-color: #26262E;
+  border: 1px solid #26262E;
+  border-radius: 2px; }
+
+.standard-container.active {
+  background-color: #26262E;
+  border-color: #D9230F; }
+
 .modal-content {
   border-radius: 2px;
   border-color: #D9230F;
   background-color: #26262E; }
+  .modal-content .modal-footer {
+    border-color: #363A43; }
   .modal-content .modal-header {
     border-color: #363A43; }
     .modal-content .modal-header .close span {

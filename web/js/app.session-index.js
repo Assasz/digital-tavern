@@ -1,10 +1,12 @@
 $(document).ready(function () {
     $('#search').keyup(function () {
+        var form = $('#session_search_form');
+
         $.ajax({
-            url: $('#session_search').attr('action'),
+            url: form.attr('action'),
             dataType: 'json',
             method: 'POST',
-            data: $('#session_search').serialize(),
+            data: form.serialize(),
             success: function (response) {
                 $('#sessions_container').html(response);
             },

@@ -28,10 +28,25 @@
     background-color: $dark;
     border-color: $red; }}
 
+.standard-container {
+  font-weight: normal;
+  color: $primary;
+  padding: 0.75rem 1.25rem;
+  background-color: $dark;
+  border: 1px solid $dark;
+  border-radius: 2px; }
+
+.standard-container.active {
+  background-color: $dark;
+  border-color: $red; }
+
 .modal-content {
   border-radius: 2px;
   border-color: $red;
   background-color: $dark;
+
+  .modal-footer {
+    border-color: $secondary; }
 
   .modal-header {
     border-color: $secondary;

@@ -1,0 +1,19 @@
+{% for user in users %}
+    <a href="{{ path('Profile:index', {'userId': user.id}) }}" class="col-lg-4 col-sm-6 col-xs-12 mb-3">
+        <div class="standard-container {% if user.id == _user.id %}active{% endif %}">
+            <img src="{{ asset(user.profile.avatarPath|default('images/default-avatar.jpg')) }}" alt="{{ user.profile.ign }}" class="rounded-circle mr-3" width="40">
+            <p class="d-inline">
+                {{ user.profile.ign }}
+                {% if user.role is not null %}
+                    <span class="badge badge-primary ml-3">{{ user.role|upper }}</span>
+                {% endif %}
+            </p>
+        </div>
+    </a>
+{% endfor %}
+
+{% if users|length < 1 %}
+    <div class="col-md-12">
+        <p>Can't find any available users right now.</p>
+    </div>
+{% endif %}

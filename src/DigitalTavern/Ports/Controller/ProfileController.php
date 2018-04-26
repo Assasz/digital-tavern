@@ -35,7 +35,7 @@ class ProfileController extends AbstractController
         }
 
         if(empty($this->getUser()->getProfile())){
-            return $this->redirectToAction('Session:index');
+            return $this->redirectToAction('Profile:create');
         }
 
         $request = new GetRequest();

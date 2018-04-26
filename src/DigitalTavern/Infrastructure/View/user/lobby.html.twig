@@ -1,0 +1,29 @@
+{% extends 'layout/default.html.twig' %}
+
+{% block title %}Lobby{% endblock %}
+
+{% block content %}
+    <section id="lobby">
+        <h1 class="section-heading">Lobby</h1>
+        <p class="mt-4">Are you looking for players to play session together? They can be found here!</p>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <form id="user_search_form" action="{{ path('User:search') }}">
+                    <div class="form-group">
+                        <label for="search" class="floating-label">Search</label>
+                        <input type="text" id="search" name="search" class="form-control" aria-describedby="search_help">
+                        <small id="search_help" class="form-text text-muted">Search players by their IGN. Only available players are outputed - inactive no longer than 5 minutes and not currently in session.</small>
+                    </div>
+                    {{ csrf_token() }}
+                </form>
+            </div>
+        </div>
+        <div id="users_container" class="row mt-4">
+            {{ include('user/_list.html.twig') }}
+        </div>
+    </section>
+{% endblock %}
+
+{% block js %}
+    <script src="{{ asset('js/app.lobby.js') }}"></script>
+{% endblock %}
