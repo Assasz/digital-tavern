@@ -1,0 +1,17 @@
+{% set base = (is_granted()) ? 'layout/default.html.twig' : 'layout/empty.html.twig' %}
+
+{% extends base %}
+
+{% block title %}Error {{ status }}{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="text-danger pt-4">{{ status }}</h1>
+        <p>
+            {{ message|default('Error has occured.') }}
+            {% if not is_granted() %}
+                Go back to <a href="{{ path('Home:index') }}">homepage</a>.
+            {% endif %}
+        </p>
+    </div>
+{% endblock %}

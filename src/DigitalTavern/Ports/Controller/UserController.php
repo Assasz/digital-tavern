@@ -4,6 +4,7 @@ namespace DigitalTavern\Ports\Controller;
 
 use DigitalTavern\Application\Service\UserModule\Request\EmailCheckRequest;
 use DigitalTavern\Application\Service\UserModule\Request\GetAvailableRequest;
+use DigitalTavern\Application\Service\UserModule\Request\GetRequest;
 use DigitalTavern\Application\Service\UserModule\Request\RememberedAuthRequest;
 use DigitalTavern\Application\Service\UserModule\Request\SearchRequest;
 use DigitalTavern\Application\Service\UserModule\Request\SignupConfirmationRequest;
@@ -17,6 +18,7 @@ use Yggdrasil\Core\Form\FormHandler;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Yggdrasil\Component\DoctrineComponent\EntitySerializer;
 
 /**
  * Class UserController
