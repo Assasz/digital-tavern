@@ -47,7 +47,7 @@
     <section id="profile-full" class="mt-4">
         <h2 class="section-heading">Full profile</h2>
         <p>
-            {{ profile.full|raw|default('This character is shrouded in a mist of mystery.') }}
+            {{ profile.full|default('This character is shrouded in a mist of mystery.')|raw }}
         </p>
     </section>
 {% endblock %}
