@@ -1,5 +1,5 @@
 <?php
-define('BASE_URL', 'http://localhost/digitaltavern/web/');
+define('BASE_URL', 'http://localhost/digital-tavern/web/');
 define('DEBUG', true);
 
 if(!DEBUG) {

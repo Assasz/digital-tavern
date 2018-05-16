@@ -101,4 +101,17 @@ class ProfileController extends AbstractController
 
         return $this->redirectToAction('Session:index');
     }
+
+    public function editAction(){
+        if(!$this->isGranted()){
+            return $this->redirectToAction('Home:index');
+        }
+
+        if(empty($this->getUser()->getProfile())){
+            return $this->redirectToAction('Profile:create');
+        }
+
+        return $this->render("profile/edit.html.twig");
+    }
+
 }
