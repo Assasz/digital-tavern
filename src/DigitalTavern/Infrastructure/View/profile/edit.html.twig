@@ -6,7 +6,7 @@
     <section id="edit_profile">
         <h1 class="section-heading">Edit profile</h1>
         <div class="row">
-            <form id="profile_form" class="col-md-6 mx-auto" method="post" action="{{ path('Profile:edit') }}" enctype="multipart/form-data">
+            <form id="profile_form" class="col-md-6 mx-auto" method="post" action="{{ path('Profile:edit', {'userId': _user.id }) }}" enctype="multipart/form-data">
                 <fieldset>
                     {% for error in flashbag('danger') %}
                         <div class="alert alert-dismissible alert-primary mt-4">
@@ -19,12 +19,12 @@
                     <div class="form-group mt-4">
                         <label for="avatar" class="file-label">Upload avatar</label>
                         <input type="file" class="custom-file-input" id="avatar" name="avatar" aria-describedby="avatar_help">
-                        <small id="ign_help" class="form-text text-muted">Avatar of your character. Minimum 300px of height and width, required aspect ratio: 1:1 (square).</small>
+                        <small id="avatar" class="form-text text-muted">Avatar of your character. Minimum 300px of height and width, required aspect ratio: 1:1 (square).</small>
                     </div>
                     <div class="form-group mt-4">
                         <label for="ign" class="floating-label">IGN</label>
                         <input type="text" class="form-control" id="ign" name="ign" aria-describedby="ign_help" autofocus readonly>
-                        <small id="ign_help" class="form-text text-muted">In Game Name, full name of your character. Required to start your adventure.</small>
+                        <small id="ign_help" class="form-text text-muted">In Game Name, full name of your character.</small>
                     </div>
                     <div class="form-group mt-4">
                         <label for="race" class="floating-label">Race</label>
@@ -52,7 +52,6 @@
                     </div>
                     {{ csrf_token() }}
 
-                    <p class="mt-2">Every field can be edited later. If you don't have inspiration to do it right now, just leave particular fields empty (only IGN is required, but can be changed later as well).</p>
                 </fieldset>
                 <button type="submit" class="btn btn-primary btn-lg mt-3">Save</button>
             </form>

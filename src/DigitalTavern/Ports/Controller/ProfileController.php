@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Yggdrasil\Core\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Yggdrasil\Core\Form\FormHandler;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * Class ProfileController
@@ -57,10 +58,10 @@ class ProfileController extends AbstractController
     }
 
     /**
-     * Create action, executed with user first sign in
+     * Profile create action, executed with user first sign in
      * Route: /profile/create
      *
-     * @return string|Response
+     * @return string|RedirectResponse|Response
      *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
@@ -102,7 +103,20 @@ class ProfileController extends AbstractController
         return $this->redirectToAction('Session:index');
     }
 
-    public function editAction(){
+    /**
+     * Profile edit action
+     * Route: /profile/edit/{userId}
+     *
+     * @param int $userId
+     * @return string|RedirectResponse|Response
+     *
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     *
+     */
+    public function editAction(int $userId)
+    {
         if(!$this->isGranted()){
             return $this->redirectToAction('Home:index');
         }

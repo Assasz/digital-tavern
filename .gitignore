@@ -2,3 +2,4 @@
 /vendor
 composer.lock
 /src/DigitalTavern/Infrastructure/Config/config.ini
+/web/index.php

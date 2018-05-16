@@ -2,6 +2,7 @@
 
 namespace DigitalTavern\Ports\Controller;
 
+use DigitalTavern\Domain\Entity\Session;
 use Yggdrasil\Core\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 

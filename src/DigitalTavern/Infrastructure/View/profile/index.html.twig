@@ -11,7 +11,7 @@
             {% endif %}
 
             {% if profile.user.id == _user.id %}
-                <a href="{{ path('Profile:edit') }}" class="float-right btn btn-primary btn-sm" data-toggle="tooltip" data-placement="left" title="Edit profile" data-original-title="Edit profile" role="button">
+                <a href="{{ path('Profile:edit', {'userId': _user.id }) }}" class="float-right btn btn-primary btn-sm" data-toggle="tooltip" data-placement="left" title="Edit profile" data-original-title="Edit profile" role="button">
                     <span class="fa fa-fw fa-pencil" aria-hidden="true"></span>
                 </a>
             {% else %}
