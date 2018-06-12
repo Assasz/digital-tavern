@@ -100,4 +100,8 @@ $(document).ready(function () {
                 ['Maximize']
             ],
     });
+
+    if(typeof fullValue !== 'undefined'){
+        CKEDITOR.instances.full.setData(fullValue);
+    }
 });

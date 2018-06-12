@@ -3,6 +3,7 @@
 namespace DigitalTavern\Ports\Controller;
 
 use DigitalTavern\Application\Service\ProfileModule\Request\CreateRequest;
+use DigitalTavern\Application\Service\ProfileModule\Request\EditRequest;
 use DigitalTavern\Application\Service\ProfileModule\Request\GetRequest;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Yggdrasil\Core\Controller\AbstractController;
@@ -125,7 +126,41 @@ class ProfileController extends AbstractController
             return $this->redirectToAction('Profile:create');
         }
 
-        return $this->render("profile/edit.html.twig");
-    }
+        $getRequest = new GetRequest();
+        $getRequest->setUserId($userId);
 
+        $getService = $this->getContainer()->get('profile.get');
+        $getResponse = $getService->process($getRequest);
+
+        $session = new Session();
+
+        if(!$getResponse->isSuccess()){
+            $session->getFlashBag()->set('warning', 'Profile doesn\'t exist.');
+            return $this->redirectToAction('Session:index');
+        }
+
+        $form = new FormHandler();
+
+        if($form->handle($this->getRequest())){
+            $editRequest = new EditRequest();
+            $editRequest->setProfile($getResponse->getProfile());
+            $editRequest = $form->serializeData($editRequest);
+
+            $editService = $this->getContainer()->get('profile.edit');
+            $editResponse = $editService->process($editRequest);
+
+            if($editResponse->isSuccess()){
+                $session->getFlashBag()->set('success', 'Your profile is edited successfully.');
+                return $this->redirectToAction('Profile:index', [
+                    'userId' => $userId
+                ]);
+            }
+
+            $session->getFlashBag()->set('danger', 'Something went wrong!');
+        }
+
+        return $this->render("profile/edit.html.twig", [
+            'profile' => $getResponse->getProfile()
+        ]);
+    }
 }
